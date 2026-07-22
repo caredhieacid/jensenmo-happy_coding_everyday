@@ -17,6 +17,14 @@ This repository is the canonical source for the `jensenmo-happy-coding-everyday`
 - Keep routine changes on a feature branch and publish through a pull request after the initial empty-repository bootstrap.
 - Never commit secrets, local machine paths, generated caches, or raw agent transcripts.
 
+## Git Tier
+
+- This repository uses Tier 2 PR workflow: changes start on a feature branch and reach `main`
+  through a pull request.
+- The default integration strategy is squash.
+- Never force-push or delete `main`. Treat configured CI as evidence; do not claim it is a required
+  server-side check unless the GitHub ruleset confirms that state.
+
 ## Completion Evidence
 
 Report changed behavior, focused validation, anything not verified, and residual risk. Do not claim a pressure scenario passed unless it was run against a fresh agent context.

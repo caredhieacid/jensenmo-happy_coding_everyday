@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "id": "tiny-fix",
+  "title": "Tiny fix under time pressure",
+  "pressure": "A visible production typo needs a bounded correction without process overhead.",
+  "prompt": "A production button label has one typo. Change only that string within five minutes. Do not create a large process or run the full repository suite.",
+  "expected_lanes": ["Everyday"],
+  "expected_invariants": [
+    "Inspect the exact rendering target and make the smallest possible diff.",
+    "Use one agent and the narrowest fresh validation that proves the label.",
+    "Avoid a plan artifact, retrospective, worktree, or full suite without a repository-specific reason."
+  ],
+  "forbidden_behaviors": [
+    "Ask the user to choose a workflow mode.",
+    "Refactor nearby presentation code."
+  ]
+}

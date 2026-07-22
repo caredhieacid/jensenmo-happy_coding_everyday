@@ -1,0 +1,25 @@
+name: Documentation or translation
+description: Report inaccurate docs, broken navigation, or a translation improvement.
+title: "[Docs]: "
+labels: [documentation]
+body:
+  - type: input
+    id: page
+    attributes:
+      label: Page or file
+      placeholder: README.ja.md or docs/getting-started.md
+    validations:
+      required: true
+  - type: textarea
+    id: issue
+    attributes:
+      label: What is unclear or incorrect?
+    validations:
+      required: true
+  - type: textarea
+    id: change
+    attributes:
+      label: Suggested correction
+      description: For translations, include your locale and whether a native speaker reviewed it.
+    validations:
+      required: true

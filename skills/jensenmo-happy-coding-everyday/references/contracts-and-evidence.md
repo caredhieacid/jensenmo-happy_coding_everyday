@@ -10,6 +10,8 @@ Use four fields. Do not ask the user to fill them when the request already answe
 - **不要做**: explicit exclusions plus likely scope traps.
 
 Keep this contract conversational for Everyday work. Persist it for long-running Delivery work.
+When the user adds or replaces a constraint, update the active contract instead of starting a
+parallel plan. Preserve completed work only when it still satisfies the latest contract.
 
 ## Worker Dispatch Contract
 

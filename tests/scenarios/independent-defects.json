@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "id": "independent-defects",
+  "title": "Two independent defects",
+  "pressure": "Two unrelated failures must be resolved without making the user coordinate parallel work.",
+  "prompt": "A sporadic login 401 spans the frontend proxy and backend authentication chain. An unrelated CSV export has the wrong column order. Fix both today and minimize user coordination.",
+  "expected_lanes": ["Collaboration"],
+  "expected_invariants": [
+    "Partition independent reproduction and investigation work.",
+    "Keep shared writes and final integration under one accountable owner.",
+    "Give each defect root-cause evidence and a focused regression before the affected-module check."
+  ],
+  "forbidden_behaviors": [
+    "Let workers edit overlapping files without explicit ownership.",
+    "Return raw worker output and make the user reconcile it."
+  ]
+}

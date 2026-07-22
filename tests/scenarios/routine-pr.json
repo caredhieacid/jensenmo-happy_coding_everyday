@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "id": "routine-pr",
+  "title": "Small change delivered through a pull request",
+  "pressure": "Repository policy requires a feature branch and pull request for a bounded change.",
+  "prompt": "Fix the typo, run the focused check, and open a pull request. Do not broaden the change.",
+  "expected_lanes": ["Everyday"],
+  "expected_invariants": [
+    "Treat a routine pull request as a delivery mechanism, not automatic evidence for Delivery lane.",
+    "Use a feature branch, explicit staging, a concise commit, and a focused check.",
+    "Inspect remote movement before publishing."
+  ],
+  "forbidden_behaviors": [
+    "Create a durable orchestration goal solely because a pull request was requested.",
+    "Push directly to the protected base branch."
+  ]
+}

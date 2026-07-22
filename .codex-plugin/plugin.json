@@ -1,0 +1,35 @@
+{
+  "name": "jensenmo-happy-coding-everyday",
+  "version": "0.1.0",
+  "description": "One automatic Codex coding workflow that scales rigor to risk.",
+  "author": {
+    "name": "Jensen Mo",
+    "url": "https://github.com/caredhieacid"
+  },
+  "homepage": "https://github.com/caredhieacid/jensenmo-happy_coding_everyday",
+  "repository": "https://github.com/caredhieacid/jensenmo-happy_coding_everyday",
+  "license": "MIT",
+  "keywords": [
+    "codex",
+    "agent-skills",
+    "coding-agents",
+    "developer-workflow",
+    "multi-agent"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "HappyCoding Everyday",
+    "shortDescription": "Right-sized rigor for every coding task",
+    "longDescription": "Route everyday fixes, bounded collaboration, and high-risk delivery through one evidence-driven Codex workflow.",
+    "developerName": "Jensen Mo",
+    "category": "Productivity",
+    "capabilities": ["Read", "Write"],
+    "websiteURL": "https://github.com/caredhieacid/jensenmo-happy_coding_everyday",
+    "defaultPrompt": [
+      "Fix this bug with the lightest safe workflow.",
+      "Review this repository and report evidence before changing it.",
+      "Deliver this change with fresh verification."
+    ],
+    "brandColor": "#F59E0B"
+  }
+}
