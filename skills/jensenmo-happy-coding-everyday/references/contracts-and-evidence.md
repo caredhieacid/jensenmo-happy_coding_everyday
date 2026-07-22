@@ -41,7 +41,8 @@ Choose the lowest evidence that proves the behavior, then climb according to ris
 1. static inspection, search, diff check, formatter, or schema validation;
 2. focused unit/component test or direct reproduction;
 3. affected-module test, type check, build, or contract test;
-4. integration/E2E on a representative path;
+4. integration/E2E on a representative path — for UI behavior this includes driving the real
+   interface with an available browser or computer-use tool and capturing what it shows;
 5. real environment validation, monitoring, rollback proof, and independent review.
 
 Examples:

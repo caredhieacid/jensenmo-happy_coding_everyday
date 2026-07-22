@@ -52,7 +52,8 @@ exercise their behavior:
 - `cross-stack-single-path` — coupled work is not split by file or layer count;
 - `unrelated-suite-failure` — focused success and broader failures stay separate;
 - `mid-task-constraint` — the latest user constraint updates the active contract;
-- `vague-request-minimal-code` — an underspecified request becomes verifiable targets and the least code that meets them.
+- `vague-request-minimal-code` — an underspecified request becomes verifiable targets and the least code that meets them;
+- `ui-behavior-verification` — read-only tools (browser, computer use) are free in every lane, and UI claims need observed behavior.
 
 Machine-readable cases are evaluation inputs, not proof by themselves. A case passes only after a
 fresh agent context performs the requested task or returns the expected bounded plan, and a reviewer

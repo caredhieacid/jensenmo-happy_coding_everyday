@@ -21,7 +21,7 @@ Sequence:
 4. Run focused validation after the final edit.
 5. Report result and gaps.
 
-Do not add a goal file, subagent, worktree, design document, or full-suite run by habit. Use one only when the repository or task provides a concrete reason.
+Do not add a goal file, writing worker, worktree, design document, or full-suite run by habit. Use one only when the repository or task provides a concrete reason. This limits process artifacts and write topology, not observation: web search, a browser, computer use for verification, or one bounded read-only exploration worker are all normal Everyday moves when they are the cheapest evidence.
 
 ## Collaboration
 

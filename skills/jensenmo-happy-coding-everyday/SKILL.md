@@ -41,6 +41,15 @@ Read [lanes.md](references/lanes.md) only when lane selection or escalation is n
 - If multiple interpretations materially change the result, present the smallest set of choices. Otherwise make a bounded assumption and continue.
 - Ship the least code that meets acceptance: no unrequested flexibility or configuration, no abstraction for single-use code, no handling for states that cannot occur. If a draft can shrink materially, shrink it before presenting.
 
+### Use tools freely, gate writes
+
+- Lane selection governs write topology and process weight, never tool access. Read-only and
+  observational tools — web search, documentation fetch, an in-app or extension browser, computer
+  use for observation and behavioral verification, a bounded read-only exploration worker — are
+  available in every lane, including Everyday, whenever they are the cheapest path to evidence.
+- Using such a tool needs no lane upgrade and no user permission. The existing irreversible
+  boundary still applies the moment a tool would mutate external state.
+
 ### Debug from evidence
 
 - Reproduce or otherwise establish the failure before fixing it.
@@ -91,3 +100,4 @@ Do not manufacture ceremony. Everyday work needs no goal document, board, retros
 | “While here, this code could be cleaner.” | If it is not required for acceptance, leave it alone. |
 | “A configurable version will save time later.” | Speculative flexibility is scope drift. Build for the stated requirement; generalize when a second real use arrives. |
 | “The user must choose a mode.” | Lane selection is the skill's responsibility. Ask only for material choices or authorization. |
+| “Browser, computer use, or a subagent feels like a heavier lane.” | Read-only tools are free in every lane. Escalate lanes for write coordination and risk, not for looking at things. |

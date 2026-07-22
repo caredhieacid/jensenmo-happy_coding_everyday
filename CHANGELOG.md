@@ -11,6 +11,10 @@ for plugin releases.
   context and records gradable evidence;
 - disposable fixture repositories for the `tiny-fix` and `vague-request-minimal-code` scenarios;
 - `vague-request-minimal-code` pressure scenario for underspecified requests;
+- `ui-behavior-verification` pressure scenario and an explicit tool-freedom rule: read-only and
+  observational tools (web search, browser, computer use, bounded exploration workers) are free in
+  every lane, while writes stay gated;
+- guidance on complementary ecosystem skills in getting-started;
 - worker dispatch prompt shape and host-subagent guidance for the Collaboration lane;
 - Codex plugin manifest and remote marketplace catalog;
 - deterministic CI preview packaging and tag-driven GitHub Release automation;
