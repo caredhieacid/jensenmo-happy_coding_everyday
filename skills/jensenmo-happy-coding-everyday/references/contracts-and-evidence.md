@@ -24,6 +24,16 @@ Every worker assignment must contain:
 
 Workers return distilled conclusions with primary evidence: paths and line numbers, commands and relevant output, test names, request IDs, or artifact locations. The main agent spot-checks critical evidence before integrating it.
 
+Dispatch prompts are written for a fresh context. A minimal shape that satisfies the contract:
+
+```text
+Goal: answer one bounded question or produce one deliverable.
+Context: the repository path, branch, and the facts the worker cannot discover cheaply.
+Output: exact sections to return, each claim with path:line or command + relevant output.
+Boundaries: read-only unless an explicit file list grants writes; name out-of-scope areas.
+Stop rule: return "blocked" with findings so far instead of widening scope or asking the user.
+```
+
 ## Verification Ladder
 
 Choose the lowest evidence that proves the behavior, then climb according to risk:
@@ -31,7 +41,8 @@ Choose the lowest evidence that proves the behavior, then climb according to ris
 1. static inspection, search, diff check, formatter, or schema validation;
 2. focused unit/component test or direct reproduction;
 3. affected-module test, type check, build, or contract test;
-4. integration/E2E on a representative path;
+4. integration/E2E on a representative path — for UI behavior this includes driving the real
+   interface with an available browser or computer-use tool and capturing what it shows;
 5. real environment validation, monitoring, rollback proof, and independent review.
 
 Examples:

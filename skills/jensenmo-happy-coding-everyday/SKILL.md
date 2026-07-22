@@ -12,7 +12,7 @@ Own the coding workflow from request to evidence. The user does not need to ask 
 ## Route Every Coding Task
 
 1. Read the request and the nearest repository instructions.
-2. Lock a compact contract: `目标 / 范围 / 验收 / 不要做`.
+2. Lock a compact contract: `Goal / Scope / Acceptance / Exclusions`（目标 / 范围 / 验收 / 不要做）.
    - Keep it internal for clear, low-risk work.
    - State assumptions only when they affect behavior, scope, data, or an irreversible action.
 3. Select the lowest sufficient lane from the table below. Upgrade only when concrete evidence crosses a trigger.
@@ -37,8 +37,21 @@ Read [lanes.md](references/lanes.md) only when lane selection or escalation is n
 ### Think before changing
 
 - Inspect the relevant code, tests, history, and runtime evidence before choosing a fix.
+- Before editing, be able to state where the target behavior is produced and what else depends on that path; until you can, keep reading instead of patching the first plausible line.
+- Turn a vague request into a verifiable target before editing: "add validation" becomes the specific inputs that must be rejected and the check that proves it; "fix the bug" starts from a reproduction that fails.
 - If multiple interpretations materially change the result, present the smallest set of choices. Otherwise make a bounded assumption and continue.
-- Prefer the simplest adequate path. Do not create speculative abstractions, opportunistic refactors, or unrelated cleanup.
+- Ship the least code that meets acceptance: no unrequested flexibility or configuration, no abstraction for single-use code, no handling for states that cannot occur. If a draft can shrink materially, shrink it before presenting.
+
+### Use tools freely, gate writes
+
+- Lane selection governs write topology and process weight, never tool access. Read-only and
+  observational tools — web search, documentation fetch, an in-app or extension browser, computer
+  use for observation and behavioral verification, a bounded read-only exploration worker — are
+  available in every lane, including Everyday, whenever they are the cheapest path to evidence.
+- Using such a tool needs no lane upgrade and no user permission. The existing irreversible
+  boundary still applies the moment a tool would mutate external state.
+- Prefer checking over guessing: when a cheap read-only action — a search, a documentation fetch, a
+  look at the running behavior — can settle a material assumption, take it instead of assuming.
 
 ### Debug from evidence
 
@@ -52,6 +65,7 @@ Read [lanes.md](references/lanes.md) only when lane selection or escalation is n
   when the requested work cannot be separated safely from ambiguous existing edits.
 - A worker may write only within an explicit, non-overlapping scope.
 - When work shares files or contracts, keep one writer and use other agents for read-only research or review.
+- Remove orphans your own change creates (unused imports, variables, helpers). Point out pre-existing dead code instead of deleting it.
 - Never treat a worker summary as proof for a critical claim; inspect the cited file, diff, command output, or runtime evidence.
 
 ### Verify proportionally, but always freshly
@@ -86,5 +100,8 @@ Do not manufacture ceremony. Everyday work needs no goal document, board, retros
 | “More agents will be faster.” | Delegate only independent, self-contained work; coordination is a real cost. |
 | “Parallel writers can merge later.” | Shared files and contracts get one writer. Parallelize reading and independent review. |
 | “The command passed earlier.” | Completion requires fresh evidence after the final edit. |
+| “The first suspicious line matches the symptom.” | A pattern match is a hypothesis. Connect cause to symptom with evidence before patching. |
 | “While here, this code could be cleaner.” | If it is not required for acceptance, leave it alone. |
+| “A configurable version will save time later.” | Speculative flexibility is scope drift. Build for the stated requirement; generalize when a second real use arrives. |
 | “The user must choose a mode.” | Lane selection is the skill's responsibility. Ask only for material choices or authorization. |
+| “Browser, computer use, or a subagent feels like a heavier lane.” | Read-only tools are free in every lane. Escalate lanes for write coordination and risk, not for looking at things. |
