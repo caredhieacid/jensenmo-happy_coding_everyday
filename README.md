@@ -2,10 +2,12 @@
 
 # ⚡ HappyCoding Everyday
 
-### One Codex coding workflow that scales rigor to risk.
+### The risk-aware coding workflow for Codex.
 
-Describe the outcome once. HappyCoding chooses the lightest safe path—from a surgical fix,
-to bounded collaboration, to evidence-gated delivery.
+One request in. HappyCoding chooses how much process the work actually needs—from a surgical fix,
+to bounded collaboration, to evidence-gated delivery—and closes with fresh proof.
+
+**🌐 Language / 语言 / 言語 / 언어 / Idioma**
 
 [English](README.md) · [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [Español](README.es.md)
 
@@ -15,9 +17,18 @@ to bounded collaboration, to evidence-gated delivery.
 [![Codex Plugin](https://img.shields.io/badge/Codex-plugin-10a37f)](.codex-plugin/plugin.json)
 [![License: MIT](https://img.shields.io/badge/license-MIT-22c55e.svg)](LICENSE)
 
-[Quick start](#quick-start) · [How it works](#how-it-works) · [Design philosophy](docs/design-philosophy.md) · [Contributing](CONTRIBUTING.md)
+[30-second overview](#happycoding-in-30-seconds) · [Quick start](#quick-start) · [How it works](#how-it-works) · [Design philosophy](docs/design-philosophy.md) · [Contributing](CONTRIBUTING.md)
 
 </div>
+
+## HappyCoding in 30 seconds
+
+| You provide | HappyCoding handles | You receive |
+| --- | --- | --- |
+| The outcome, constraints, and anything that must not change | Workflow selection, bounded execution, escalation, and the right level of verification | The requested result, fresh evidence, unverified gaps, and residual risk |
+
+**The promise:** tiny fixes stay tiny; risky delivery earns stronger gates; the user does not become
+the workflow engine.
 
 ## What is HappyCoding?
 
@@ -46,7 +57,17 @@ Start a new task, then describe the work normally:
 Fix the login regression, preserve my unrelated changes, and show me the fresh verification.
 ```
 
-Explicit invocation is also available:
+Use the same entry point for different levels of work:
+
+```text
+Audit this API contract. Stay read-only and cite the exact producer and consumer paths.
+```
+
+```text
+Ship tenant isolation across storage, authorization, UI, and rollout. Preserve a rollback path.
+```
+
+Explicit invocation is also available when you want it:
 
 ```text
 $jensenmo-happy-coding-everyday audit this API contract before changing code.

@@ -6,12 +6,16 @@
 
 목표를 한 번만 설명하면 HappyCoding이 작은 수정, 제한된 협업, 고위험 전달 중 가장 가볍고 안전한 경로를 선택합니다.
 
+**🌐 Language / 语言 / 言語 / 언어 / Idioma**
+
 [English](README.md) · [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [Español](README.es.md)
 
 [![Status: Alpha](https://img.shields.io/badge/status-alpha-f59e0b)](#프로젝트-상태)
 [![CI](https://github.com/caredhieacid/jensenmo-happy_coding_everyday/actions/workflows/validate.yml/badge.svg)](https://github.com/caredhieacid/jensenmo-happy_coding_everyday/actions/workflows/validate.yml)
 [![Codex Skill](https://img.shields.io/badge/Codex-agent%20skill-111827)](skills/jensenmo-happy-coding-everyday/SKILL.md)
 [![License: MIT](https://img.shields.io/badge/license-MIT-22c55e.svg)](LICENSE)
+
+[빠른 시작](#빠른-시작) · [실행 레인](#세-가지-실행-레인) · [설계 원칙](#설계-원칙) · [문서](docs/README.md)
 
 </div>
 
