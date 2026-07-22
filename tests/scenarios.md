@@ -53,7 +53,8 @@ exercise their behavior:
 - `unrelated-suite-failure` — focused success and broader failures stay separate;
 - `mid-task-constraint` — the latest user constraint updates the active contract;
 - `vague-request-minimal-code` — an underspecified request becomes verifiable targets and the least code that meets them;
-- `ui-behavior-verification` — read-only tools (browser, computer use) are free in every lane, and UI claims need observed behavior.
+- `ui-behavior-verification` — read-only tools (browser, computer use) are free in every lane, and UI claims need observed behavior;
+- `decoy-cause` — an early suspicious-looking line is a hypothesis, not the cause; evidence must connect cause to symptom before the patch. Its fixture README is written in-world so the run is not primed.
 
 Machine-readable cases are evaluation inputs, not proof by themselves. A case passes only after a
 fresh agent context performs the requested task or returns the expected bounded plan, and a reviewer
