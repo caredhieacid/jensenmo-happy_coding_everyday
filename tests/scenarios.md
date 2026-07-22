@@ -51,8 +51,19 @@ exercise their behavior:
 - `dirty-worktree` — unrelated user changes remain untouched;
 - `cross-stack-single-path` — coupled work is not split by file or layer count;
 - `unrelated-suite-failure` — focused success and broader failures stay separate;
-- `mid-task-constraint` — the latest user constraint updates the active contract.
+- `mid-task-constraint` — the latest user constraint updates the active contract;
+- `vague-request-minimal-code` — an underspecified request becomes verifiable targets and the least code that meets them;
+- `ui-behavior-verification` — read-only tools (browser, computer use) are free in every lane, and UI claims need observed behavior;
+- `decoy-cause` — an early suspicious-looking line is a hypothesis, not the cause; evidence must connect cause to symptom before the patch. Its fixture README is written in-world so the run is not primed.
 
 Machine-readable cases are evaluation inputs, not proof by themselves. A case passes only after a
 fresh agent context performs the requested task or returns the expected bounded plan, and a reviewer
 checks the recorded evidence against every invariant.
+
+## Running scenarios
+
+`scripts/run_scenarios.py` prepares one evidence folder per run under `.scenario-runs/`: it copies
+the disposable fixture from `tests/fixtures/<id>/` into a fresh git workspace, executes
+`codex exec` there with only the scenario prompt, and captures the session log, workspace diff,
+final message, and a grading checklist. Scenarios without a fixture are skipped and reported.
+The runner never scores; a reviewer grades each checklist against the invariants.

@@ -89,6 +89,37 @@ codex plugin marketplace remove jensenmo-happy-coding
 - Other coding agents are not claimed as supported until their trigger, instruction, and evaluation
   paths are tested independently.
 
+## Keep one automatic coding entrance
+
+This skill is designed to be the sole always-on coding dispatcher. If another installed skill also
+triggers on generic coding activity (editing, reviewing, testing, debugging), every task pays for
+two overlapping instruction sets and routing authority becomes ambiguous. Keep exactly one such
+entrance: disable or narrow the other skill so it loads only for its specific domain, or on
+explicit invocation. Domain standards that trigger on narrower evidence (a particular framework,
+Git operations, observability work) coexist fine.
+
+## Complementary ecosystem skills
+
+HappyCoding is a dispatcher, not a monopoly. Narrow, conditionally triggered skills compose well
+with it because they own one domain and fire on specific evidence rather than on every coding
+task. Skills that have proven useful alongside this workflow:
+
+- **GitHub flow** — the official `gh-fix-ci` and `gh-address-comments` skills (installable via
+  `skill-installer` from [openai/skills](https://github.com/openai/skills)) pair well with the
+  Tier-style branch-and-PR discipline this repository itself uses.
+- **Session handoff** — a handoff/summary skill complements the Delivery lane when work must
+  survive a context boundary.
+- **Adversarial review** — a Socratic plan-stress-testing skill can serve as the independent
+  reviewer the Collaboration and Delivery lanes call for.
+- **Web context** — a search/scrape skill strengthens the tool-freedom rule when tasks depend on
+  current external documentation.
+
+What to avoid: all-in-one workflow harnesses that trigger on generic coding activity, impose
+mandatory staged ceremonies, or ship dozens of modes and subagents. They recreate the duplicate
+ownership problem described in [design-philosophy.md](design-philosophy.md) and compete with the
+single automatic entrance above. Review any third-party skill's instructions before installing;
+skills are prompt-injection surfaces.
+
 ## Troubleshooting
 
 If the skill does not appear:

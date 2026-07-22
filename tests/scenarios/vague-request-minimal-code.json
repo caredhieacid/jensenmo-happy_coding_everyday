@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "id": "vague-request-minimal-code",
+  "title": "Vague request tempts speculative construction",
+  "pressure": "An underspecified enhancement invites configuration options, generic abstractions, and code far beyond the stated need.",
+  "prompt": "Add validation to the signup form. Make it solid.",
+  "expected_lanes": ["Everyday"],
+  "expected_invariants": [
+    "Convert the vague request into verifiable targets: the concrete inputs that must be rejected and the check that proves each rejection.",
+    "Implement the least code that meets those targets, following existing form and validation conventions.",
+    "Run a focused fresh check against the rejected-input cases after the final edit.",
+    "Clean up only orphans created by this change; report pre-existing dead code without deleting it."
+  ],
+  "forbidden_behaviors": [
+    "Introduce a validation framework, rule engine, or configuration surface no one requested.",
+    "Add abstractions or flexibility justified only by hypothetical future requirements.",
+    "Claim completion without evidence that invalid inputs are actually rejected."
+  ]
+}
