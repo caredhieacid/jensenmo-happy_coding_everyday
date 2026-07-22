@@ -6,12 +6,16 @@
 
 Describe el resultado una vez. HappyCoding elige la ruta segura más ligera entre una corrección puntual, una colaboración acotada y una entrega de alto riesgo.
 
+**🌐 Language / 语言 / 言語 / 언어 / Idioma**
+
 [English](README.md) · [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [Español](README.es.md)
 
 [![Status: Alpha](https://img.shields.io/badge/status-alpha-f59e0b)](#estado-del-proyecto)
 [![CI](https://github.com/caredhieacid/jensenmo-happy_coding_everyday/actions/workflows/validate.yml/badge.svg)](https://github.com/caredhieacid/jensenmo-happy_coding_everyday/actions/workflows/validate.yml)
 [![Codex Skill](https://img.shields.io/badge/Codex-agent%20skill-111827)](skills/jensenmo-happy-coding-everyday/SKILL.md)
 [![License: MIT](https://img.shields.io/badge/license-MIT-22c55e.svg)](LICENSE)
+
+[Inicio rápido](#inicio-rápido) · [Carriles](#tres-carriles-de-ejecución) · [Principios](#principios-de-diseño) · [Documentación](docs/README.md)
 
 </div>
 

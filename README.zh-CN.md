@@ -6,6 +6,8 @@
 
 你只需要描述一次目标。HappyCoding 会在外科手术式小改、有限协作和证据门禁交付之间，自动选择最轻且安全的路径。
 
+**🌐 Language / 语言 / 言語 / 언어 / Idioma**
+
 [English](README.md) · [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [Español](README.es.md)
 
 [![Status: Alpha](https://img.shields.io/badge/status-alpha-f59e0b)](#项目状态)
@@ -14,11 +16,19 @@
 [![Codex Plugin](https://img.shields.io/badge/Codex-plugin-10a37f)](.codex-plugin/plugin.json)
 [![License: MIT](https://img.shields.io/badge/license-MIT-22c55e.svg)](LICENSE)
 
-[快速开始](#快速开始) · [工作原理](#工作原理) · [设计哲学](docs/design-philosophy.md) · [参与贡献](CONTRIBUTING.md)
+[30 秒了解](#30-秒了解-happycoding) · [快速开始](#快速开始) · [工作原理](#工作原理) · [设计哲学](docs/design-philosophy.md) · [参与贡献](CONTRIBUTING.md)
 
 </div>
 
 > 英文 [README.md](README.md) 是规范源；本翻译帮助中文开发者浏览，若内容不同步，以英文版为准。
+
+## 30 秒了解 HappyCoding
+
+| 你提供 | HappyCoding 负责 | 你得到 |
+| --- | --- | --- |
+| 目标、约束和绝对不能改的内容 | 流程选择、有界执行、必要升级，以及匹配风险的验证 | 请求结果、新鲜证据、未验证项和剩余风险 |
+
+**它的承诺：**小改保持轻量；风险升高才增加门禁；不让用户自己充当工作流引擎。
 
 ## 这是什么？
 
@@ -43,7 +53,17 @@ codex plugin marketplace add caredhieacid/jensenmo-happy_coding_everyday
 修复登录回归，保留我未提交的其他改动，完成后给我新鲜验证证据。
 ```
 
-也可以显式调用：
+同一个入口也能处理不同等级的工作：
+
+```text
+审计这个 API 合同。保持只读，并引用准确的生产者和消费者路径。
+```
+
+```text
+跨存储、鉴权、前端和发布交付多租户隔离，同时保留回滚路径。
+```
+
+需要时也可以显式调用：
 
 ```text
 $jensenmo-happy-coding-everyday 先审计这个 API 合同，不要修改代码。
