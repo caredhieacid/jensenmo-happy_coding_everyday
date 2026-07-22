@@ -19,6 +19,11 @@ Own the coding workflow from request to evidence. The user does not need to ask 
 4. Execute with surgical changes and fresh validation.
 5. Report the outcome, evidence, unverified items, and residual risk.
 
+Match the action to the request. Questions, reviews, audits, status checks, and diagnoses are valid
+read-only outcomes; do not turn them into implementation, publication, or external writes unless the
+user requested that change. If the user changes a constraint mid-task, reconcile it with the active
+contract, keep compatible progress, and discard only work that now conflicts.
+
 | Lane | Use when | Topology | Required rigor |
 | --- | --- | --- | --- |
 | **Everyday** | Default: one bounded task, local change, low coupling | One agent | Inspect, minimal patch, targeted validation |
@@ -43,6 +48,8 @@ Read [lanes.md](references/lanes.md) only when lane selection or escalation is n
 
 ### Keep writes controlled
 
+- Inspect repository status before editing. Preserve unrelated user changes, and stop for direction
+  when the requested work cannot be separated safely from ambiguous existing edits.
 - A worker may write only within an explicit, non-overlapping scope.
 - When work shares files or contracts, keep one writer and use other agents for read-only research or review.
 - Never treat a worker summary as proof for a critical claim; inspect the cited file, diff, command output, or runtime evidence.

@@ -1,0 +1,39 @@
+name: Release candidate
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    uses: ./.github/workflows/validate.yml
+
+  package:
+    name: Build release candidate
+    needs: validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: "3.13"
+      - name: Build candidate from the tagged source
+        run: |
+          python scripts/package_release.py \
+            --output-dir dist \
+            --version "${GITHUB_REF_NAME#v}" \
+            --source-ref "$GITHUB_REF_NAME" \
+            --source-sha "$GITHUB_SHA"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: release-candidate
+          path: dist/
+          if-no-files-found: error
+          retention-days: 7

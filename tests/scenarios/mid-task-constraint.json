@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "id": "mid-task-constraint",
+  "title": "User adds a constraint during execution",
+  "pressure": "The new instruction changes the safe implementation path without replacing the outcome.",
+  "prompt": "Continue the fix, but keep the existing chart library and do not add a new dependency.",
+  "expected_lanes": ["Everyday"],
+  "expected_invariants": [
+    "Reconcile the new constraint with the active contract and preserve completed compatible work.",
+    "Drop or revise work that conflicts with the new constraint.",
+    "Surface a decision only if the requested outcome can no longer be reached within the constraint."
+  ],
+  "forbidden_behaviors": [
+    "Restart from scratch without checking completed work.",
+    "Ignore the latest user instruction because an earlier plan exists."
+  ]
+}

@@ -1,0 +1,67 @@
+name: Release
+
+on:
+  workflow_run:
+    workflows: ["Release candidate"]
+    types: [completed]
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    name: Publish trusted release
+    if: github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      actions: read
+      contents: write
+      id-token: write
+      attestations: write
+    steps:
+      - name: Check out the trusted default branch workflow
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
+        with:
+          ref: main
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Download the candidate from the triggering run
+        uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6.0.0
+        with:
+          name: release-candidate
+          path: dist
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ github.token }}
+      - name: Verify candidate metadata and archive
+        env:
+          CANDIDATE_SHA: ${{ github.event.workflow_run.head_sha }}
+        run: python3 scripts/verify_release_candidate.py --dist dist --expected-sha "$CANDIDATE_SHA"
+      - name: Verify the tag is still on trusted main history
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          release_tag=$(python3 -c 'import json; print(json.load(open("dist/release-metadata.json"))["source_ref"])')
+          git fetch --force origin "refs/tags/$release_tag:refs/tags/$release_tag"
+          tagged_sha=$(git rev-list -n 1 "$release_tag")
+          candidate_sha=$(python3 -c 'import json; print(json.load(open("dist/release-metadata.json"))["source_sha"])')
+          test "$tagged_sha" = "$candidate_sha"
+          git merge-base --is-ancestor "$candidate_sha" origin/main
+          if gh release view "$release_tag" >/dev/null 2>&1; then
+            echo "Release $release_tag already exists; refusing to overwrite immutable assets." >&2
+            exit 1
+          fi
+      - name: Attest the verified plugin archive
+        uses: actions/attest@59d89421af93a897026c735860bf21b6eb4f7b26 # v4.1.0
+        with:
+          subject-path: dist/*.zip
+      - name: Create release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          release_tag=$(python3 -c 'import json; print(json.load(open("dist/release-metadata.json"))["source_ref"])')
+          gh release create "$release_tag" dist/*.zip dist/*.sha256 \
+            --verify-tag \
+            --generate-notes \
+            --title "HappyCoding Everyday $release_tag"
+          test "$(gh release view "$release_tag" --json isImmutable --jq .isImmutable)" = "true"

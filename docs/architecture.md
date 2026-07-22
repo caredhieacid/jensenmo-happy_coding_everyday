@@ -37,6 +37,18 @@ Everyday is the stable default. Complexity is demonstrated by coupling, independ
 
 The exact plugin-disable mechanism is environment-specific. Prefer a supported plugin setting or a reversible move over editing plugin caches.
 
+## Distribution
+
+The canonical runtime source remains `skills/jensenmo-happy-coding-everyday/`. The repository root
+also acts as a minimal Codex plugin package through `.codex-plugin/plugin.json`; the plugin points to
+the same `skills/` directory and does not duplicate instructions. `.agents/plugins/marketplace.json`
+exposes the root plugin from GitHub and pins installation to the tag that matches the manifest
+version.
+
+Release automation packages the plugin manifest, canonical skill, license, and short user-facing
+entry documents. It does not ship tests, evaluation records, local configuration, credentials, or a
+background runtime.
+
 ## Non-goals
 
 - a new agent framework or runtime;

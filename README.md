@@ -1,105 +1,227 @@
 <div align="center">
 
-# JensenMo HappyCoding Everyday
+# ⚡ HappyCoding Everyday
 
-**One automatic coding entrance. Right-sized rigor.**
+### One Codex coding workflow that scales rigor to risk.
 
-一个会自己判断轻重的 Codex 编码入口：日常任务轻量执行，需要时才自动升级为多 agent 协作或完整交付编排。
+Describe the outcome once. HappyCoding chooses the lightest safe path—from a surgical fix,
+to bounded collaboration, to evidence-gated delivery.
+
+[English](README.md) · [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [Español](README.es.md)
 
 [![Status: Alpha](https://img.shields.io/badge/status-alpha-f59e0b)](#project-status)
-[![Codex Skill](https://img.shields.io/badge/Codex-skill-111827)](skills/jensenmo-happy-coding-everyday/SKILL.md)
 [![CI](https://github.com/caredhieacid/jensenmo-happy_coding_everyday/actions/workflows/validate.yml/badge.svg)](https://github.com/caredhieacid/jensenmo-happy_coding_everyday/actions/workflows/validate.yml)
+[![Codex Skill](https://img.shields.io/badge/Codex-agent%20skill-111827)](skills/jensenmo-happy-coding-everyday/SKILL.md)
+[![Codex Plugin](https://img.shields.io/badge/Codex-plugin-10a37f)](.codex-plugin/plugin.json)
 [![License: MIT](https://img.shields.io/badge/license-MIT-22c55e.svg)](LICENSE)
+
+[Quick start](#quick-start) · [How it works](#how-it-works) · [Design philosophy](docs/design-philosophy.md) · [Contributing](CONTRIBUTING.md)
 
 </div>
 
-## 为什么做这个项目
+## What is HappyCoding?
 
-优秀的 coding agent 流程往往各有所长，但同时安装多个“总入口”后，容易出现重复规划、重复评审、上下文压力和不必要的仪式感。HappyCoding Everyday 把这些长处收进一个自动路由器：用户只说要做什么，流程自己判断需要多少严谨度。
+HappyCoding Everyday is a single automatic coding-workflow entrance for Codex. It turns a normal
+request into a compact contract, selects the lowest sufficient execution lane, performs the work,
+and closes with fresh evidence. You do not need to choose a mode, request tests, or manage a team of
+agents yourself.
 
-它的目标不是少做验证，而是把验证放在正确的位置；不是到处派 agent，而是在独立工作真的能并行时才协作。
+The project optimizes for two things at once:
+
+- **low ceremony for everyday work**;
+- **stronger gates when failure becomes expensive**.
+
+## Quick start
+
+### Install as a Codex plugin
+
+```bash
+codex plugin marketplace add caredhieacid/jensenmo-happy_coding_everyday
+```
+
+Open **Plugins** in Codex, choose **JensenMo HappyCoding**, and install **HappyCoding Everyday**.
+Start a new task, then describe the work normally:
+
+```text
+Fix the login regression, preserve my unrelated changes, and show me the fresh verification.
+```
+
+Explicit invocation is also available:
+
+```text
+$jensenmo-happy-coding-everyday audit this API contract before changing code.
+```
+
+See [Getting started](docs/getting-started.md) for direct skill installation, updating,
+uninstalling, and compatibility notes.
+
+## Why this exists
+
+Powerful coding workflows often specialize in planning, TDD, review, orchestration, or delivery.
+Installing several of them as competing top-level dispatchers can produce duplicate plans, repeated
+reviews, context pressure, and process that costs more than the task.
+
+HappyCoding keeps one dispatcher and composes specialized standards only when the work calls for
+them. Git, backend, security, observability, browser, and product-specific rules remain valuable;
+they simply do not compete to own the whole lifecycle.
+
+## How it works
 
 ```mermaid
 flowchart LR
-    A["任意 coding 请求"] --> B["锁定目标 / 范围 / 验收 / 不要做"]
-    B --> C{"风险与耦合度"}
-    C -->|"默认：局部、低耦合"| D["Everyday<br/>单 agent + 定向验证"]
-    C -->|"独立任务或大读面"| E["Collaboration<br/>读并行 + 写单线"]
-    C -->|"跨系统、高风险、交付链"| F["Delivery<br/>CTO 编排 + 独立评审 + 真路径验收"]
-    D --> G["新鲜证据后完成"]
+    A["Coding request"] --> B["Goal / Scope / Acceptance / Exclusions"]
+    B --> C{"Risk, coupling, and acceptance path"}
+    C -->|"Bounded and local"| D["Everyday<br/>one agent + focused proof"]
+    C -->|"Independent work or wide reading"| E["Collaboration<br/>parallel reads + controlled writes"]
+    C -->|"Durable coordination or high risk"| F["Delivery<br/>staged gates + independent review"]
+    D --> G["Fresh evidence"]
     E --> G
     F --> G
 ```
 
-## 三条自动执行通道
+| Lane | Use it when | Default behavior | Example |
+| --- | --- | --- | --- |
+| **Everyday** | One bounded outcome, low coupling, one acceptance path | Inspect, make the smallest change, run focused proof | Fix a parser regression and open a routine PR |
+| **Collaboration** | Work can be partitioned independently or a wide read would crowd the main context | Parallelize bounded research; keep shared writes on one line | Investigate an unrelated login 401 and CSV ordering defect |
+| **Delivery** | Security, migration, production, durable coordination, or staged real-path acceptance makes failure expensive | Persist the contract, gate stages, review independently, preserve rollback | Ship tenant isolation across storage, authorization, UI, and rollout |
 
-| 通道 | 自动触发 | 默认行为 |
-| --- | --- | --- |
-| **Everyday** | 绝大多数日常编码任务 | 单 agent、最小改动、定向测试，不建额外流程资产 |
-| **Collaboration** | 2 个以上独立任务、大范围只读调查、需要独立 review | 少量子 agent，读并行、共享代码写单线 |
-| **Delivery** | 跨系统、迁移、安全、生产、长链路、正式 PR/E2E | 目标合同、阶段门禁、异构评审、真路径验收 |
+Escalation is reversible. A broad investigation can return to Everyday after evidence proves the
+cause is local. A pull request or multiple files do not force Delivery by themselves.
 
-你不需要说“进入 CTO 模式”“用多 agent”或“记得测试”。路由、验证与是否升级由入口负责；只有会改变结果的选择或不可逆操作才会向你确认。
+## Design principles
 
-## 核心原则
+1. **Intent once** — infer the workflow from the request instead of asking the user to select a mode.
+2. **Lowest sufficient rigor** — start Everyday and upgrade only on concrete evidence.
+3. **Evidence over ceremony** — verification must prove the requested behavior, not merely that a command ran.
+4. **Parallel reading, controlled writing** — protect context without creating merge chaos.
+5. **Fresh verification** — re-run the relevant proof after the final change.
+6. **Reversible escalation** — add durable process only while the task needs it.
+7. **Repository rules remain authoritative** — local conventions and stricter safety boundaries still apply.
+8. **Read-only means read-only** — an audit, explanation, or diagnosis is not implied permission to edit.
 
-- **单一入口**：只有这个 skill 决定整体 coding 流程；Git、后端、可观测性等仍是按需加载的领域标准。
-- **轻量默认**：没有升级证据时，一律从 Everyday 开始。
-- **读并行，写单线**：保护主上下文，也避免多 agent 同时改共享文件造成返工。
-- **先证据，后修复**：bug 先复现和找根因；同一路径连续失败两次就停下重判。
-- **测试与风险成比例**：小任务跑最小证明，高风险交付走真实路径；完成前都要有最终改动后的新鲜证据。
-- **外科手术式改动**：不顺手重构，不发散，不为未来猜需求。
+Read the full [design philosophy](docs/design-philosophy.md) and [architecture decision](docs/architecture.md).
 
-## 安装
+## What it deliberately does not do
+
+- It is not a new agent runtime or framework.
+- It does not force multi-agent execution.
+- It does not require a plan document, full TDD loop, or full test suite for every tiny change.
+- It does not replace domain-specific engineering standards.
+- It does not interpret autonomous work as authorization for deployment, deletion, migration, or force push.
+- It does not count agents, documents, or tool calls as success metrics.
+
+## Installation options
+
+### Option A — plugin marketplace
+
+Recommended for public distribution and the Codex plugin experience:
+
+```bash
+codex plugin marketplace add caredhieacid/jensenmo-happy_coding_everyday
+```
+
+### Option B — direct user skill
+
+Recommended for local authoring and transparent updates:
 
 ```bash
 git clone https://github.com/caredhieacid/jensenmo-happy_coding_everyday.git
-mkdir -p ~/.codex/skills
-ln -s "$(pwd)/jensenmo-happy_coding_everyday/skills/jensenmo-happy-coding-everyday" \
-  ~/.codex/skills/jensenmo-happy-coding-everyday
+cd jensenmo-happy_coding_everyday
+mkdir -p "$HOME/.agents/skills"
+ln -s "$(pwd)/skills/jensenmo-happy-coding-everyday" \
+  "$HOME/.agents/skills/jensenmo-happy-coding-everyday"
 ```
 
-为保持“唯一入口”，请停用其他会自动接管整个 coding 生命周期的 dispatcher。领域型 skill 可以保留，并由 HappyCoding Everyday 在需要时调用。更完整的迁移说明见 [架构文档](docs/architecture.md)。
+Codex supports symlinked skills. If the destination already exists, inspect it before replacing or
+removing anything. Older `~/.codex/skills` installations may continue to work, but
+`$HOME/.agents/skills` is the current user-scope location documented by Codex.
 
-安装后的日常用法没有新口令：照常描述 coding 任务即可。也可以显式调用：
+To keep routing predictable, disable other implicit skills that also claim ownership of the entire
+coding lifecycle. Keep conditional domain skills installed.
+
+## Validation and release model
+
+The repository separates three kinds of confidence:
+
+- **structural checks** validate skill metadata, plugin packaging, local links, translations, and scenario schemas;
+- **behavior evaluations** run realistic prompts in fresh agent contexts and review observable invariants;
+- **real-task evidence** is the only proof that a particular coding change works in its actual environment.
+
+Run the local gate:
+
+```bash
+python3 -m unittest discover -s tests -p 'test_*.py'
+python3 scripts/validate_repository.py
+python3 /path/to/skill-creator/scripts/quick_validate.py \
+  skills/jensenmo-happy-coding-everyday
+```
+
+Every pull request builds a deterministic plugin preview. A `v*` tag whose version matches
+`.codex-plugin/plugin.json` creates a GitHub Release with the plugin archive and its
+SHA-256 checksum. The privileged publish step runs from trusted `main`, attests the verified archive,
+and the repository enforces immutable releases. See the
+[evaluation methodology](docs/evaluation-methodology.md).
+
+## Repository map
 
 ```text
-$jensenmo-happy-coding-everyday 修复这个登录问题，完成后给我验证证据。
+.
+├── .codex-plugin/                  # Installable Codex plugin manifest
+├── .agents/plugins/                # Remote marketplace catalog
+├── .github/                        # CI, release automation, and community templates
+├── docs/                           # Architecture, philosophy, evaluation, and roadmap
+├── scripts/                        # Offline validation and deterministic packaging
+├── skills/
+│   └── jensenmo-happy-coding-everyday/
+│       ├── SKILL.md                # Compact runtime entrance
+│       ├── agents/openai.yaml      # Codex discovery metadata
+│       └── references/             # Conditional execution detail
+└── tests/                          # Structural tests and pressure scenarios
 ```
 
-## 仓库结构
+Human-facing documentation grows outside the skill folder so the runtime context stays compact.
 
-```text
-skills/jensenmo-happy-coding-everyday/
-├── SKILL.md                         # 高频加载的唯一入口与核心约束
-├── agents/openai.yaml               # Codex 展示与自动触发配置
-└── references/
-    ├── lanes.md                     # 三条通道的升级/降级规则
-    └── contracts-and-evidence.md    # 派工合同、验证阶梯与证据规则
-docs/
-├── architecture.md                  # 设计边界与迁移策略
-├── implementation-plan.md           # 首版实现计划
-└── pressure-tests.md                # RED/GREEN 行为压力测试记录
-tests/
-├── scenarios.md                     # 可复用场景
-└── test_structure.py                # 零依赖结构门禁
-```
+## Design influences
 
-## 灵感来源
+HappyCoding is an original workflow. It studies successful open projects without copying their
+instructions or requiring them at runtime.
 
-本项目是原创的轻量路由与整合实现，吸收并重新组合了以下项目/方法中的优秀思想：
+| Project | What we learned | HappyCoding's choice |
+| --- | --- | --- |
+| [OpenAI Plugins](https://github.com/openai/plugins) | Current Codex plugin packaging and marketplace structure | Keep one canonical skill inside a valid, installable plugin wrapper |
+| [Anthropic Skills](https://github.com/anthropics/skills) | Self-contained skill anatomy with specification and template surfaces | Keep agent instructions concise; move public docs outside runtime context |
+| [Superpowers](https://github.com/obra/superpowers) | Systematic debugging, fresh verification, and behavior evals | Apply rigor proportionally instead of making one heavy path universal |
+| [GitHub Spec Kit](https://github.com/github/spec-kit) | Intent-centered artifacts and a strong documentation surface | Persist artifacts for durable delivery, not routine edits |
+| [Awesome Copilot](https://github.com/github/awesome-copilot) | Clear resource taxonomy and community entry points | Provide machine-readable catalogs, community templates, and navigable docs |
 
-- [Superpowers](https://github.com/obra/superpowers)：系统化调试、测试优先、新鲜验证、工作树和 review 思想；
-- [Evolab](https://github.com/martin1847/evolab)：A² 编排、主上下文保护、契约派工与异构验证；
-- [Kucai Agentic Orchestration](https://github.com/Colin131/kucai-agentic-orchestration)：PM 自动接管、开发/评审/QA 角色分离和证据门禁。
+Details and trade-offs are recorded in [Design philosophy](docs/design-philosophy.md).
 
-HappyCoding Everyday 不复制这些项目的工作流文本，也不要求它们作为运行依赖。感谢这些开源探索提供的启发。
+## Documentation
+
+- [Documentation index](docs/README.md)
+- [Getting started](docs/getting-started.md)
+- [Architecture](docs/architecture.md)
+- [Design philosophy](docs/design-philosophy.md)
+- [Behavior evaluation methodology](docs/evaluation-methodology.md)
+- [Pressure-test record](docs/pressure-tests.md)
+- [Roadmap](docs/roadmap.md)
+- [Translation guide](docs/i18n/translation-guide.md)
 
 ## Project status
 
-当前为 **Alpha**：核心路由、结构测试和行为压力测试已建立，接下来会通过真实 coding 任务持续校准升级阈值，重点观察上下文消耗、返工率和过度编排率。
+HappyCoding Everyday is **Alpha**. The core routing model, plugin package, structural checks, and an
+initial pressure-scenario corpus exist. Alpha means the public contract is usable but routing
+thresholds are still being calibrated through real coding tasks. It does not mean production
+deployment is automatically safe.
 
-欢迎提交场景、问题和改进建议。修改行为规则前，请先阅读 [CONTRIBUTING.md](CONTRIBUTING.md)。
+See [CHANGELOG.md](CHANGELOG.md) for release history and [the roadmap](docs/roadmap.md) for the next gates.
+
+## Community
+
+- Propose a real pressure scenario or behavior change through [Contributing](CONTRIBUTING.md).
+- Report security concerns through [Security](SECURITY.md).
+- Get usage help through [Support](SUPPORT.md).
+- Participate under the [Code of Conduct](CODE_OF_CONDUCT.md).
 
 ## License
 

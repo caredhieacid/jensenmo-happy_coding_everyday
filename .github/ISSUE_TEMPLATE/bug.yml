@@ -1,0 +1,55 @@
+name: Usage or behavior problem
+description: Report an installation, validation, packaging, or runtime problem.
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Codex surface
+      options:
+        - Codex app
+        - Codex CLI
+        - IDE extension
+        - GitHub Actions
+        - Other or unknown
+    validations:
+      required: true
+  - type: dropdown
+    id: install
+    attributes:
+      label: Installation method
+      options:
+        - Plugin marketplace
+        - Direct user skill
+        - Repository-scoped skill
+        - Not installed yet
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction
+      description: Include minimal commands or prompts and the exact non-sensitive error.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected result
+    validations:
+      required: true
+  - type: input
+    id: revision
+    attributes:
+      label: Skill commit or release
+      placeholder: commit SHA or v0.1.0
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety check
+      options:
+        - label: I removed secrets, tokens, private code, and personal data.
+          required: true

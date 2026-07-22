@@ -1,0 +1,51 @@
+name: Behavior pressure scenario
+description: Report under-orchestration, over-orchestration, scope drift, or evidence problems.
+title: "[Behavior]: "
+labels: [behavior, scenario]
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for bringing a concrete workflow pressure case. Remove secrets and private code.
+  - type: textarea
+    id: prompt
+    attributes:
+      label: User-shaped request
+      description: Provide the smallest realistic request that exposes the behavior.
+      placeholder: "Audit this contract without modifying code..."
+    validations:
+      required: true
+  - type: textarea
+    id: observed
+    attributes:
+      label: Observed behavior
+      description: What did the workflow do, and what primary evidence shows it?
+    validations:
+      required: true
+  - type: textarea
+    id: harm
+    attributes:
+      label: Why this is harmful
+      description: Describe surprise, risk, coordination cost, or missing proof.
+    validations:
+      required: true
+  - type: textarea
+    id: invariant
+    attributes:
+      label: Desired observable invariant
+      description: State the behavior that should remain true without prescribing a large rewrite.
+    validations:
+      required: true
+  - type: input
+    id: revision
+    attributes:
+      label: Skill commit or release
+      placeholder: commit SHA or v0.1.0
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety check
+      options:
+        - label: I removed credentials, private source, customer data, and raw private transcripts.
+          required: true

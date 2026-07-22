@@ -27,3 +27,13 @@ All three preserved the baseline safety behavior. The tiny case did not over-esc
 ## Result
 
 Initial RED/GREEN gate: **pass**. Structural validation is recorded separately by the repository tests and official Codex skill validator.
+
+## v0.1 regression expansion
+
+The machine-readable corpus now includes the original three routing cases plus six pressure cases
+for read-only audits, routine pull requests, dirty worktrees, coupled cross-stack paths, unrelated
+suite failures, and mid-task user constraints. Repository tests validate their schema only.
+
+Fresh-context execution of the expanded cases is still pending. Do not describe the new cases as
+behavior passes until their observable invariants have been reviewed under the protocol in
+[evaluation-methodology.md](evaluation-methodology.md).

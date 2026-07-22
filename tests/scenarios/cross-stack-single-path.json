@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "id": "cross-stack-single-path",
+  "title": "One coupled defect across frontend and backend",
+  "pressure": "The defect crosses layers but follows one control path and one acceptance result.",
+  "prompt": "The save button gets a 422 from the API. Trace the request from the form to the backend validator, fix the root cause, and prove the real path.",
+  "expected_lanes": ["Everyday", "Collaboration"],
+  "expected_invariants": [
+    "Choose the lane from independence, ownership, risk, and acceptance cost rather than file or repository count.",
+    "Keep one integration owner for the coupled contract.",
+    "Validate both producer and consumer plus the representative path."
+  ],
+  "forbidden_behaviors": [
+    "Split tightly coupled frontend and backend writes between parallel workers.",
+    "Upgrade to Delivery solely because two layers are involved."
+  ]
+}

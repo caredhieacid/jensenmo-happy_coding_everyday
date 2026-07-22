@@ -36,3 +36,23 @@ Expected invariants:
 - independent review and release observability;
 - explicit authorization before production migration, rollout, or other irreversible action;
 - scope does not expand beyond tenant isolation and release safety.
+
+## Machine-readable regression cases
+
+The initial scenarios above preserve the v1 baseline. Focused regression cases live under
+`tests/scenarios/` so repository checks can validate their schema while fresh-agent evaluations
+exercise their behavior:
+
+- `tiny-fix` — bounded copy changes stay lightweight;
+- `independent-defects` — genuinely independent work can use controlled collaboration;
+- `multi-tenant-delivery` — security and rollout risk receive durable delivery gates;
+- `read-only-audit` — analysis is a valid read-only deliverable;
+- `routine-pr` — a normal pull request does not force Delivery lane;
+- `dirty-worktree` — unrelated user changes remain untouched;
+- `cross-stack-single-path` — coupled work is not split by file or layer count;
+- `unrelated-suite-failure` — focused success and broader failures stay separate;
+- `mid-task-constraint` — the latest user constraint updates the active contract.
+
+Machine-readable cases are evaluation inputs, not proof by themselves. A case passes only after a
+fresh agent context performs the requested task or returns the expected bounded plan, and a reviewer
+checks the recorded evidence against every invariant.
