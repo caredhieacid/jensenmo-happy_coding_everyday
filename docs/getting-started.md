@@ -89,6 +89,15 @@ codex plugin marketplace remove jensenmo-happy-coding
 - Other coding agents are not claimed as supported until their trigger, instruction, and evaluation
   paths are tested independently.
 
+## Keep one automatic coding entrance
+
+This skill is designed to be the sole always-on coding dispatcher. If another installed skill also
+triggers on generic coding activity (editing, reviewing, testing, debugging), every task pays for
+two overlapping instruction sets and routing authority becomes ambiguous. Keep exactly one such
+entrance: disable or narrow the other skill so it loads only for its specific domain, or on
+explicit invocation. Domain standards that trigger on narrower evidence (a particular framework,
+Git operations, observability work) coexist fine.
+
 ## Troubleshooting
 
 If the skill does not appear:

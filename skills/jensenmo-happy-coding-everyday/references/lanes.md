@@ -40,6 +40,21 @@ Rules:
 - Serialize shared-file, shared-schema, migration, and contract changes.
 - Use a few agents, not the maximum available count. Stop delegating when coordination costs exceed saved work.
 
+Running workers in practice:
+
+- A worker starts with a fresh context. It has not seen the conversation, the contract, or your
+  findings. The dispatch prompt must be self-contained: paste the four dispatch fields from
+  [contracts-and-evidence.md](contracts-and-evidence.md), including concrete paths and the exact
+  output shape.
+- Use the host's native subagent facility when present (Codex exposes one on supported surfaces).
+  When none exists, a fresh non-interactive session such as `codex exec` with the same
+  self-contained prompt is an acceptable worker; do not simulate parallelism by interleaving
+  unrelated work in one context.
+- Default every worker to read-only research or review. Grant write access only with an explicit,
+  disjoint file list.
+- Two to four workers is the normal ceiling. If the partition needs more, the task is probably
+  Delivery-shaped or the partition is wrong.
+
 Return to Everyday after the independent work is merged unless Delivery triggers appear.
 
 ## Delivery
