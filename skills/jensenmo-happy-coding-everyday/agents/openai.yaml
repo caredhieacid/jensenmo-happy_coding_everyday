@@ -1,0 +1,8 @@
+interface:
+  display_name: "JensenMo HappyCoding Everyday"
+  short_description: "One automatic coding entrance with right-sized rigor"
+  brand_color: "#22C55E"
+  default_prompt: "Use $jensenmo-happy-coding-everyday to handle this coding task with the lightest safe workflow."
+
+policy:
+  allow_implicit_invocation: true
