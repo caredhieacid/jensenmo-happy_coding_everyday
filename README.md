@@ -119,6 +119,7 @@ cause is local. A pull request or multiple files do not force Delivery by themse
 6. **Reversible escalation** — add durable process only while the task needs it.
 7. **Repository rules remain authoritative** — local conventions and stricter safety boundaries still apply.
 8. **Read-only means read-only** — an audit, explanation, or diagnosis is not implied permission to edit.
+9. **Looking is free** — web search, documentation, a browser, or computer use are normal moves in every lane; process weight gates writes and risk, not observation.
 
 Read the full [design philosophy](docs/design-philosophy.md) and [architecture decision](docs/architecture.md).
 
