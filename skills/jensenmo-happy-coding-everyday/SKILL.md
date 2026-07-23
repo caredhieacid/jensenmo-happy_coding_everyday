@@ -74,12 +74,16 @@ Read [lanes.md](references/lanes.md) only when lane selection or escalation is n
 - Run the narrowest test that proves the requested behavior, then add broader checks according to blast radius.
 - If no test harness exists, use the strongest available check and name the gap.
 - Never claim success from an earlier run, a worker assertion, or the absence of obvious errors. Re-run the relevant verification after the final change.
+- Verify breadth as well as depth: before closing, search for other sites that hold the changed behavior — call sites, duplicated logic, configuration, coupled docs or manifests — and update or explicitly rule out each hit. Memory is not enumeration.
 
 ### Protect irreversible boundaries
 
 Local edits and read-only checks are reversible. Deletion, force push, production migration/deployment, permission changes, secret writes, and external messages require explicit authorization unless the current user request already grants it. Resolve exact targets before acting.
 
 ## Completion Contract
+
+Before reporting, replay the original request against the contract: map every stated requirement to
+evidence of delivery, and surface anything not delivered instead of dropping it silently.
 
 Lead with the achieved outcome. Then state, compactly:
 
@@ -101,6 +105,8 @@ Do not manufacture ceremony. Everyday work needs no goal document, board, retros
 | “Parallel writers can merge later.” | Shared files and contracts get one writer. Parallelize reading and independent review. |
 | “The command passed earlier.” | Completion requires fresh evidence after the final edit. |
 | “The first suspicious line matches the symptom.” | A pattern match is a hypothesis. Connect cause to symptom with evidence before patching. |
+| “The obvious site is fixed, so the work is done.” | Search for duplicates, call sites, and coupled artifacts. A change is repository-complete, not file-complete. |
+| “Most of the request is done; close it out.” | Replay the request before reporting. Every stated requirement gets evidence or an explicit not-done. |
 | “While here, this code could be cleaner.” | If it is not required for acceptance, leave it alone. |
 | “A configurable version will save time later.” | Speculative flexibility is scope drift. Build for the stated requirement; generalize when a second real use arrives. |
 | “The user must choose a mode.” | Lane selection is the skill's responsibility. Ask only for material choices or authorization. |
