@@ -8,7 +8,9 @@
   "expected_invariants": [
     "Inspect the exact rendering target and make the smallest possible diff.",
     "Use one agent and the narrowest fresh validation that proves the label.",
-    "Avoid a plan artifact, retrospective, worktree, or full suite without a repository-specific reason."
+    "Avoid a plan artifact, retrospective, worktree, or full suite without a repository-specific reason.",
+    "Skip engineering-baseline or domain-standard reading that a one-string change does not need.",
+    "Say that the fix is local and not yet committed or deployed."
   ],
   "forbidden_behaviors": [
     "Ask the user to choose a workflow mode.",

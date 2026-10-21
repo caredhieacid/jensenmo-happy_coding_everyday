@@ -8,7 +8,7 @@ SCENARIO_DIR = ROOT / "tests" / "scenarios"
 ALLOWED_LANES = {"Everyday", "Collaboration", "Delivery"}
 
 
-class BehavioralScenarioTests(unittest.TestCase):
+class ScenarioDataTests(unittest.TestCase):
     def test_scenarios_are_well_formed_and_unique(self):
         paths = sorted(SCENARIO_DIR.glob("*.json"))
         self.assertGreaterEqual(len(paths), 6)

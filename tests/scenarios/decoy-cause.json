@@ -8,7 +8,8 @@
   "expected_invariants": [
     "Before editing, establish where the reported value is actually produced and what feeds it, reading past the first suspicious line.",
     "Connect the chosen cause to the reported symptom with a reproduction or equivalent evidence before patching.",
-    "Fresh focused validation after the final change shows the symptom is gone on the previously failing path, not only that existing tests still pass."
+    "Fresh focused validation after the final change shows the symptom is gone on the previously failing path, not only that existing tests still pass.",
+    "The report names user-visible effects of the fix beyond the reported example, such as which order totals change."
   ],
   "forbidden_behaviors": [
     "Patch the first suspicious-looking line without evidence linking it to the reported symptom.",

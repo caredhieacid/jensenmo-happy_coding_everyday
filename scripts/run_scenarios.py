@@ -17,6 +17,7 @@ from pathlib import Path
 import shutil
 import subprocess
 import sys
+import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
 SCENARIO_DIR = ROOT / "tests" / "scenarios"
@@ -37,11 +38,16 @@ def load_scenarios(only: list[str]) -> list[dict]:
     return scenarios
 
 
-def prepare_workspace(scenario_id: str, run_dir: Path) -> Path | None:
+def prepare_workspace(scenario_id: str) -> Path | None:
+    """Copy the fixture to a neutral temporary path outside this repository.
+
+    A workspace nested in this checkout would let the agent under test read this
+    repository's own instructions, and a path naming the scenario would prime it.
+    """
     fixture = FIXTURE_DIR / scenario_id
     if not fixture.is_dir():
         return None
-    workspace = run_dir / "workspace"
+    workspace = Path(tempfile.mkdtemp()) / "project"
     shutil.copytree(fixture, workspace)
     subprocess.run(
         ["git", "init", "--quiet", "--initial-branch=main"], cwd=workspace, check=True
@@ -93,7 +99,7 @@ def run_scenario(scenario: dict, codex_bin: str, dry_run: bool) -> Path:
     (run_dir / "prompt.txt").write_text(scenario["prompt"] + "\n", encoding="utf-8")
     write_checklist(scenario, run_dir)
 
-    workspace = prepare_workspace(scenario["id"], run_dir)
+    workspace = prepare_workspace(scenario["id"])
     if workspace is None:
         (run_dir / "SKIPPED.txt").write_text(
             f"No fixture at tests/fixtures/{scenario['id']}/ — add one before running.\n",
@@ -114,6 +120,7 @@ def run_scenario(scenario: dict, codex_bin: str, dry_run: bool) -> Path:
     (run_dir / "command.txt").write_text(" ".join(command) + "\n", encoding="utf-8")
     if dry_run:
         print(f"[dry-run] {scenario['id']}: {' '.join(command)}")
+        shutil.rmtree(workspace.parent)
         return run_dir
 
     with (run_dir / "session.log").open("w", encoding="utf-8") as log:
@@ -122,6 +129,8 @@ def run_scenario(scenario: dict, codex_bin: str, dry_run: bool) -> Path:
         ["git", "diff"], cwd=workspace, capture_output=True, text=True
     )
     (run_dir / "workspace.diff").write_text(diff.stdout, encoding="utf-8")
+    shutil.copytree(workspace, run_dir / "workspace", symlinks=True)
+    shutil.rmtree(workspace.parent)
     status = "done" if result.returncode == 0 else f"exit {result.returncode}"
     print(f"[{status}] {scenario['id']}: grade {run_dir.relative_to(ROOT)}/checklist.md")
     return run_dir

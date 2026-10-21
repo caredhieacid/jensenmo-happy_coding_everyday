@@ -15,7 +15,7 @@ python3 scripts/validate_repository.py
 
 # Single test module / case
 python3 -m unittest tests.test_scenarios
-python3 -m unittest tests.test_scenarios.BehavioralScenarioTests.test_scenarios_are_well_formed_and_unique
+python3 -m unittest tests.test_scenarios.ScenarioDataTests.test_scenarios_are_well_formed_and_unique
 
 # Official Codex skill validator (needs PyYAML; CI pins the validator from openai/codex)
 python3 /path/to/skill-creator/scripts/quick_validate.py skills/jensenmo-happy-coding-everyday
@@ -32,7 +32,7 @@ python3 scripts/package_release.py --output-dir dist
 
 Three concerns are deliberately separated:
 
-- **Runtime skill** — `skills/jensenmo-happy-coding-everyday/`. `SKILL.md` holds only the rules needed on every coding turn; conditional depth lives in `references/` (`lanes.md`, `contracts-and-evidence.md`) and is loaded on demand. Keeping `SKILL.md` compact is a hard constraint, not a style preference.
+- **Runtime skill** — `skills/jensenmo-happy-coding-everyday/`. `SKILL.md` holds only the rules needed on every coding turn; conditional depth lives in `references/` (`lanes.md`, `contracts-and-evidence.md`, `engineering-baseline.md`) and is loaded on demand. Keeping `SKILL.md` compact is a hard constraint, not a style preference.
 - **Distribution wrappers** — `.codex-plugin/plugin.json` (plugin manifest pointing at `skills/`, no duplicated instructions) and `.agents/plugins/marketplace.json` (marketplace catalog that pins install to the tag matching the manifest version). A `v*` tag must match the manifest version or release verification fails.
 - **Human docs** — `docs/` and the READMEs live outside the skill folder so they never enter runtime context. `README.md` is canonical; translated READMEs must preserve commands, paths, safety claims, and language navigation (see `docs/i18n/`).
 

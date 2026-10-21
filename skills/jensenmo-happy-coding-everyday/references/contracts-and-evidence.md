@@ -1,65 +1,23 @@
-# Contracts and Evidence
+# Delegation and evidence
 
-## Compact Task Contract
+For a durable task or handoff, record the goal, scope, acceptance, and exclusions. Infer them from the request; do not ask the user to fill out a form. Later constraints update this same contract.
 
-Use four fields. Do not ask the user to fill them when the request already answers them.
+## Worker brief
 
-- **目标**: the observable outcome.
-- **范围**: repositories, modules, environments, or artifacts in scope.
-- **验收**: behavior and evidence required to call the task complete.
-- **不要做**: explicit exclusions plus likely scope traps.
+Include one bounded outcome, expected return format, relevant source paths, permitted writes, and the condition that requires reporting a dependency. Supply context the worker needs and choose whether to inherit history according to the host API. For an independent evaluation, withhold prior conclusions that would bias it.
 
-Keep this contract conversational for Everyday work. Persist it for long-running Delivery work.
-When the user adds or replaces a constraint, update the active contract instead of starting a
-parallel plan. Preserve completed work only when it still satisfies the latest contract.
+A worker returns conclusions with primary evidence and any unresolved dependency. It should not widen scope to work around missing authority. The coordinator checks consequential claims and retains responsibility for integration and completion.
 
-## Worker Dispatch Contract
+## Evidence selection
 
-Every worker assignment must contain:
+| Claim | Useful evidence |
+| --- | --- |
+| Text/configuration change | Exact target, diff, parse or focused inspection |
+| Fixed behavior | Reproduction or focused regression after the edit |
+| Shared contract change | Producer/consumer checks and the affected integration path |
+| UI behavior or appearance | Observe the relevant interface with an available browser or computer-use tool |
+| Production rollout or data migration | Authorized real environment checks and recovery evidence |
 
-1. **Goal** — one bounded question or deliverable.
-2. **Output format** — exact shape and level of detail to return.
-3. **Tool/source boundary** — allowed repositories, files, environments, and whether writes are allowed.
-4. **Scope and stop/report rule** — what not to touch and when to return blocked instead of expanding.
+Choose the evidence needed for the claim, not every row. Separate unrelated existing failures from the changed path. Independent review is useful for consequential risk; routine edits do not require a review team.
 
-Workers return distilled conclusions with primary evidence: paths and line numbers, commands and relevant output, test names, request IDs, or artifact locations. The main agent spot-checks critical evidence before integrating it.
-
-Dispatch prompts are written for a fresh context. A minimal shape that satisfies the contract:
-
-```text
-Goal: answer one bounded question or produce one deliverable.
-Context: the repository path, branch, and the facts the worker cannot discover cheaply.
-Output: exact sections to return, each claim with path:line or command + relevant output.
-Boundaries: read-only unless an explicit file list grants writes; name out-of-scope areas.
-Stop rule: return "blocked" with findings so far instead of widening scope or asking the user.
-```
-
-## Verification Ladder
-
-Choose the lowest evidence that proves the behavior, then climb according to risk:
-
-1. static inspection, search, diff check, formatter, or schema validation;
-2. focused unit/component test or direct reproduction;
-3. affected-module test, type check, build, or contract test;
-4. integration/E2E on a representative path — for UI behavior this includes driving the real
-   interface with an available browser or computer-use tool and capturing what it shows;
-5. real environment validation, monitoring, rollback proof, and independent review.
-
-Examples:
-
-- Copy change: inspect target rendering path, focused UI test if present, and diff.
-- Local bug: reproduce, add or identify the failing check, fix, run focused regression.
-- Shared API contract: validate producer and consumer plus integration path.
-- Migration/security/release: use the full ladder where applicable and include rollback/negative-path evidence.
-
-## Evidence Rules
-
-- Evidence must be fresh after the final relevant change.
-- Record the exact command or path, exit/result, and what claim it proves.
-- Separate focused success from unrelated existing failures.
-- A passing build does not prove runtime behavior; a screenshot does not prove authorization or data integrity.
-- If validation cannot run, say why, what substitute ran, and what risk remains.
-
-## Review Boundaries
-
-Use independent review when blast radius, security, data integrity, or merge risk makes a second perspective valuable. Review acceptance criteria and the actual diff, not style preferences. Fix blocking findings; record non-blocking suggestions without silently widening scope.
+Finish remaining safe, authorized acceptance work. If a required check cannot run, state the reason and what the available evidence establishes.

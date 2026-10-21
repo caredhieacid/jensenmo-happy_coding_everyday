@@ -32,8 +32,9 @@ independent partitions. The invariant matters more than a fashionable topology.
 ## Fresh-context protocol
 
 `scripts/run_scenarios.py` automates the mechanical part: it copies the scenario's disposable
-fixture from `tests/fixtures/<id>/` into a fresh git workspace, runs `codex exec` with only the
-scenario prompt, and records the prompt, session log, workspace diff, final message, and a grading
+fixture from `tests/fixtures/<id>/` into a fresh git workspace at a neutral temporary path outside
+this repository (so the agent cannot read this repository's instructions or infer the scenario from
+the path), runs `codex exec` with only the scenario prompt, and records the prompt, session log, workspace diff, final message, and a grading
 checklist under `.scenario-runs/`. Grading remains a human step.
 
 1. Start a new agent context with repository instructions and the candidate skill available.

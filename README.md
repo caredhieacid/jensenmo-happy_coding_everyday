@@ -17,7 +17,7 @@ to bounded collaboration, to evidence-gated delivery—and closes with fresh pro
 [![Codex Plugin](https://img.shields.io/badge/Codex-plugin-10a37f)](.codex-plugin/plugin.json)
 [![License: MIT](https://img.shields.io/badge/license-MIT-22c55e.svg)](LICENSE)
 
-[30-second overview](#happycoding-in-30-seconds) · [Quick start](#quick-start) · [How it works](#how-it-works) · [Design philosophy](docs/design-philosophy.md) · [Contributing](CONTRIBUTING.md)
+[30-second overview](#happycoding-in-30-seconds) · [Quick start](#quick-start) · [Safe defaults](#safe-defaults-no-setup) · [How it works](#how-it-works) · [Design philosophy](docs/design-philosophy.md) · [Contributing](CONTRIBUTING.md)
 
 </div>
 
@@ -76,6 +76,21 @@ $jensenmo-happy-coding-everyday audit this API contract before changing code.
 See [Getting started](docs/getting-started.md) for direct skill installation, updating,
 uninstalling, and compatibility notes.
 
+## Safe defaults, no setup
+
+There is nothing to configure after installation. Describe the task in your own words and language,
+and HappyCoding works out the process. Baseline engineering safeguards apply without being asked:
+
+- secrets stay out of code, logs, and commits;
+- unrelated changes in your project are preserved;
+- nothing is committed, pushed, or deployed unless you ask;
+- a risky shortcut gets a one-sentence warning and a safe route to the same result;
+- results are reported in plain words, in your language, with the exact next step when you need to act.
+
+The defaults cover Git, secrets, security, data, interfaces, dependencies, UI, LLM features, and
+tests. They apply only to the area a task touches, and your repository's documented conventions
+override them.
+
 ## Why this exists
 
 Powerful coding workflows often specialize in planning, TDD, review, orchestration, or delivery.
@@ -109,6 +124,8 @@ flowchart LR
 Escalation is reversible. A broad investigation can return to Everyday after evidence proves the
 cause is local. A pull request or multiple files do not force Delivery by themselves.
 
+A local end-to-end check does not force Delivery either.
+
 ## Design principles
 
 1. **Intent once** — infer the workflow from the request instead of asking the user to select a mode.
@@ -120,6 +137,7 @@ cause is local. A pull request or multiple files do not force Delivery by themse
 7. **Repository rules remain authoritative** — local conventions and stricter safety boundaries still apply.
 8. **Read-only means read-only** — an audit, explanation, or diagnosis is not implied permission to edit.
 9. **Looking is free** — web search, documentation, a browser, or computer use are normal moves in every lane; process weight gates writes and risk, not observation.
+10. **Safe defaults, local rules first** — baseline Git, secret, data, and interface safeguards apply where a task touches them; repository conventions override them.
 
 Read the full [design philosophy](docs/design-philosophy.md) and [architecture decision](docs/architecture.md).
 

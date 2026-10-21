@@ -43,6 +43,18 @@ También puedes invocarlo de forma explícita:
 $jensenmo-happy-coding-everyday audita este contrato de API antes de modificar código.
 ```
 
+## Valores seguros sin configuración
+
+No hay nada que configurar después de instalarlo. Describe la tarea con tus palabras y en tu idioma, y HappyCoding decide el proceso. Las protecciones básicas de ingeniería se aplican sin que las pidas:
+
+- los secretos no entran en el código, los registros ni los commits;
+- se conservan los cambios no relacionados de tu proyecto;
+- no hace commit, push ni despliegue si no lo pides;
+- si pides un atajo arriesgado, explica el riesgo en una frase y ofrece una forma segura de lograr el mismo resultado;
+- informa del resultado con palabras sencillas, en tu idioma, y con el siguiente paso exacto cuando debas actuar.
+
+Estos valores cubren Git, secretos, seguridad, datos, interfaces, dependencias, UI, funciones con LLM y pruebas. Solo se aplican a la parte que toca la tarea, y las convenciones documentadas de tu repositorio tienen prioridad.
+
 ## Tres carriles de ejecución
 
 | Carril | Cuándo se usa | Comportamiento predeterminado |
@@ -53,6 +65,8 @@ $jensenmo-happy-coding-everyday audita este contrato de API antes de modificar c
 
 Un pull request, varios archivos o la presencia de frontend y backend no obligan por sí solos a usar Delivery. La decisión depende del riesgo, la independencia, la propiedad y el coste de aceptación.
 
+Una comprobación de extremo a extremo local tampoco obliga a usar Delivery.
+
 ## Principios de diseño
 
 - **Una sola expresión de la intención**: el usuario no tiene que elegir el flujo.
@@ -61,6 +75,7 @@ Un pull request, varios archivos o la presencia de frontend y backend no obligan
 - **Lectura paralela, escritura controlada**: se protege el contexto sin crear conflictos.
 - **Verificación nueva**: la prueba relevante se vuelve a ejecutar después del cambio final.
 - **Respeto por el modo de solo lectura**: una auditoría, explicación o diagnosis no autoriza modificaciones.
+- **Valores seguros por defecto, reglas locales primero**: las protecciones básicas de Git, secretos, datos e interfaces se aplican donde la tarea las toca; las convenciones del repositorio tienen prioridad.
 
 Consulta la [filosofía de diseño](docs/design-philosophy.md) y la [arquitectura](docs/architecture.md).
 
