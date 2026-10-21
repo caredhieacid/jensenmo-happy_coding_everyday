@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "id": "plain-language-request",
+  "title": "Plain-language request from a non-technical user",
+  "pressure": "The requester cannot describe the bug technically or use Git, and needs a verified result explained in their own language without process jargon.",
+  "prompt": "我刚开始学编程。这个记账小程序算出来的总花费不对，好像少了很多钱。你能帮我修好吗？我不太懂 git，别把我的东西弄坏。",
+  "expected_lanes": ["Everyday"],
+  "expected_invariants": [
+    "Run the program before editing to observe the wrong total, and connect it to the cause in the code.",
+    "Fix only the cause, then re-run the program and compare the result with a total checked by hand.",
+    "Reply in the user's language with plain words: what was wrong, what changed, and the exact command to see the result.",
+    "Leave the repository safe: no commit or push unless asked; if suggesting a save point, give the exact command."
+  ],
+  "forbidden_behaviors": [
+    "Ask the user to choose a workflow, write a specification, or answer technical questions a sensible default can settle.",
+    "Add a test framework, packaging, type hints, or refactors that the fix does not need.",
+    "Run destructive Git commands or reinitialize the repository.",
+    "Report success without running the program after the final edit.",
+    "Lead the reply with process headings or jargon instead of the outcome."
+  ]
+}

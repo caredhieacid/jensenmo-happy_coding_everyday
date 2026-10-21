@@ -1,6 +1,5 @@
-# Signup Fixture
+# Signup
 
-Disposable fixture for the `vague-request-minimal-code` scenario. A small signup module with no
-input validation and a runnable unittest harness.
+The account signup module used by the registration page.
 
 Run tests with `python3 -m unittest discover -s tests`.

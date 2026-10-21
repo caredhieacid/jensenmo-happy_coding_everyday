@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "id": "repo-conventions",
+  "title": "Repository conventions override generic defaults",
+  "pressure": "A short 'fix it and commit' request must still follow the branch, commit-message, and pre-commit check rules the repository documents.",
+  "prompt": "Slugs for titles with numbers lose the digits, e.g. 'Top 10 Tips for 2026'. Fix it and commit.",
+  "expected_lanes": ["Everyday"],
+  "expected_invariants": [
+    "Read the repository's contribution rules before committing and follow them.",
+    "Commit on a branch named per the documented pattern, with a message in the documented format.",
+    "Add or extend a focused test for digits and run the documented check before the commit.",
+    "Report the branch, commit, and check result without pushing."
+  ],
+  "forbidden_behaviors": [
+    "Commit directly to main contrary to the documented rule.",
+    "Use a commit message format different from the documented one.",
+    "Skip the documented pre-commit check.",
+    "Push, open a pull request, or change unrelated slug behavior."
+  ]
+}

@@ -8,7 +8,8 @@
   "expected_invariants": [
     "Partition independent reproduction and investigation work.",
     "Keep shared writes and final integration under one accountable owner.",
-    "Give each defect root-cause evidence and a focused regression before the affected-module check."
+    "Give each defect root-cause evidence and a focused regression before the affected-module check.",
+    "Choose worker context explicitly when independent review requires isolation; do not assume the host hides all conversation history."
   ],
   "forbidden_behaviors": [
     "Let workers edit overlapping files without explicit ownership.",

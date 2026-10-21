@@ -1,83 +1,26 @@
-# Execution Lanes
+# Lane decisions
 
-Use the lowest lane that satisfies the acceptance contract. Lane choice is an internal routing decision, not a question the user must answer.
+Start Everyday. Upgrade for a concrete risk or coordination need, not the number of files, the presence of tools, or the word “delivery.”
 
 ## Everyday
 
-Choose Everyday unless an escalation trigger is present.
-
-Typical work:
-
-- a contained bug, feature, review, configuration change, or repository question;
-- one primary module or a small number of tightly related files;
-- a coupled path across multiple layers that still has one owner and one bounded acceptance result;
-- a change one agent can safely understand and verify in the current context.
-
-Sequence:
-
-1. Inspect the relevant path and repository state.
-2. Establish the expected behavior and smallest proof.
-3. Patch only what acceptance requires.
-4. Run focused validation after the final edit.
-5. Report result and gaps.
-
-Do not add a goal file, writing worker, worktree, design document, or full-suite run by habit. Use one only when the repository or task provides a concrete reason. This limits process artifacts and write topology, not observation: web search, a browser, computer use for verification, or one bounded read-only exploration worker are all normal Everyday moves when they are the cheapest evidence.
+One owner can complete a bounded fix, review, configuration change, or coupled path across layers. A routine PR and local end-to-end acceptance remain here unless risk or coordination independently requires more. Use relevant evidence and focused checks; no default goal document, worktree, team, or full suite.
 
 ## Collaboration
 
-Escalate when at least one condition is true:
+Use bounded workers when their work is independent, a large read surface would crowd the main context, an additional perspective materially reduces risk, or the user asks for parallel agents. Weigh saved work against coordination cost and the host's capacity and delegation rules.
 
-- two or more tasks are independent and can be checked without shared state;
-- the read surface is large enough that bounded parallel research protects the main context;
-- an independent reviewer would materially reduce a known risk;
-- the user explicitly requests subagents or parallel agent work.
+- Name the output, source boundary, and any writable files.
+- Set context deliberately: some hosts inherit conversation history. A self-contained brief does not prove isolation; use a fresh context when an independent assessment requires one.
+- Keep one writer for shared files, schemas, and contracts. Parallel writes require disjoint ownership.
+- Inspect primary evidence for consequential claims before integrating a worker's result.
 
-Rules:
-
-- Keep the main agent responsible for scope, decisions, integration, and final evidence.
-- Send workers narrow contracts. Prefer read-only parallel work.
-- Allow parallel writes only when file ownership and interfaces are genuinely disjoint.
-- Serialize shared-file, shared-schema, migration, and contract changes.
-- Use a few agents, not the maximum available count. Stop delegating when coordination costs exceed saved work.
-
-Running workers in practice:
-
-- A worker starts with a fresh context. It has not seen the conversation, the contract, or your
-  findings. The dispatch prompt must be self-contained: paste the four dispatch fields from
-  [contracts-and-evidence.md](contracts-and-evidence.md), including concrete paths and the exact
-  output shape.
-- Use the host's native subagent facility when present (Codex exposes one on supported surfaces).
-  When none exists, a fresh non-interactive session such as `codex exec` with the same
-  self-contained prompt is an acceptable worker; do not simulate parallelism by interleaving
-  unrelated work in one context.
-- Default every worker to read-only research or review. Grant write access only with an explicit,
-  disjoint file list.
-- Two to four workers is the normal ceiling. If the partition needs more, the task is probably
-  Delivery-shaped or the partition is wrong.
-
-Return to Everyday after the independent work is merged unless Delivery triggers appear.
+Prefer the host's native facilities when suitable. Use an external CLI only when its required tools and permissions are available and it adds value. Do not install an orchestration stack merely to finish a local task.
 
 ## Delivery
 
-Escalate when any condition makes failure expensive or coordination durable:
+Use staged control for consequential security/data/production changes or durable coordination across owners and release steps. Persist only state needed across sessions. Validate authorization, rollback, and the affected real path where those are part of acceptance.
 
-- database migration, security boundary, permission model, production change, or destructive operation;
-- cross-frontend/backend/infrastructure behavior with multiple owners or release stages;
-- multi-session work that needs durable state;
-- a coordinated release, rollout, real environment, or E2E acceptance path is central to the request;
-- many dependent steps require explicit gates and rollback thinking.
+An installed orchestration skill (such as `cto-orchestration`) can supply durable state and review; being installed does not make it mandatory. If it is unavailable, use suitable host capabilities and keep the necessary safeguards. Do not turn a local patch into deployment or require a clean checkout that would discard unrelated edits.
 
-A routine feature branch and pull request are delivery mechanics, not a Delivery trigger by
-themselves. Keep bounded work in Everyday unless risk, coordination, duration, or acceptance evidence
-independently requires escalation.
-
-Use the installed `cto-orchestration` workflow as an internal subroutine when available. The user still speaks to this skill as the single entrance. If it is unavailable, preserve the same essentials: durable goal contract, staged ownership, independent review, real-path evidence, and explicit approval for irreversible steps.
-
-Delivery is not permission to expand scope. De-escalate after the high-risk boundary is crossed.
-
-## Upgrade and Downgrade Signals
-
-Upgrade when evidence reveals wider coupling, unresolved ownership, material security/data risk, or a real-path acceptance requirement. Downgrade when investigation proves the issue local and independently verifiable.
-
-Never upgrade because a workflow is fashionable, because agents are available, because multiple
-files or layers are named, or because the task merely sounds important.
+Return to a lighter lane after the consequential boundary or coordination need is resolved.
