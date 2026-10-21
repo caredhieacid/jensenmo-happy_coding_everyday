@@ -16,7 +16,7 @@
 [![Codex Plugin](https://img.shields.io/badge/Codex-plugin-10a37f)](.codex-plugin/plugin.json)
 [![License: MIT](https://img.shields.io/badge/license-MIT-22c55e.svg)](LICENSE)
 
-[30 秒了解](#30-秒了解-happycoding) · [快速开始](#快速开始) · [工作原理](#工作原理) · [设计哲学](docs/design-philosophy.md) · [参与贡献](CONTRIBUTING.md)
+[30 秒了解](#30-秒了解-happycoding) · [快速开始](#快速开始) · [安全默认](#开箱即用的安全默认) · [工作原理](#工作原理) · [设计哲学](docs/design-philosophy.md) · [参与贡献](CONTRIBUTING.md)
 
 </div>
 
@@ -71,6 +71,18 @@ $jensenmo-happy-coding-everyday 先审计这个 API 合同，不要修改代码�
 
 直接安装 skill、更新、卸载和兼容性说明见 [快速入门](docs/getting-started.md)。
 
+## 开箱即用的安全默认
+
+安装后无需任何配置。用自己的话、自己的语言描述任务，流程由 HappyCoding 判断。基础工程保护不用你提就会生效：
+
+- 密钥不进代码、日志和提交；
+- 项目里与本次无关的改动会被保留；
+- 你没要求就不提交、不推送、不部署；
+- 如果你要求一个有风险的捷径，它会用一句话说明风险，并给出能达到同样效果的安全做法；
+- 结果用你的语言、用大白话汇报；需要你动手时，给出确切的下一步。
+
+这些默认规范覆盖 Git、密钥、安全、数据、接口、依赖、UI、LLM 功能和测试，只作用于任务涉及的部分；仓库自己写明的约定优先。
+
 ## 为什么做这个项目？
 
 优秀的 coding 工作流往往擅长规划、TDD、review、编排或交付。如果多个工作流同时作为“总入口”，很容易产生重复计划、重复评审、上下文压力，以及比任务本身更贵的流程。
@@ -99,6 +111,8 @@ flowchart LR
 
 升级是可逆的。调查证明问题局部后，可以降回 Everyday。仅仅出现 PR、多个文件或前后端，不会自动触发 Delivery。
 
+本地端到端检查同样不会自动触发 Delivery。
+
 ## 核心原则
 
 1. **意图只说一次**：由入口判断流程，不让用户选模式。
@@ -110,6 +124,7 @@ flowchart LR
 7. **仓库规则优先**：项目本地约定和更严格安全边界依然生效。
 8. **只读就是只读**：审计、解释和诊断不等于授权修改。
 9. **观察是免费的**：网页搜索、查文档、浏览器和 computer use 在任何 lane 都是常规动作；流程重量约束的是写入与风险，不是观察。
+10. **默认安全，本地规则优先**：Git、密钥、数据和接口的基础保护只在任务涉及时生效；仓库约定可以覆盖它们。
 
 更多内容见 [设计哲学](docs/design-philosophy.md) 和 [架构决策](docs/architecture.md)。
 

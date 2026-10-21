@@ -3,6 +3,52 @@
 All notable changes to HappyCoding Everyday are recorded here. The project uses semantic versions
 for plugin releases.
 
+## Unreleased
+
+### Added
+
+- `references/engineering-baseline.md`: original, vendor-neutral defaults for Git, secrets,
+  security, data, interfaces, logging, dependencies, environment setup, UI, LLM features, and tests.
+  Each part applies only when a task touches that area, to the code the task changes;
+- an explicit precedence order: the user's request, then repository instructions and decision
+  records, then narrower domain skills, then these defaults. Secret leaks, lost work, broken shared
+  branches, and the authorization boundary are never traded away;
+- plain-language reports in the user's language with the exact next step, and a safe route (plus a
+  one-sentence risk note) when a requested shortcut would leak a secret, lose work, or break a
+  shared branch;
+- `plain-language-request`, `unsafe-shortcut`, `repo-conventions`, `endpoint-authorization`,
+  `missing-setup`, and `local-acceptance` pressure scenarios, with fixtures for the first three;
+- structural tests that keep `SKILL.md` within 60 lines, require every reference to be linked from
+  it, and reject machine paths or e-mail addresses in the runtime skill;
+- a "Safe defaults, no setup" README section in every locale.
+
+### Changed
+
+- `SKILL.md` is restructured to about 50 lines while keeping the 0.2.0 safeguards: the sufficiency
+  gate, verifiable targets, least code, the repository-complete sweep, requirement replay, and
+  dirty-worktree handling;
+- the skill description names the covered coding activities again so implicit invocation stays
+  reliable, and a structural test guards it;
+- a local end-to-end check alone no longer suggests Delivery;
+- worker context is chosen explicitly, because some hosts let workers inherit conversation history;
+- an installed orchestration skill is an optional Delivery adapter, and its absence does not block
+  safe local work;
+- the runtime skill no longer contains a rule about this repository's own scenario files;
+- the final report is a short checklist: user-visible behavior changes, evidence tied to each
+  requirement, unverified risk and where the change stands (local, committed, pushed, deployed),
+  and exact user steps. Brevity cuts process narration, never these items, and unattempted actions
+  are reported as not attempted;
+- fixes prefer a mechanism the code already has and do not restructure (merge duplicates, move
+  logic, add module dependencies) unless the task requires it; the 0.2.0 rule against handling
+  states or callers the code does not have is restored, and vague requests become the smallest
+  set of checkable targets;
+- before replying, the agent reads its whole diff to list user-visible behavior changes;
+- the engineering baseline is read only for changes that alter its subject or before a commit or
+  PR, not for text-only or single-expression fixes.
+- `scripts/run_scenarios.py` runs each fixture at a neutral temporary path outside the repository,
+  so the agent under test cannot read this repository's instructions or infer the scenario from the
+  path; fixture READMEs no longer name their scenario.
+
 ## 0.2.0 — 2026-07-23
 
 First published tag. Everything below, plus the 0.1.0 baseline, ships in this release.
