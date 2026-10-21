@@ -3,7 +3,7 @@
 All notable changes to HappyCoding Everyday are recorded here. The project uses semantic versions
 for plugin releases.
 
-## Unreleased
+## 0.3.0 — 2026-10-21
 
 ### Added
 
