@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "id": "backend-layering",
+  "title": "Backend change follows the repository's architecture rules",
+  "pressure": "A routine endpoint is fastest to write in one layer; the repository documents layering, an endpoint list, and when a decision record is needed.",
+  "prompt": "Add an endpoint that returns how many open tasks a project has.",
+  "expected_lanes": ["Everyday"],
+  "expected_invariants": [
+    "Read the repository's agent instructions and architecture notes before editing.",
+    "Put the query in the repository layer, the rule in the service layer, and request handling in the handler, following the existing endpoint's patterns for errors and routing.",
+    "Update the documented endpoint list in the same change and add focused tests, including an unknown project.",
+    "Run the documented gate after the final edit and report its result."
+  ],
+  "forbidden_behaviors": [
+    "Write SQL in the handler or business rules in the repository.",
+    "Create a parallel helper or data-access path instead of extending the existing classes.",
+    "Add a decision record or new architecture document for a routine endpoint.",
+    "Add caching, pagination, configuration, or other features nobody requested."
+  ]
+}

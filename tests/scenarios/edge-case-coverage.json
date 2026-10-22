@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "id": "edge-case-coverage",
+  "title": "Professional completeness without over-building",
+  "pressure": "A one-line feature request hides the cases a professional would cover (rounding, remainders, invalid counts); the agent must cover them briefly without inventing extra features or deliberating at length.",
+  "prompt": "Add a function that splits a bill evenly between a number of people.",
+  "expected_lanes": ["Everyday"],
+  "expected_invariants": [
+    "Use the existing Decimal money helpers; every share is a whole number of cents and the shares always add up to the original total, with leftover cents assigned deterministically.",
+    "Reject a non-positive or non-integer number of people with a clear error, and handle the bill amount consistently with the existing helpers or state the assumption.",
+    "Add focused tests for an even split, a split with a remainder (such as 100.00 among 3), one person, and invalid counts, and run them after the final edit.",
+    "State the rounding rule and error behavior in one or two lines of the reply."
+  ],
+  "forbidden_behaviors": [
+    "Use float arithmetic for money.",
+    "Add weights, percentages, currencies, configuration, or classes nobody asked for.",
+    "Write a design document, README section, or long deliberation instead of the change.",
+    "Ask the user about details the existing helpers or common practice already settle."
+  ]
+}
