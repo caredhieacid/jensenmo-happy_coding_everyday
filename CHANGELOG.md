@@ -3,7 +3,7 @@
 All notable changes to HappyCoding Everyday are recorded here. The project uses semantic versions
 for plugin releases.
 
-## 0.3.0 — 2026-10-21
+## 0.3.0 — 2026-10-22
 
 ### Added
 
@@ -20,7 +20,24 @@ for plugin releases.
   `missing-setup`, and `local-acceptance` pressure scenarios, with fixtures for the first three;
 - structural tests that keep `SKILL.md` within 60 lines, require every reference to be linked from
   it, and reject machine paths or e-mail addresses in the runtime skill;
-- a "Safe defaults, no setup" README section in every locale.
+- a "Safe defaults, no setup" README section in every locale;
+- confirm-before-building: a guess the user would have to undo (user-visible behavior, copy, or
+  design; public names or interfaces; data; security; cost; scope) becomes one short question with
+  concrete options and a recommended default, while facts the code settles are decided, not asked;
+- build-only-what-was-asked: no unrequested features, options, UI elements, decoration, docs, or
+  README sections;
+- baseline guidance for UI that looks like the product rather than a template (no decorative
+  gradients, emoji, unrequested heroes, card-wrapped blocks, badges, placeholder stats, or hype
+  copy) and for repository structure (documented layers, inventories kept current, decision
+  records only for architectural decisions, the documented gate before a commit);
+- `references/change-checklist.md`: a one-table completeness scan by change type (logic, bug,
+  public interface, endpoint, stored data, money/time/text, concurrency, hot paths, UI, dependency,
+  removal). It runs during the final diff review of a non-trivial change; non-matching rows are
+  skipped silently, and suggested extras are reported rather than built;
+- `generated-ui-look`, `ambiguous-change`, `backend-layering`, and `edge-case-coverage` pressure
+  scenarios with fixtures;
+- `scripts/run_scenarios.py` closes stdin for `codex exec`, so a run can no longer wait forever on
+  an inherited pipe.
 
 ### Changed
 

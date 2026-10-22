@@ -29,7 +29,12 @@ class SkillStructureTests(unittest.TestCase):
         self.assertRegex(text, r"(?m)^\s*allow_implicit_invocation: true$")
 
     def test_required_references_exist(self):
-        for name in ("lanes.md", "contracts-and-evidence.md", "engineering-baseline.md"):
+        for name in (
+            "lanes.md",
+            "contracts-and-evidence.md",
+            "engineering-baseline.md",
+            "change-checklist.md",
+        ):
             self.assertTrue((SKILL_DIR / "references" / name).is_file(), name)
 
     def test_no_scaffold_placeholders(self):
