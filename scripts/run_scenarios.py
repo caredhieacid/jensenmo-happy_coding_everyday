@@ -124,7 +124,10 @@ def run_scenario(scenario: dict, codex_bin: str, dry_run: bool) -> Path:
         return run_dir
 
     with (run_dir / "session.log").open("w", encoding="utf-8") as log:
-        result = subprocess.run(command, cwd=workspace, stdout=log, stderr=log)
+        # codex exec reads extra input from an open stdin; close it so runs never wait.
+        result = subprocess.run(
+            command, cwd=workspace, stdin=subprocess.DEVNULL, stdout=log, stderr=log
+        )
     diff = subprocess.run(
         ["git", "diff"], cwd=workspace, capture_output=True, text=True
     )

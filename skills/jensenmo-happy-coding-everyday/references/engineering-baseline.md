@@ -10,6 +10,14 @@ Sensible defaults for a repository that says nothing stricter. Apply only the se
 - Update from the base when it has moved and affects your files, not as a ritual. "Merged", "present on a branch", and "deployed" are separate facts; check each before acting on it.
 - A pull request states what changed, why, how it was verified, and what was not.
 
+## Repository structure and governance
+
+- Before adding backend or shared code, read the repository's architecture notes, decision records, and module docs for the area. Place code in the layer and module they assign (for example handler, service, repository), follow the nearest existing example of the same kind, and extend existing components instead of creating parallel ones.
+- Keep documented inventories current in the same change: endpoint lists, module responsibilities, configuration keys, and runbooks that the change affects.
+- A new architectural decision (a datastore, service, protocol, cross-module dependency, or a deviation from a recorded decision) gets a short decision record where the repository keeps them, or a question to the user if it keeps none. Supersede old records instead of rewriting them. Routine changes need no record.
+- When docs and code disagree, report the conflict instead of silently choosing one.
+- Run the repository's documented gate (format, lint, types, tests) before a commit; do not weaken or skip it.
+
 ## Secrets and configuration
 
 - Credentials and internal endpoints never go into source, fixtures, logs, commit messages, documents, or chat output. Read them from the environment or a secret store; keep local secret files git-ignored and offer an example file with placeholder names.
@@ -57,10 +65,13 @@ Sensible defaults for a repository that says nothing stricter. Apply only the se
 
 ## Frontend and UI
 
-- Reuse the project's components and design tokens; do not add arbitrary colors and sizes or a second component library.
-- Do not hand-edit generated API clients; change the contract and regenerate them.
-- Keep type checking meaningful: do not silence errors with `any`, casts, or suppression comments.
-- Check UI changes in the running interface, including the loading, empty, and error states the change affects. Widen the check when shared or global styles change.
+- Make new UI look like the product, not a template: reuse its components, tokens, spacing, type scale, layout, and navigation, and match the density and alignment of neighboring screens. Do not add arbitrary colors, fonts, radii, shadows, or a second component library.
+- Unless the project already uses them or the user asks, avoid the marks of generated UI: decorative gradients, glows, or glass effects; emoji or icons used as decoration; a hero, banner, or illustration nobody requested; a card around every block; oversized radii and stacked shadows; pill badges and "New" or "Pro" labels; placeholder statistics, testimonials, or logos; centered marketing layouts; and motion that does not communicate state.
+- Write interface copy in the product's existing voice: short, specific, and calm, with no hype, exclamation marks, or filler. Use real labels and data shapes; when real content is missing, use neutral placeholders and say so.
+- Build only the screens, controls, and states the task needs; ask before adding settings, sections, or variants (such as a dark theme) that nobody requested. Handle the loading, empty, and error states the change actually introduces, without decorative empty-state art.
+- Keep controls accessible: labels tied to inputs, visible keyboard focus, and native elements before custom widgets.
+- Do not hand-edit generated API clients; change the contract and regenerate them. Keep type checking meaningful: do not silence errors with `any`, casts, or suppression comments.
+- Check UI changes in the running interface when a browser is available, including affected states. Widen the check when shared or global styles change.
 
 ## LLM and agent features
 
@@ -76,4 +87,4 @@ Sensible defaults for a repository that says nothing stricter. Apply only the se
 - Never make a check pass by weakening it: no deleted or skipped tests, `|| true`, or loosened assertions. Fix or quarantine a flaky test instead of retrying it.
 - Keep tests deterministic: control time, randomness, and network.
 - A check reports; it does not rewrite files. A newly added gate should be seen failing once before you rely on it.
-- Update docs that describe changed behavior in the same change. Do not document a command you have not run unless you mark it as unverified.
+- Update docs that describe changed behavior in the same change, and add no other docs. Do not document a command you have not run unless you mark it as unverified.

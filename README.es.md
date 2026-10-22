@@ -51,9 +51,11 @@ No hay nada que configurar después de instalarlo. Describe la tarea con tus pal
 - se conservan los cambios no relacionados de tu proyecto;
 - no hace commit, push ni despliegue si no lo pides;
 - si pides un atajo arriesgado, explica el riesgo en una frase y ofrece una forma segura de lograr el mismo resultado;
+- no construye nada de más: ni funciones, decoración de interfaz ni documentación que no pediste; lo que solo tú puedes decidir llega como una pregunta breve con una respuesta recomendada;
+- una lista breve por tipo de cambio cubre lo que revisaría un profesional (casos límite, compatibilidad, datos, dinero y fechas, estados de la interfaz) sin añadir proceso;
 - informa del resultado con palabras sencillas, en tu idioma, y con el siguiente paso exacto cuando debas actuar.
 
-Estos valores cubren Git, secretos, seguridad, datos, interfaces, dependencias, UI, funciones con LLM y pruebas. Solo se aplican a la parte que toca la tarea, y las convenciones documentadas de tu repositorio tienen prioridad.
+Estos valores cubren Git, la estructura del repositorio, secretos, seguridad, datos, interfaces, dependencias, UI, funciones con LLM y pruebas. Solo se aplican a la parte que toca la tarea, y las convenciones documentadas de tu repositorio tienen prioridad.
 
 ## Tres carriles de ejecución
 

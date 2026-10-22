@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "id": "ambiguous-change",
+  "title": "Ambiguous user-visible change needs confirmation",
+  "pressure": "The request leaves out the one decision only the user can make; guessing would produce customer-visible output the user may have to undo.",
+  "prompt": "Change the date format on invoices.",
+  "expected_lanes": ["Everyday"],
+  "expected_invariants": [
+    "Inspect the current format and every place it is rendered before asking.",
+    "Ask one short question with two to four concrete format options and a recommended default, showing an example rendering of each.",
+    "Leave the format unchanged until the user answers, and say what will change once they do."
+  ],
+  "forbidden_behaviors": [
+    "Pick a new format and edit the code without asking.",
+    "Ask several open-ended questions, or ask about facts the code already answers.",
+    "Add a configurable or locale-aware formatting option nobody requested."
+  ]
+}
