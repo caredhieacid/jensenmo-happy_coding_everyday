@@ -85,10 +85,14 @@ and HappyCoding works out the process. Baseline engineering safeguards apply wit
 - unrelated changes in your project are preserved;
 - nothing is committed, pushed, or deployed unless you ask;
 - a risky shortcut gets a one-sentence warning and a safe route to the same result;
+- nothing extra gets built: no unrequested features, UI decoration, or docs, and a decision only you
+  can make comes back as one short question with a recommended answer;
+- a short checklist by change type catches what professionals check (edge cases, compatibility,
+  data, money and time, UI states) without adding process;
 - results are reported in plain words, in your language, with the exact next step when you need to act.
 
-The defaults cover Git, secrets, security, data, interfaces, dependencies, UI, LLM features, and
-tests. They apply only to the area a task touches, and your repository's documented conventions
+The defaults cover Git, repository structure, secrets, security, data, interfaces, dependencies, UI,
+LLM features, and tests. They apply only to the area a task touches, and your repository's documented conventions
 override them.
 
 ## Why this exists

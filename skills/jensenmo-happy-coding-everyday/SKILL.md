@@ -23,28 +23,30 @@ A routine PR, multiple files, or a local E2E check does not by itself trigger De
 
 - Follow the nearest agent instructions (such as AGENTS.md or CLAUDE.md) and existing conventions; before committing or opening a PR, also check documented contribution rules.
 - Check repository status before editing. Work in the requested checkout and branch rather than a new worktree by habit; preserve unrelated edits, and ask only when the change cannot be separated from them.
-- Turn a vague request into the smallest set of checkable targets the request and existing conventions support: the input, the expected result, and the check that proves it. If interpretations differ materially, ask one short question with a recommended default; otherwise state the assumption and continue.
+- Turn a vague request into the smallest set of checkable targets the request and existing conventions support: the input, the expected result, and the check that proves it.
+- Confirm before building when a wrong guess would leave the user something to undo: user-visible behavior, copy, or design; public names or interfaces; data; security; cost; or scope beyond the request. Ask one short question with two to four concrete options, each with a one-line example or consequence, and mark the one you recommend and why; meanwhile do only the work that does not depend on the answer. When the request, the codebase, or a cheap check settles it, decide and state the assumption instead of asking.
 - Before editing, locate where the behavior is produced and what depends on it. A suspicious line is a hypothesis until a reproduction or other evidence ties it to the symptom.
 
 ## Change with restraint
 
-- Make the smallest change at the established cause, matching the surrounding code's naming, structure, and idioms. Prefer a mechanism the code already has (an existing setting, flag, or function) over new code. Skip speculative options, abstractions, handling for states or callers the code does not have, unrelated cleanup or reformatting, and dependencies the task does not need; do not restructure while fixing (merging duplicates, moving logic, adding module dependencies) unless the task requires it. Remove only orphans your change created.
+- Make the smallest change at the established cause, matching the surrounding code's naming, structure, and idioms. Prefer a mechanism the code already has (an existing setting, flag, component, or function) over new code.
+- Build only what was asked. Leave out unrequested features, options, UI elements, decoration, docs or README sections, abstractions, dependencies, and handling for states or callers the code does not have. Do not clean up, reformat, or restructure (merge duplicates, move logic, add module dependencies) unless the task requires it. Remove only orphans your change created.
 - Search for every other site of the changed behavior (call sites, duplicates, configuration, docs, manifests) and update or rule out each one.
 - Change one hypothesis at a time. After two failures on the same path, reassess the method instead of pushing harder.
 - When a requested shortcut would leak a secret, lose work, or break a shared branch, reach the goal by the lightest safe route, and put the one-sentence risk and the exact steps in your final reply.
-- Read the matching section of the [engineering baseline](references/engineering-baseline.md) when the change adds or alters a credential, security check, data write or migration, public interface, log, dependency, setup step, UI component, LLM call, or test, or before you commit or open a PR. A text-only or single-expression fix does not need it.
+- Read the matching section of the [engineering baseline](references/engineering-baseline.md) when the change adds or alters a credential, security check, data write or migration, public interface, backend module, log, dependency, setup step, UI screen or component, LLM call, or test, or before you commit or open a PR. A text-only or single-expression fix does not need it.
 
 ## Verify and finish
 
 - Choose checks that can establish the requested result. For a bug, observe the failure first when feasible; after the final edit, run the affected check. Without a test harness, use the strongest direct check (run the program, call the endpoint, open the page) and name the gap. Text-only edits can be verified by inspection.
 - Use observed runtime evidence for runtime claims. A build, mock, worker summary, or earlier run does not prove current behavior. Keep unrelated existing failures separate from the changed path.
-- Before replying, read your whole diff and note each behavior a caller or user will notice. Replay the original request and later constraints: each requirement gets its own evidence (the check, command, or observation that shows it) or an explicit not-done. Finish remaining safe, authorized acceptance work.
+- Before replying, read your whole diff. If you changed logic, data, an interface, or UI, or fixed a bug, scan the matching rows of the [change checklist](references/change-checklist.md). Note each behavior a caller or user will notice. Replay the original request and later constraints: each requirement gets its own evidence (the check, command, or observation that shows it) or an explicit not-done. Finish remaining safe, authorized acceptance work.
 
 ## Report like a helpful colleague
 
 Reply in the user's language and at their level. Lead with the outcome in plain words, then cover briefly:
 
-- what changed, including every behavior callers or users will notice: outputs, accepted inputs, raised errors, defaults, renamed keys, prices, or URLs;
+- what changed, including every behavior callers or users will notice (outputs, accepted inputs, raised errors, defaults, renamed keys, prices, URLs) and which inputs or users it affects beyond the reported example;
 - what you ran and its result, tied to each requirement;
 - what remains unverified or risky, and where the change stands (local, committed, pushed, or deployed);
 - the exact command or step for anything the user must do, with a recommended choice.

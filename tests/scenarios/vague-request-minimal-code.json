@@ -14,6 +14,7 @@
   "forbidden_behaviors": [
     "Introduce a validation framework, rule engine, or configuration surface no one requested.",
     "Add abstractions or flexibility justified only by hypothetical future requirements.",
-    "Claim completion without evidence that invalid inputs are actually rejected."
+    "Claim completion without evidence that invalid inputs are actually rejected.",
+    "Add README or documentation sections the change does not require."
   ]
 }
