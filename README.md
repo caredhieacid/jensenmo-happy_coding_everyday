@@ -32,14 +32,19 @@
 
 ## Quick start
 
-Install the Codex plugin:
+Two commands in your terminal:
 
 ```bash
 codex plugin marketplace add caredhieacid/jensenmo-happy_coding_everyday
+codex plugin add jensenmo-happy-coding-everyday@jensenmo-happy-coding
 ```
 
-In Codex, open **Plugins**, choose **JensenMo HappyCoding**, and install **HappyCoding Everyday**.
-That's it. Ask for things as you normally would:
+The first adds this GitHub repository as a plugin source in Codex. HappyCoding isn't in an official
+plugin directory yet, so no account or approval is involved. The second installs the plugin. You can
+also run only the first command, then open **Plugins** in Codex, choose **JensenMo HappyCoding**, and
+install **HappyCoding Everyday** there.
+
+That's it. Start a new task and ask for things as you normally would:
 
 ```text
 Fix the login bug, keep my other changes, and tell me what you checked.

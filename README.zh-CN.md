@@ -32,13 +32,16 @@
 
 ## 快速开始
 
-安装 Codex 插件：
+在终端里运行两条命令：
 
 ```bash
 codex plugin marketplace add caredhieacid/jensenmo-happy_coding_everyday
+codex plugin add jensenmo-happy-coding-everyday@jensenmo-happy-coding
 ```
 
-在 Codex 里打开 **Plugins**，选择 **JensenMo HappyCoding**，安装 **HappyCoding Everyday**。这样就好了，之后正常提需求就行：
+第一条把这个 GitHub 仓库添加为 Codex 的插件源。HappyCoding 目前还没有进入官方插件目录，所以不需要注册或审核。第二条安装插件。也可以只运行第一条，然后在 Codex 里打开 **Plugins**，选择 **JensenMo HappyCoding**，安装 **HappyCoding Everyday**。
+
+这样就好了。新开一个任务，正常提需求就行：
 
 ```text
 修一下登录的 bug，别动我其他的改动，告诉我你做了哪些检查。
