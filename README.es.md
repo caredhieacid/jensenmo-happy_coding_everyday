@@ -6,11 +6,12 @@
 
 <p><strong>Los hábitos de un gran ingeniero, dentro de tu asistente de programación con IA.</strong></p>
 
-<p>Los cambios pequeños, rápidos. Los grandes, con cuidado. Instálalo una vez en Codex y cada tarea de programación sale mejor, sin configurar nada.</p>
+<p>Los cambios pequeños, rápidos. Los grandes, con cuidado. Instálalo una vez en Codex o Claude Code y cada tarea de programación sale mejor, sin configurar nada.</p>
 
 [![Release](https://img.shields.io/github/v/release/caredhieacid/jensenmo-happy_coding_everyday?color=2f7d5b)](https://github.com/caredhieacid/jensenmo-happy_coding_everyday/releases)
 [![CI](https://github.com/caredhieacid/jensenmo-happy_coding_everyday/actions/workflows/validate.yml/badge.svg)](https://github.com/caredhieacid/jensenmo-happy_coding_everyday/actions/workflows/validate.yml)
 [![Status: Alpha](https://img.shields.io/badge/status-alpha-f59e0b)](#estado-del-proyecto)
+[![Claude Code Plugin](https://img.shields.io/badge/Claude%20Code-plugin-d97757)](.claude-plugin/plugin.json)
 [![License: MIT](https://img.shields.io/badge/license-MIT-1f2328.svg)](LICENSE)
 
 [English](README.md) · [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [Español](README.es.md)
@@ -26,19 +27,26 @@
 - **Nunca complica tu trabajo.** Corregir una errata es un diff de una línea. Sin planes, sin agentes de más, sin funciones que nadie pidió.
 - **Solo pregunta lo que solo tú puedes decidir.** Una pregunta breve con opciones claras y una recomendación, en vez de una suposición equivocada que tengas que deshacer.
 - **Seguro desde el principio.** Las claves de API no van al código, nada se sube ni se despliega sin ti y las reglas de tu proyecto siempre van primero.
-- **Casi no ocupa espacio.** La parte que se carga en cada tarea tiene menos de 60 líneas, así que el contexto queda libre para tu código.
+- **Casi no ocupa espacio.** La parte que se carga en cada tarea tiene menos de 60 líneas. Según el propio cálculo de Claude Code, ocupa unos 90 tokens por sesión y unos 1,7k solo cuando se usa.
 - **Probado como software de verdad.** Cada comportamiento clave tiene su propio escenario de prueba, ejecutado en sesiones nuevas de Codex y puntuado por otro revisor.
 
 ## Primeros pasos
 
-Dos comandos en tu terminal:
+**Codex:** dos comandos en tu terminal.
 
 ```bash
 codex plugin marketplace add caredhieacid/jensenmo-happy_coding_everyday
 codex plugin add jensenmo-happy-coding-everyday@jensenmo-happy-coding
 ```
 
-El primero añade este repositorio de GitHub como fuente de plugins en Codex. HappyCoding todavía no está en un directorio oficial de plugins, así que no hace falta registrarse ni pasar ninguna revisión. El segundo instala el plugin. También puedes ejecutar solo el primero y, en Codex, abrir **Plugins**, elegir **JensenMo HappyCoding** e instalar **HappyCoding Everyday**.
+**Claude Code:** dos comandos en tu terminal.
+
+```bash
+claude plugin marketplace add caredhieacid/jensenmo-happy_coding_everyday
+claude plugin install jensenmo-happy-coding-everyday@jensenmo-happy-coding
+```
+
+En los dos casos, el primer comando añade este repositorio de GitHub como fuente de plugins y el segundo instala el plugin. HappyCoding todavía no está en un directorio oficial de plugins, así que no hace falta registrarse ni pasar ninguna revisión. Dentro de una sesión de Claude Code, `/plugin marketplace add` y `/plugin install` hacen lo mismo; en Codex, después del primer comando también puedes instalarlo desde la pantalla **Plugins**.
 
 Listo. Abre una tarea nueva y pide las cosas como siempre. No hay nada que configurar:
 
@@ -60,7 +68,9 @@ ln -s "$(pwd)/skills/jensenmo-happy-coding-everyday" \
 
 Si ya hay algo en esa ruta, revísalo antes de reemplazarlo.
 
-**Claude Code:** enlaza la misma carpeta en `~/.claude/skills/` y el skill también se carga allí. Por ahora, las pruebas de comportamiento solo se han hecho en Codex.
+**Claude Code:** en lugar de instalar el plugin, también puedes enlazar la misma carpeta en `~/.claude/skills/`. Usa una opción u otra, no las dos, o el skill se cargará dos veces.
+
+Por ahora, las pruebas de comportamiento se hacen en Codex. En Claude Code, el plugin se ha comprobado con `claude plugin validate` y con una instalación de prueba.
 
 ## El problema
 

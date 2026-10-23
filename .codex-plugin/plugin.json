@@ -1,7 +1,7 @@
 {
   "name": "jensenmo-happy-coding-everyday",
-  "version": "0.3.0",
-  "description": "One automatic Codex coding workflow that scales rigor to risk.",
+  "version": "0.3.1",
+  "description": "Gives your AI coding assistant the habits of a careful engineer: the right amount of process, real checks, and clear reports.",
   "author": {
     "name": "Jensen Mo",
     "url": "https://github.com/caredhieacid"
@@ -14,22 +14,31 @@
     "agent-skills",
     "coding-agents",
     "developer-workflow",
-    "multi-agent"
+    "code-quality"
   ],
   "skills": "./skills/",
   "interface": {
     "displayName": "HappyCoding Everyday",
-    "shortDescription": "Right-sized rigor for every coding task",
-    "longDescription": "Route everyday fixes, bounded collaboration, and high-risk delivery through one evidence-driven Codex workflow.",
+    "shortDescription": "Good engineering habits for AI",
+    "longDescription": "HappyCoding Everyday turns on by itself for coding work in Codex. Small changes stay quick, and big changes get done carefully. It finds the real cause of a bug, fixes every place that needs it, runs the check that proves the fix, and explains the result in plain words. It asks only when a wrong guess would mean redoing work, never adds features nobody asked for, keeps API keys out of your code, and follows your project's own rules first. The part loaded on every task is under 60 lines, and each key behavior is covered by a test scenario run in fresh Codex sessions.",
     "developerName": "Jensen Mo",
-    "category": "Productivity",
-    "capabilities": ["Read", "Write"],
+    "category": "Developer Tools",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
     "websiteURL": "https://github.com/caredhieacid/jensenmo-happy_coding_everyday",
     "defaultPrompt": [
-      "Fix this bug with the lightest safe workflow.",
-      "Review this repository and report evidence before changing it.",
-      "Deliver this change with fresh verification."
+      "Fix this bug and tell me what you checked.",
+      "Review this code without changing anything.",
+      "Add this feature and keep my other changes."
     ],
-    "brandColor": "#F59E0B"
+    "brandColor": "#2F7D5B",
+    "privacyPolicyURL": "https://github.com/caredhieacid/jensenmo-happy_coding_everyday/blob/main/PRIVACY.md",
+    "termsOfServiceURL": "https://github.com/caredhieacid/jensenmo-happy_coding_everyday/blob/main/LICENSE",
+    "composerIcon": "./assets/logo-small.png",
+    "logo": "./assets/logo.png",
+    "screenshots": []
   }
 }

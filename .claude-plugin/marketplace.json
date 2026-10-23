@@ -1,0 +1,21 @@
+{
+  "name": "jensenmo-happy-coding",
+  "description": "HappyCoding Everyday: good engineering habits for AI coding.",
+  "owner": {
+    "name": "Jensen Mo",
+    "url": "https://github.com/caredhieacid"
+  },
+  "plugins": [
+    {
+      "name": "jensenmo-happy-coding-everyday",
+      "source": "./",
+      "description": "The right amount of process for every coding task, with real checks and clear reports.",
+      "category": "development",
+      "tags": [
+        "workflow",
+        "code-quality",
+        "agent-skills"
+      ]
+    }
+  ]
+}

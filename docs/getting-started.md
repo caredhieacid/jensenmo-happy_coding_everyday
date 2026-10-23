@@ -23,6 +23,25 @@ from the beginning of the context.
 The plugin bundles instructions only. It does not add an MCP server, connector, hook, background
 service, credential, or telemetry client.
 
+## Install in Claude Code
+
+The same repository is also a Claude Code plugin and marketplace (`.claude-plugin/`). No account or
+approval is needed:
+
+```bash
+claude plugin marketplace add caredhieacid/jensenmo-happy_coding_everyday
+claude plugin install jensenmo-happy-coding-everyday@jensenmo-happy-coding
+```
+
+Inside a session, `/plugin marketplace add caredhieacid/jensenmo-happy_coding_everyday` and
+`/plugin install jensenmo-happy-coding-everyday@jensenmo-happy-coding` do the same; run
+`/reload-plugins` or start a new session afterwards. To update, run
+`claude plugin update jensenmo-happy-coding-everyday@jensenmo-happy-coding`; to remove it, run
+`claude plugin uninstall jensenmo-happy-coding-everyday@jensenmo-happy-coding`.
+
+Use either the plugin or a linked skill folder in `~/.claude/skills/`, not both, or the skill loads
+twice.
+
 ## Install the skill directly
 
 ```bash
@@ -88,6 +107,8 @@ codex plugin marketplace remove jensenmo-happy-coding
   not currently provide the plugin installation surface.
 - The skill assumes the host exposes normal repository and verification tools. Optional subagents
   are used only when the selected lane and host capabilities justify them.
+- Claude Code: the plugin passes `claude plugin validate` and installs and loads from this
+  repository. Behavior evaluations so far run on Codex.
 - Other coding agents are not claimed as supported until their trigger, instruction, and evaluation
   paths are tested independently.
 
