@@ -1,172 +1,64 @@
 <div align="center">
 
-# ⚡ HappyCoding Everyday
+<img src="docs/assets/hero.jpg" alt="One route splits into three lines of different weight and rejoins at a check mark" width="100%">
 
-### The risk-aware coding workflow for Codex.
+<h1>HappyCoding Everyday</h1>
 
-One request in. HappyCoding chooses how much process the work actually needs—from a surgical fix,
-to bounded collaboration, to evidence-gated delivery—and closes with fresh proof.
+<p><strong>The habits of a great engineer, built into your AI coding assistant.</strong></p>
 
-**🌐 Language / 语言 / 言語 / 언어 / Idioma**
+<p>Small changes stay quick. Big changes get done carefully. Install it once in Codex and every coding task gets better, with nothing to configure.</p>
+
+[![Release](https://img.shields.io/github/v/release/caredhieacid/jensenmo-happy_coding_everyday?color=2f7d5b)](https://github.com/caredhieacid/jensenmo-happy_coding_everyday/releases)
+[![CI](https://github.com/caredhieacid/jensenmo-happy_coding_everyday/actions/workflows/validate.yml/badge.svg)](https://github.com/caredhieacid/jensenmo-happy_coding_everyday/actions/workflows/validate.yml)
+[![Status: Alpha](https://img.shields.io/badge/status-alpha-f59e0b)](#project-status)
+[![Codex Plugin](https://img.shields.io/badge/Codex-plugin-10a37f)](.codex-plugin/plugin.json)
+[![License: MIT](https://img.shields.io/badge/license-MIT-1f2328.svg)](LICENSE)
 
 [English](README.md) · [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [Español](README.es.md)
 
-[![Status: Alpha](https://img.shields.io/badge/status-alpha-f59e0b)](#project-status)
-[![CI](https://github.com/caredhieacid/jensenmo-happy_coding_everyday/actions/workflows/validate.yml/badge.svg)](https://github.com/caredhieacid/jensenmo-happy_coding_everyday/actions/workflows/validate.yml)
-[![Codex Skill](https://img.shields.io/badge/Codex-agent%20skill-111827)](skills/jensenmo-happy-coding-everyday/SKILL.md)
-[![Codex Plugin](https://img.shields.io/badge/Codex-plugin-10a37f)](.codex-plugin/plugin.json)
-[![License: MIT](https://img.shields.io/badge/license-MIT-22c55e.svg)](LICENSE)
-
-[30-second overview](#happycoding-in-30-seconds) · [Quick start](#quick-start) · [Safe defaults](#safe-defaults-no-setup) · [How it works](#how-it-works) · [Design philosophy](docs/design-philosophy.md) · [Contributing](CONTRIBUTING.md)
+[Why HappyCoding](#why-happycoding) · [Quick start](#quick-start) · [Examples](#examples) · [Test results](#test-results) · [How it works](#how-it-works) · [Docs](docs/README.md)
 
 </div>
 
-## HappyCoding in 30 seconds
+## Why HappyCoding
 
-| You provide | HappyCoding handles | You receive |
-| --- | --- | --- |
-| The outcome, constraints, and anything that must not change | Workflow selection, bounded execution, escalation, and the right level of verification | The requested result, fresh evidence, unverified gaps, and residual risk |
-
-**The promise:** tiny fixes stay tiny; risky delivery earns stronger gates; the user does not become
-the workflow engine.
-
-## What is HappyCoding?
-
-HappyCoding Everyday is a single automatic coding-workflow entrance for Codex. It turns a normal
-request into a compact contract, selects the lowest sufficient execution lane, performs the work,
-and closes with fresh evidence. You do not need to choose a mode, request tests, or manage a team of
-agents yourself.
-
-The project optimizes for two things at once:
-
-- **low ceremony for everyday work**;
-- **stronger gates when failure becomes expensive**.
+- **Works the moment it's installed.** No modes, no special prompts, no config. Describe the task the way you always do.
+- **Gets it right, not just "done."** It finds the real cause, fixes every place that needs it, and runs the check that proves the fix.
+- **Never bloats your work.** A typo fix is a one-line diff. No plans, extra agents, or features nobody asked for.
+- **Asks only what only you can decide.** One short question with clear options and a recommendation, instead of a wrong guess you have to undo.
+- **Safe by default.** API keys stay out of your code, nothing gets pushed or deployed without you, and your project's rules always come first.
+- **Tiny footprint.** The part loaded on every task is under 60 lines, so your context stays free for your code.
+- **Tested like real software.** Each key behavior has its own test scenario, run in fresh Codex sessions and scored by a separate reviewer.
 
 ## Quick start
 
-### Install as a Codex plugin
+Install the Codex plugin:
 
 ```bash
 codex plugin marketplace add caredhieacid/jensenmo-happy_coding_everyday
 ```
 
-Open **Plugins** in Codex, choose **JensenMo HappyCoding**, and install **HappyCoding Everyday**.
-Start a new task, then describe the work normally:
+In Codex, open **Plugins**, choose **JensenMo HappyCoding**, and install **HappyCoding Everyday**.
+That's it. Ask for things as you normally would:
 
 ```text
-Fix the login regression, preserve my unrelated changes, and show me the fresh verification.
-```
-
-Use the same entry point for different levels of work:
-
-```text
-Audit this API contract. Stay read-only and cite the exact producer and consumer paths.
+Fix the login bug, keep my other changes, and tell me what you checked.
 ```
 
 ```text
-Ship tenant isolation across storage, authorization, UI, and rollout. Preserve a rollback path.
+Review this API contract without changing anything. Point to where each field is produced and used.
 ```
-
-Explicit invocation is also available when you want it:
 
 ```text
-$jensenmo-happy-coding-everyday audit this API contract before changing code.
+Add tenant isolation across the database, permissions, UI, and rollout. Keep a way to roll back.
 ```
 
-See [Getting started](docs/getting-started.md) for direct skill installation, updating,
-uninstalling, and compatibility notes.
+To call it by name, type `$jensenmo-happy-coding-everyday`.
 
-## Safe defaults, no setup
+<details>
+<summary><strong>Other ways to install</strong></summary>
 
-There is nothing to configure after installation. Describe the task in your own words and language,
-and HappyCoding works out the process. Baseline engineering safeguards apply without being asked:
-
-- secrets stay out of code, logs, and commits;
-- unrelated changes in your project are preserved;
-- nothing is committed, pushed, or deployed unless you ask;
-- a risky shortcut gets a one-sentence warning and a safe route to the same result;
-- nothing extra gets built: no unrequested features, UI decoration, or docs, and a decision only you
-  can make comes back as one short question with a recommended answer;
-- a short checklist by change type catches what professionals check (edge cases, compatibility,
-  data, money and time, UI states) without adding process;
-- results are reported in plain words, in your language, with the exact next step when you need to act.
-
-The defaults cover Git, repository structure, secrets, security, data, interfaces, dependencies, UI,
-LLM features, and tests. They apply only to the area a task touches, and your repository's documented conventions
-override them.
-
-## Why this exists
-
-Powerful coding workflows often specialize in planning, TDD, review, orchestration, or delivery.
-Installing several of them as competing top-level dispatchers can produce duplicate plans, repeated
-reviews, context pressure, and process that costs more than the task.
-
-HappyCoding keeps one dispatcher and composes specialized standards only when the work calls for
-them. Git, backend, security, observability, browser, and product-specific rules remain valuable;
-they simply do not compete to own the whole lifecycle.
-
-## How it works
-
-```mermaid
-flowchart LR
-    A["Coding request"] --> B["Goal / Scope / Acceptance / Exclusions"]
-    B --> C{"Risk, coupling, and acceptance path"}
-    C -->|"Bounded and local"| D["Everyday<br/>one agent + focused proof"]
-    C -->|"Independent work or wide reading"| E["Collaboration<br/>parallel reads + controlled writes"]
-    C -->|"Durable coordination or high risk"| F["Delivery<br/>staged gates + independent review"]
-    D --> G["Fresh evidence"]
-    E --> G
-    F --> G
-```
-
-| Lane | Use it when | Default behavior | Example |
-| --- | --- | --- | --- |
-| **Everyday** | One bounded outcome, low coupling, one acceptance path | Inspect, make the smallest change, run focused proof | Fix a parser regression and open a routine PR |
-| **Collaboration** | Work can be partitioned independently or a wide read would crowd the main context | Parallelize bounded research; keep shared writes on one line | Investigate an unrelated login 401 and CSV ordering defect |
-| **Delivery** | Security, migration, production, durable coordination, or staged real-path acceptance makes failure expensive | Persist the contract, gate stages, review independently, preserve rollback | Ship tenant isolation across storage, authorization, UI, and rollout |
-
-Escalation is reversible. A broad investigation can return to Everyday after evidence proves the
-cause is local. A pull request or multiple files do not force Delivery by themselves.
-
-A local end-to-end check does not force Delivery either.
-
-## Design principles
-
-1. **Intent once** — infer the workflow from the request instead of asking the user to select a mode.
-2. **Lowest sufficient rigor** — start Everyday and upgrade only on concrete evidence.
-3. **Evidence over ceremony** — verification must prove the requested behavior, not merely that a command ran.
-4. **Parallel reading, controlled writing** — protect context without creating merge chaos.
-5. **Fresh verification** — re-run the relevant proof after the final change.
-6. **Reversible escalation** — add durable process only while the task needs it.
-7. **Repository rules remain authoritative** — local conventions and stricter safety boundaries still apply.
-8. **Read-only means read-only** — an audit, explanation, or diagnosis is not implied permission to edit.
-9. **Looking is free** — web search, documentation, a browser, or computer use are normal moves in every lane; process weight gates writes and risk, not observation.
-10. **Safe defaults, local rules first** — baseline Git, secret, data, and interface safeguards apply where a task touches them; repository conventions override them.
-
-Read the full [design philosophy](docs/design-philosophy.md) and [architecture decision](docs/architecture.md).
-
-## What it deliberately does not do
-
-- It is not a new agent runtime or framework.
-- It does not force multi-agent execution.
-- It does not require a plan document, full TDD loop, or full test suite for every tiny change.
-- It does not replace domain-specific engineering standards.
-- It does not interpret autonomous work as authorization for deployment, deletion, migration, or force push.
-- It does not count agents, documents, or tool calls as success metrics.
-
-## Installation options
-
-### Option A — plugin marketplace
-
-Recommended for public distribution and the Codex plugin experience:
-
-```bash
-codex plugin marketplace add caredhieacid/jensenmo-happy_coding_everyday
-```
-
-### Option B — direct user skill
-
-Recommended for local authoring and transparent updates:
+**Link the skill folder directly** (handy if you want to edit it and see changes right away):
 
 ```bash
 git clone https://github.com/caredhieacid/jensenmo-happy_coding_everyday.git
@@ -176,69 +68,237 @@ ln -s "$(pwd)/skills/jensenmo-happy-coding-everyday" \
   "$HOME/.agents/skills/jensenmo-happy-coding-everyday"
 ```
 
-Codex supports symlinked skills. If the destination already exists, inspect it before replacing or
-removing anything. Older `~/.codex/skills` installations may continue to work, but
-`$HOME/.agents/skills` is the current user-scope location documented by Codex.
+Codex supports linked skill folders. If something already exists at that path, check it before
+replacing it. Older installs under `~/.codex/skills` may still work, but `$HOME/.agents/skills` is
+the current location.
 
-To keep routing predictable, disable other implicit skills that also claim ownership of the entire
-coding lifecycle. Keep conditional domain skills installed.
+**Claude Code:** link the same folder into `~/.claude/skills/` and the skill loads there too. So
+far, the behavior tests have only been run on Codex.
 
-## Validation and release model
+Keep just one skill that takes over all coding work: turn off other skills that do the same job,
+and keep skills that only cover one area. See [Getting started](docs/getting-started.md).
 
-The repository separates three kinds of confidence:
+</details>
 
-- **structural checks** validate skill metadata, plugin packaging, local links, translations, and scenario schemas;
-- **behavior evaluations** run realistic prompts in fresh agent contexts and review observable invariants;
-- **real-task evidence** is the only proof that a particular coding change works in its actual environment.
+## The problem it solves
 
-Run the local gate:
+AI coding assistants are capable, but left on their own they tend to go wrong in one of two ways.
+
+| Not enough | Too much |
+| --- | --- |
+| Changes the first line that looks suspicious instead of finding the real cause | Writes a plan and starts several agents to fix a typo |
+| The same logic exists in two places; only one gets fixed | Runs every test and another review round for a one-line change |
+| Says "done" without running anything | Adds validation frameworks, settings, and README sections nobody asked for |
+| One of three requirements quietly gets dropped | Builds pages full of gradients, emoji, and marketing copy that look like a template |
+| You ask it to put an API key in the code, and it does | Asks you to pick a workflow mode before it starts |
+
+Heavy workflow tools fix the left column, but then every task has to go through the right one.
+HappyCoding fixes both: it decides how much process each task needs from its size and risk, so
+you get careful work without the overhead.
+
+## What you get
+
+| Feature | What it means |
+| --- | --- |
+| **Process that fits the task** | Small tasks are done directly. Only changes that touch security, data, or production get extra checks. You never pick a mode. |
+| **It actually checks its work** | It reproduces the problem first, runs the relevant check after the last edit, and tells you what it didn't check. |
+| **Nothing half-fixed** | It looks for every other place the change affects (callers, duplicate code, config, docs) and updates them, or says why not. |
+| **Asks only when it matters** | If a wrong guess would mean redoing work, it asks one short question with two to four options and a recommendation. If the code can answer it, it doesn't ask. |
+| **No extras** | No features, settings, decoration, or docs you didn't ask for. |
+| **Covers the usual cases** | Before reporting, it checks a short list for the kind of change it made: edge cases, compatibility, data, money and dates, and loading and error states in the UI. |
+| **Safe by default** | API keys stay out of code and commits. Nothing is committed, pushed, or deployed unless you ask. Your project's own rules come first. |
+| **UI that matches your app** | New pages reuse your existing components and styles instead of a generic template look. |
+| **Clear reports** | The result comes first, in your language: what changed, what was checked, what's left, and what to do next. |
+
+## Examples
+
+These are real replies from test runs, unedited. The test machine is set to reply in Chinese, so
+the replies below are translated.
+
+**It asks when only you can decide.** Request: *"Change the date format on invoices."*
+
+> Which date format would you like? Issued and due dates currently show as `2026-10-22`.
+>
+> - `22/10/2026` (day/month/year)
+> - `10/22/2026` (month/day/year)
+> - `22 Oct 2026` (recommended: avoids day/month confusion)
+>
+> Once you confirm, I'll update both places and run the tests.
+
+It didn't change any file before getting an answer.
+
+**It follows your project's structure.** Request: *"Add an endpoint that returns how many open tasks a project has."*
+
+> Added `GET /projects/{id}/tasks/open-count`, returning `{"open_count": 2}`.
+>
+> - Counts only the project's `open` tasks; returns 0 when there are none.
+> - A non-integer ID returns 400; an unknown project returns 404.
+> - Kept the existing three layers and updated the endpoint docs.
+>
+> Ran `python3 -m unittest discover -s tests`: all 8 tests pass; `git diff --check` passes. The change is local only and not committed.
+
+**A one-line fix stays one line.** Request: *"A production button label has one typo. Change only that string…"*
+
+> Changed `Sumbit order` to `Submit order` in `CheckoutButton.jsx:5`; that string is the only change.
+>
+> Checked the diff and `git diff --check` passes. The full suite was not run, and nothing was committed or deployed.
+
+<details>
+<summary><strong>It explains results in plain words</strong></summary>
+
+Request (originally in Chinese): *"I just started learning to code. My budget program's total looks
+wrong, like a lot of money is missing. Can you fix it? I don't really know Git, so don't break
+my stuff."*
+
+> Fixed. The program was skipping the first entry, **1,200 of rent**, so the total now shows
+> correctly as **1383.00**.
+>
+> Only one line in `budget.py` changed. Your ledger data is untouched, and no branch was switched
+> and nothing was committed. Checked with the full ledger, a single entry, and an empty ledger;
+> all correct.
+>
+> Run it the same way as before:
+>
+> ```bash
+> python3 budget.py expenses.csv
+> ```
+
+</details>
+
+## Test results
+
+Many prompt and workflow collections are never tested. HappyCoding is. Each key behavior has a
+test scenario: a realistic request, a small sample project, a list of things the assistant must do, and a list of
+things it must never do. Every test starts a new Codex session, and a separate reviewer checks the
+result against both lists.
+
+| Item | Count |
+| --- | --- |
+| Test scenarios | **24** |
+| Sample projects (frontend, layered backend, money math, API keys, commit rules, and more) | **12** |
+| New Codex sessions run for version 0.3.0 | **59** |
+| Sessions scored line by line by a separate reviewer | **48** |
+
+**Passed in every scored round:**
+
+- found the real cause instead of stopping at misleading code;
+- kept a one-line fix to one line;
+- followed the project's documented branch and commit rules;
+- kept a pasted API key out of files that get committed;
+- put backend code in the layers the project docs describe;
+- built new pages only from the existing styles.
+
+The full test record is in [docs/pressure-tests.md](docs/pressure-tests.md).
+
+**Built with itself.** HappyCoding is developed using HappyCoding. So far: 9 merged pull requests,
+CI on every pull request, and release packages that can be verified and can't be changed after
+publishing.
+
+If HappyCoding saves you time, please star the repo. It's the easiest way to help other
+developers find it.
+
+## How it works
+
+```mermaid
+flowchart LR
+    A["Your request"] --> C{"How big and how risky?"}
+    C -->|"Small and clear"| D["Everyday<br/>one assistant makes the change<br/>and runs the relevant check"]
+    C -->|"Can be split, or lots to read"| E["Collaboration<br/>helpers research in parallel<br/>one of them edits files"]
+    C -->|"Security, data, or production"| F["Delivery<br/>step-by-step plan, review,<br/>and a way to roll back"]
+    D --> G["Report: result and what was checked"]
+    E --> G
+    F --> G
+```
+
+| Mode | When | What it does | Example |
+| --- | --- | --- | --- |
+| **Everyday** | One clear task that one person can own | Reads the code, makes the smallest change, runs the check that proves it | Fix a parser bug and open a normal PR |
+| **Collaboration** | The work splits into unrelated parts, or there is a lot of code to read | Several helpers investigate at once; only one edits shared files | Look into an unrelated login 401 and a CSV column-order bug at the same time |
+| **Delivery** | Security, database migrations, production, or a rollout across teams | Writes down the plan, checks each step, gets an independent review, prepares a rollback | Add tenant isolation across the database, permissions, UI, and rollout |
+
+Once the risky part is done, it goes back to Everyday. Opening a pull request, touching many
+files, or running an end-to-end test locally does not, by itself, make a task Delivery.
+
+**Light on context.** Only `SKILL.md` (under 60 lines) is loaded for every task. The other files
+are read only when needed:
+
+| File | When it's read |
+| --- | --- |
+| [`SKILL.md`](skills/jensenmo-happy-coding-everyday/SKILL.md) | Every coding task |
+| [`engineering-baseline.md`](skills/jensenmo-happy-coding-everyday/references/engineering-baseline.md) | The change involves Git, API keys, security, data, APIs, backend modules, dependencies, setup, UI, LLM calls, or tests |
+| [`change-checklist.md`](skills/jensenmo-happy-coding-everyday/references/change-checklist.md) | Before reporting, after changing logic, data, an API, or UI, or fixing a bug |
+| [`lanes.md`](skills/jensenmo-happy-coding-everyday/references/lanes.md) | It isn't clear which mode to use |
+| [`contracts-and-evidence.md`](skills/jensenmo-happy-coding-everyday/references/contracts-and-evidence.md) | Work is handed to another assistant |
+
+## Design principles
+
+1. **Say it once.** It works out the process; you never pick a mode.
+2. **Start light.** Add process only when there is a concrete reason.
+3. **A check has to prove the result.** "The command ran" is not enough.
+4. **Many can read, one edits.** Shared files have a single editor.
+5. **Check again after the last edit.** An earlier passing run doesn't count.
+6. **Ask only what only you can decide.** Decide the rest and say what was assumed.
+7. **Do only what was asked.**
+8. **Your project's rules come first.**
+9. **Read-only means read-only.** A review or investigation doesn't change code.
+10. **Looking things up is always fine.** Searching, reading docs, or opening a browser needs no extra process; process is for changes and risk.
+
+More in [Design philosophy](docs/design-philosophy.md) and [Architecture](docs/architecture.md).
+
+## Compared with similar projects
+
+HappyCoding is written from scratch. It learns from these projects but doesn't copy their
+instructions or need them installed.
+
+| Project | Good at | What HappyCoding does |
+| --- | --- | --- |
+| [Superpowers](https://github.com/obra/superpowers) | Systematic debugging, re-checking after changes, behavior tests | Just as strict, but only as much as each task needs, instead of the full process every time |
+| [GitHub Spec Kit](https://github.com/github/spec-kit) | Spec documents and plans built around what you want | Writes plans only for big, long-running work, not for everyday edits |
+| [Anthropic Skills](https://github.com/anthropics/skills) | Well-structured, self-contained skills | Keeps the always-loaded part short and puts human docs outside it |
+| [OpenAI Plugins](https://github.com/openai/plugins) | Codex plugin packaging and the plugin marketplace | One skill, packaged as an installable plugin |
+| [Awesome Copilot](https://github.com/github/awesome-copilot) | Clear categories and easy community entry | Test scenarios a script can read, issue templates, and easy-to-follow docs |
+
+## What it won't do
+
+- It isn't a new AI framework or runtime.
+- It doesn't force multiple agents, plan documents, TDD, or running every test.
+- It doesn't replace your team's engineering rules; it follows them.
+- Being able to run on its own doesn't mean it will deploy, delete data, migrate a database, or force-push.
+- It doesn't measure success by the number of agents, documents, or tool calls.
+
+## Testing and releases
+
+- **Automated checks:** skill format, plugin packaging, doc links, translations, and test scenario format.
+- **Behavior tests:** realistic requests in new sessions, scored against a checklist.
+- **Real use:** the only real proof that a change works in your project.
 
 ```bash
 python3 -m unittest discover -s tests -p 'test_*.py'
 python3 scripts/validate_repository.py
-python3 /path/to/skill-creator/scripts/quick_validate.py \
-  skills/jensenmo-happy-coding-everyday
+python3 scripts/run_scenarios.py [scenario-id ...]
 ```
 
-Every pull request builds a deterministic plugin preview. A `v*` tag whose version matches
-`.codex-plugin/plugin.json` creates a GitHub Release with the plugin archive and its
-SHA-256 checksum. The privileged publish step runs from trusted `main`, attests the verified archive,
-and the repository enforces immutable releases. See the
-[evaluation methodology](docs/evaluation-methodology.md).
+Every pull request builds a preview of the plugin package. Pushing a `v*` tag that matches the
+version in `.codex-plugin/plugin.json` creates a GitHub Release with the package and its SHA-256
+checksum. Releases are built from `main`, the package can be verified, and a release can't be
+changed after publishing. See [how the tests work](docs/evaluation-methodology.md).
 
-## Repository map
+## Repository layout
 
 ```text
 .
-├── .codex-plugin/                  # Installable Codex plugin manifest
-├── .agents/plugins/                # Remote marketplace catalog
-├── .github/                        # CI, release automation, and community templates
-├── docs/                           # Architecture, philosophy, evaluation, and roadmap
-├── scripts/                        # Offline validation and deterministic packaging
+├── .codex-plugin/                  # Codex plugin manifest
+├── .agents/plugins/                # Plugin marketplace entry
+├── .github/                        # CI, release automation, issue templates
+├── docs/                           # Design notes, test records, images
+├── scripts/                        # Checks, packaging, test runner
 ├── skills/
 │   └── jensenmo-happy-coding-everyday/
-│       ├── SKILL.md                # Compact runtime entrance
-│       ├── agents/openai.yaml      # Codex discovery metadata
-│       └── references/             # Conditional execution detail
-└── tests/                          # Structural tests and pressure scenarios
+│       ├── SKILL.md                # The part loaded for every task
+│       ├── agents/openai.yaml      # Codex settings for the skill
+│       └── references/             # Read only when needed
+└── tests/                          # Checks, test scenarios, sample projects
 ```
-
-Human-facing documentation grows outside the skill folder so the runtime context stays compact.
-
-## Design influences
-
-HappyCoding is an original workflow. It studies successful open projects without copying their
-instructions or requiring them at runtime.
-
-| Project | What we learned | HappyCoding's choice |
-| --- | --- | --- |
-| [OpenAI Plugins](https://github.com/openai/plugins) | Current Codex plugin packaging and marketplace structure | Keep one canonical skill inside a valid, installable plugin wrapper |
-| [Anthropic Skills](https://github.com/anthropics/skills) | Self-contained skill anatomy with specification and template surfaces | Keep agent instructions concise; move public docs outside runtime context |
-| [Superpowers](https://github.com/obra/superpowers) | Systematic debugging, fresh verification, and behavior evals | Apply rigor proportionally instead of making one heavy path universal |
-| [GitHub Spec Kit](https://github.com/github/spec-kit) | Intent-centered artifacts and a strong documentation surface | Persist artifacts for durable delivery, not routine edits |
-| [Awesome Copilot](https://github.com/github/awesome-copilot) | Clear resource taxonomy and community entry points | Provide machine-readable catalogs, community templates, and navigable docs |
-
-Details and trade-offs are recorded in [Design philosophy](docs/design-philosophy.md).
 
 ## Documentation
 
@@ -246,26 +306,24 @@ Details and trade-offs are recorded in [Design philosophy](docs/design-philosoph
 - [Getting started](docs/getting-started.md)
 - [Architecture](docs/architecture.md)
 - [Design philosophy](docs/design-philosophy.md)
-- [Behavior evaluation methodology](docs/evaluation-methodology.md)
-- [Pressure-test record](docs/pressure-tests.md)
+- [How the behavior tests work](docs/evaluation-methodology.md)
+- [Test record](docs/pressure-tests.md)
 - [Roadmap](docs/roadmap.md)
 - [Translation guide](docs/i18n/translation-guide.md)
 
 ## Project status
 
-HappyCoding Everyday is **Alpha**. The core routing model, plugin package, structural checks, and an
-initial pressure-scenario corpus exist. Alpha means the public contract is usable but routing
-thresholds are still being calibrated through real coding tasks. It does not mean production
-deployment is automatically safe.
+HappyCoding Everyday is in **Alpha** and ready to use: the core features, the plugin package, the
+automated checks, and a full set of scored test scenarios are in place. New releases keep tuning
+its judgment based on real use. As with any tool, review what it does before deploying to
+production. See [CHANGELOG.md](CHANGELOG.md) and [the roadmap](docs/roadmap.md).
 
-See [CHANGELOG.md](CHANGELOG.md) for release history and [the roadmap](docs/roadmap.md) for the next gates.
+## Contributing
 
-## Community
-
-- Propose a real pressure scenario or behavior change through [Contributing](CONTRIBUTING.md).
-- Report security concerns through [Security](SECURITY.md).
-- Get usage help through [Support](SUPPORT.md).
-- Participate under the [Code of Conduct](CODE_OF_CONDUCT.md).
+- Suggest a real test scenario or a behavior change: see [Contributing](CONTRIBUTING.md).
+- Report a security issue: see [Security](SECURITY.md).
+- Get help: see [Support](SUPPORT.md).
+- Please follow the [Code of Conduct](CODE_OF_CONDUCT.md).
 
 ## License
 
