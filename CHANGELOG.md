@@ -3,7 +3,16 @@
 All notable changes to HappyCoding Everyday are recorded here. The project uses semantic versions
 for plugin releases.
 
-## Unreleased
+## 0.3.1 — 2026-10-23
+
+### Added
+
+- plugin directory listing metadata: a square logo and small icon in `assets/`, a 30-character
+  short description, a plain long description, the Developer Tools category, privacy and terms
+  links, and plain starter prompts;
+- `PRIVACY.md`: the plugin collects, stores, and sends no data;
+- repository validation checks the listing against the directory's submission limits and requires
+  the icons to exist under `assets/`, which the release package now includes.
 
 ### Changed
 
