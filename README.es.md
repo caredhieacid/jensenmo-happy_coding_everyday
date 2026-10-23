@@ -31,11 +31,16 @@
 
 ## Primeros pasos
 
+Dos comandos en tu terminal:
+
 ```bash
 codex plugin marketplace add caredhieacid/jensenmo-happy_coding_everyday
+codex plugin add jensenmo-happy-coding-everyday@jensenmo-happy-coding
 ```
 
-En Codex, abre **Plugins**, elige **JensenMo HappyCoding** e instala **HappyCoding Everyday**. Después, pide las cosas como siempre. No hay nada que configurar:
+El primero añade este repositorio de GitHub como fuente de plugins en Codex. HappyCoding todavía no está en un directorio oficial de plugins, así que no hace falta registrarse ni pasar ninguna revisión. El segundo instala el plugin. También puedes ejecutar solo el primero y, en Codex, abrir **Plugins**, elegir **JensenMo HappyCoding** e instalar **HappyCoding Everyday**.
+
+Listo. Abre una tarea nueva y pide las cosas como siempre. No hay nada que configurar:
 
 ```text
 Corrige el error del inicio de sesión, no toques mis otros cambios y dime qué comprobaste.

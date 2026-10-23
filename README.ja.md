@@ -31,11 +31,16 @@
 
 ## はじめかた
 
+ターミナルで 2 つのコマンドを実行します。
+
 ```bash
 codex plugin marketplace add caredhieacid/jensenmo-happy_coding_everyday
+codex plugin add jensenmo-happy-coding-everyday@jensenmo-happy-coding
 ```
 
-Codex で **Plugins** を開き、**JensenMo HappyCoding** から **HappyCoding Everyday** をインストールします。あとはいつもどおり依頼するだけで、設定はいりません。
+1 つ目で、この GitHub リポジトリを Codex のプラグインの入手先として追加します。HappyCoding はまだ公式のプラグイン一覧には載っていないので、登録や審査は必要ありません。2 つ目でプラグインをインストールします。1 つ目だけ実行して、Codex の **Plugins** から **JensenMo HappyCoding** の **HappyCoding Everyday** をインストールすることもできます。
+
+あとは新しいタスクで、いつもどおり依頼するだけです。設定はいりません。
 
 ```text
 ログインのバグを直して。ほかの変更はそのままにして、何を確認したか教えて。

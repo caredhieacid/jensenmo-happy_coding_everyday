@@ -10,6 +10,8 @@ for plugin releases.
 - README rewritten in plain language in every locale: the problem it solves, real replies from
   test runs, and test results, with a hero image and a social preview card in `docs/assets/`.
   Translations no longer carry "the English version prevails" notes;
+- install instructions say plainly that the first command adds this repository as a plugin
+  source (it is not in an official plugin directory) and add the `codex plugin add` command;
 - `docs/pressure-tests.md` records the 0.3.0 fresh-agent evaluation: method, per-round results,
   consistent strengths, open weaknesses, and limits of the evidence.
 
