@@ -6,11 +6,12 @@
 
 <p><strong>뛰어난 엔지니어의 습관을 당신의 AI 코딩 도우미에.</strong></p>
 
-<p>작은 변경은 빠르게, 큰 변경은 꼼꼼하게. Codex에 한 번만 설치하면 모든 코딩 작업이 더 믿음직해집니다. 설정은 필요 없습니다.</p>
+<p>작은 변경은 빠르게, 큰 변경은 꼼꼼하게. Codex나 Claude Code에 한 번만 설치하면 모든 코딩 작업이 더 믿음직해집니다. 설정은 필요 없습니다.</p>
 
 [![Release](https://img.shields.io/github/v/release/caredhieacid/jensenmo-happy_coding_everyday?color=2f7d5b)](https://github.com/caredhieacid/jensenmo-happy_coding_everyday/releases)
 [![CI](https://github.com/caredhieacid/jensenmo-happy_coding_everyday/actions/workflows/validate.yml/badge.svg)](https://github.com/caredhieacid/jensenmo-happy_coding_everyday/actions/workflows/validate.yml)
 [![Status: Alpha](https://img.shields.io/badge/status-alpha-f59e0b)](#프로젝트-상태)
+[![Claude Code Plugin](https://img.shields.io/badge/Claude%20Code-plugin-d97757)](.claude-plugin/plugin.json)
 [![License: MIT](https://img.shields.io/badge/license-MIT-1f2328.svg)](LICENSE)
 
 [English](README.md) · [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [Español](README.es.md)
@@ -26,19 +27,26 @@
 - **일을 부풀리지 않음.** 오타 수정은 한 줄 diff입니다. 계획서도, 불필요한 에이전트도, 요청하지 않은 기능도 없습니다.
 - **사용자만 정할 수 있는 것만 질문.** 틀린 추측으로 다시 하게 만드는 대신, 분명한 선택지와 추천안을 붙인 짧은 질문을 합니다.
 - **처음부터 안전.** API 키를 코드에 넣지 않고, 동의 없이 푸시하거나 배포하지 않으며, 프로젝트 규칙을 언제나 먼저 따릅니다.
-- **자리를 거의 차지하지 않음.** 매번 불러오는 부분이 60줄도 안 되어서, 컨텍스트를 당신의 코드에 쓸 수 있습니다.
+- **자리를 거의 차지하지 않음.** 매번 불러오는 부분이 60줄도 안 됩니다. Claude Code 자체 추정으로는 세션마다 약 90토큰, 실제로 동작할 때만 약 1.7k입니다.
 - **제대로 된 소프트웨어처럼 테스트됨.** 주요 동작마다 테스트 시나리오가 있고, 새 Codex 세션에서 실행해 다른 리뷰어가 채점합니다.
 
 ## 시작하기
 
-터미널에서 명령 두 개를 실행합니다.
+**Codex:** 터미널에서 명령 두 개를 실행합니다.
 
 ```bash
 codex plugin marketplace add caredhieacid/jensenmo-happy_coding_everyday
 codex plugin add jensenmo-happy-coding-everyday@jensenmo-happy-coding
 ```
 
-첫 번째 명령은 이 GitHub 저장소를 Codex의 플러그인 출처로 추가합니다. HappyCoding은 아직 공식 플러그인 목록에 올라가 있지 않아서 가입이나 심사가 필요 없습니다. 두 번째 명령은 플러그인을 설치합니다. 첫 번째 명령만 실행한 뒤 Codex의 **Plugins**에서 **JensenMo HappyCoding**의 **HappyCoding Everyday**를 설치해도 됩니다.
+**Claude Code:** 터미널에서 명령 두 개를 실행합니다.
+
+```bash
+claude plugin marketplace add caredhieacid/jensenmo-happy_coding_everyday
+claude plugin install jensenmo-happy-coding-everyday@jensenmo-happy-coding
+```
+
+두 경우 모두 첫 번째 명령은 이 GitHub 저장소를 플러그인 출처로 추가하고, 두 번째 명령은 플러그인을 설치합니다. HappyCoding은 아직 공식 플러그인 목록에 올라가 있지 않아서 가입이나 심사가 필요 없습니다. Claude Code 세션 안에서는 `/plugin marketplace add`와 `/plugin install`로도 할 수 있고, Codex에서는 첫 번째 명령 뒤에 **Plugins** 화면에서 설치해도 됩니다.
 
 그다음 새 작업에서 평소처럼 요청하면 되고, 따로 설정할 것은 없습니다.
 
@@ -60,7 +68,9 @@ ln -s "$(pwd)/skills/jensenmo-happy-coding-everyday" \
 
 그 경로에 이미 무언가 있다면 바꾸기 전에 내용을 확인하세요.
 
-**Claude Code:** 같은 폴더를 `~/.claude/skills/`에 링크하면 거기서도 불러옵니다. 동작 테스트는 아직 Codex에서만 했습니다.
+**Claude Code:** 플러그인을 설치하는 대신 같은 폴더를 `~/.claude/skills/`에 링크해도 됩니다. 둘 다 쓰면 skill이 두 번 로드되니 하나만 쓰세요.
+
+동작 테스트는 지금까지 Codex에서 했습니다. Claude Code에서는 `claude plugin validate` 검사와 실제 설치를 확인했습니다.
 
 ## 해결하는 문제
 

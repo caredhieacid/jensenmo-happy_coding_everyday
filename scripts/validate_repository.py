@@ -69,6 +69,7 @@ def validate_plugin_contract() -> list[str]:
     if plugin.get("skills") != "./skills/":
         errors.append("plugin skills path must be ./skills/")
     errors.extend(validate_listing(plugin.get("interface", {})))
+    errors.extend(validate_claude_plugin(plugin))
 
     entries = marketplace.get("plugins")
     if not isinstance(entries, list) or len(entries) != 1:
@@ -81,6 +82,22 @@ def validate_plugin_contract() -> list[str]:
     expected_ref = f"v{plugin.get('version')}"
     if source.get("source") != "url" or source.get("ref") != expected_ref:
         errors.append(f"marketplace source must be pinned to {expected_ref}")
+    return errors
+
+
+def validate_claude_plugin(codex_plugin: dict) -> list[str]:
+    """The Claude Code plugin and marketplace must describe the same release."""
+    errors: list[str] = []
+    claude_plugin = load_json(ROOT / ".claude-plugin" / "plugin.json")
+    marketplace = load_json(ROOT / ".claude-plugin" / "marketplace.json")
+    for field in ("name", "version"):
+        if claude_plugin.get(field) != codex_plugin.get(field):
+            errors.append(f".claude-plugin/plugin.json {field} must match .codex-plugin/plugin.json")
+    entries = marketplace.get("plugins")
+    if not isinstance(entries, list) or len(entries) != 1:
+        return errors + ["Claude Code marketplace must expose exactly one plugin"]
+    if entries[0].get("name") != claude_plugin.get("name") or entries[0].get("source") != "./":
+        errors.append("Claude Code marketplace entry must name the plugin and use source ./")
     return errors
 
 
