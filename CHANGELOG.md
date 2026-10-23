@@ -3,7 +3,20 @@
 All notable changes to HappyCoding Everyday are recorded here. The project uses semantic versions
 for plugin releases.
 
-## Unreleased
+## 0.3.1 — 2026-10-23
+
+### Added
+
+- plugin directory listing metadata: a square logo and small icon in `assets/`, a 30-character
+  short description, a plain long description, the Developer Tools category, privacy and terms
+  links, and plain starter prompts;
+- Claude Code plugin and marketplace in `.claude-plugin/`: install with
+  `claude plugin marketplace add caredhieacid/jensenmo-happy_coding_everyday` and
+  `claude plugin install jensenmo-happy-coding-everyday@jensenmo-happy-coding`. Repository
+  validation keeps its name and version in step with the Codex manifest;
+- `PRIVACY.md`: the plugin collects, stores, and sends no data;
+- repository validation checks the listing against the directory's submission limits and requires
+  the icons to exist under `assets/`, which the release package now includes.
 
 ### Changed
 

@@ -1,0 +1,19 @@
+{
+  "name": "jensenmo-happy-coding-everyday",
+  "version": "0.3.1",
+  "description": "Gives your AI coding assistant the habits of a careful engineer: the right amount of process, real checks, and clear reports.",
+  "author": {
+    "name": "Jensen Mo",
+    "url": "https://github.com/caredhieacid"
+  },
+  "homepage": "https://github.com/caredhieacid/jensenmo-happy_coding_everyday",
+  "repository": "https://github.com/caredhieacid/jensenmo-happy_coding_everyday",
+  "license": "MIT",
+  "keywords": [
+    "claude-code",
+    "agent-skills",
+    "coding-agents",
+    "developer-workflow",
+    "code-quality"
+  ]
+}

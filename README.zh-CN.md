@@ -6,12 +6,13 @@
 
 <p><strong>把优秀工程师的好习惯，装进你的 AI 编程助手。</strong></p>
 
-<p>小改动不折腾，大改动不马虎。在 Codex 里装一次，之后每个编码任务都会变得更靠谱，不需要任何配置。</p>
+<p>小改动不折腾，大改动不马虎。在 Codex 或 Claude Code 里装一次，之后每个编码任务都会变得更靠谱，不需要任何配置。</p>
 
 [![Release](https://img.shields.io/github/v/release/caredhieacid/jensenmo-happy_coding_everyday?color=2f7d5b)](https://github.com/caredhieacid/jensenmo-happy_coding_everyday/releases)
 [![CI](https://github.com/caredhieacid/jensenmo-happy_coding_everyday/actions/workflows/validate.yml/badge.svg)](https://github.com/caredhieacid/jensenmo-happy_coding_everyday/actions/workflows/validate.yml)
 [![Status: Alpha](https://img.shields.io/badge/status-alpha-f59e0b)](#项目状态)
 [![Codex Plugin](https://img.shields.io/badge/Codex-plugin-10a37f)](.codex-plugin/plugin.json)
+[![Claude Code Plugin](https://img.shields.io/badge/Claude%20Code-plugin-d97757)](.claude-plugin/plugin.json)
 [![License: MIT](https://img.shields.io/badge/license-MIT-1f2328.svg)](LICENSE)
 
 [English](README.md) · [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [Español](README.es.md)
@@ -27,19 +28,26 @@
 - **从不把事情搞复杂。** 改一个错别字就是一行改动，不写计划、不开一堆 agent，也不加没人要的功能。
 - **只问你才能决定的事。** 给你一个简短问题、几个清楚的选项和一个推荐，而不是猜错了让你返工。
 - **默认就安全。** API 密钥不进代码，没有你同意不推送、不部署，项目自己的规范永远优先。
-- **几乎不占上下文。** 每次都加载的部分不到 60 行，上下文留给你的代码。
+- **几乎不占上下文。** 每次都加载的部分不到 60 行。按 Claude Code 自己的估算，每个会话只占约 90 个 token，真正用到时才约 1.7k。
 - **像正经软件一样经过测试。** 每个关键行为都有自己的测试场景，在全新的 Codex 会话里运行，由另一个评审打分。
 
 ## 快速开始
 
-在终端里运行两条命令：
+**Codex：** 在终端里运行两条命令。
 
 ```bash
 codex plugin marketplace add caredhieacid/jensenmo-happy_coding_everyday
 codex plugin add jensenmo-happy-coding-everyday@jensenmo-happy-coding
 ```
 
-第一条把这个 GitHub 仓库添加为 Codex 的插件源。HappyCoding 目前还没有进入官方插件目录，所以不需要注册或审核。第二条安装插件。也可以只运行第一条，然后在 Codex 里打开 **Plugins**，选择 **JensenMo HappyCoding**，安装 **HappyCoding Everyday**。
+**Claude Code：** 在终端里运行两条命令。
+
+```bash
+claude plugin marketplace add caredhieacid/jensenmo-happy_coding_everyday
+claude plugin install jensenmo-happy-coding-everyday@jensenmo-happy-coding
+```
+
+每组的第一条命令把这个 GitHub 仓库添加为插件源，第二条安装插件。HappyCoding 目前还没有进入官方插件目录，所以不需要注册或审核。在 Claude Code 会话里，用 `/plugin marketplace add` 和 `/plugin install` 也一样；在 Codex 里，运行第一条命令后也可以到 **Plugins** 界面安装。
 
 这样就好了。新开一个任务，正常提需求就行：
 
@@ -55,7 +63,7 @@ codex plugin add jensenmo-happy-coding-everyday@jensenmo-happy-coding
 在数据库、权限、页面和上线流程里加上多租户隔离，要能回滚。
 ```
 
-想手动调用时，输入 `$jensenmo-happy-coding-everyday`。
+想手动调用时，在 Codex 里输入 `$jensenmo-happy-coding-everyday`，在 Claude Code 里输入 `/jensenmo-happy-coding-everyday:jensenmo-happy-coding-everyday`。
 
 <details>
 <summary><strong>其他安装方式</strong></summary>
@@ -72,7 +80,9 @@ ln -s "$(pwd)/skills/jensenmo-happy-coding-everyday" \
 
 Codex 支持用链接方式安装 skill。如果目标路径已经存在，替换前先看看里面是什么。旧的 `~/.codex/skills` 位置可能还能用，但现在推荐用 `$HOME/.agents/skills`。
 
-**Claude Code：** 把同一个文件夹链接到 `~/.claude/skills/`，skill 也能加载。目前的行为测试只在 Codex 上做过。
+**Claude Code：** 也可以不装插件，而是把同一个文件夹链接到 `~/.claude/skills/`。两种方式选一种就行，都用的话 skill 会被加载两次。
+
+目前的行为测试在 Codex 上进行；在 Claude Code 上，插件已经用 `claude plugin validate` 校验过，并实际安装测试过。
 
 只保留一个接管所有编码工作的 skill：关掉其他做同样事情的 skill，只负责某个领域的 skill 可以保留。详见 [快速上手](docs/getting-started.md)。
 
@@ -265,6 +275,7 @@ python3 scripts/run_scenarios.py [scenario-id ...]
 
 ```text
 .
+├── .claude-plugin/                 # Claude Code 插件和插件市场配置
 ├── .codex-plugin/                  # Codex 插件配置
 ├── .agents/plugins/                # 插件市场条目
 ├── .github/                        # CI、自动发布、issue 模板

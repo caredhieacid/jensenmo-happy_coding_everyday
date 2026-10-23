@@ -68,6 +68,8 @@ def validate_plugin_contract() -> list[str]:
         errors.append("plugin name must match the bundled skill name")
     if plugin.get("skills") != "./skills/":
         errors.append("plugin skills path must be ./skills/")
+    errors.extend(validate_listing(plugin.get("interface", {})))
+    errors.extend(validate_claude_plugin(plugin))
 
     entries = marketplace.get("plugins")
     if not isinstance(entries, list) or len(entries) != 1:
@@ -80,6 +82,41 @@ def validate_plugin_contract() -> list[str]:
     expected_ref = f"v{plugin.get('version')}"
     if source.get("source") != "url" or source.get("ref") != expected_ref:
         errors.append(f"marketplace source must be pinned to {expected_ref}")
+    return errors
+
+
+def validate_claude_plugin(codex_plugin: dict) -> list[str]:
+    """The Claude Code plugin and marketplace must describe the same release."""
+    errors: list[str] = []
+    claude_plugin = load_json(ROOT / ".claude-plugin" / "plugin.json")
+    marketplace = load_json(ROOT / ".claude-plugin" / "marketplace.json")
+    for field in ("name", "version"):
+        if claude_plugin.get(field) != codex_plugin.get(field):
+            errors.append(f".claude-plugin/plugin.json {field} must match .codex-plugin/plugin.json")
+    entries = marketplace.get("plugins")
+    if not isinstance(entries, list) or len(entries) != 1:
+        return errors + ["Claude Code marketplace must expose exactly one plugin"]
+    if entries[0].get("name") != claude_plugin.get("name") or entries[0].get("source") != "./":
+        errors.append("Claude Code marketplace entry must name the plugin and use source ./")
+    return errors
+
+
+def validate_listing(interface: dict) -> list[str]:
+    """Keep the manifest within the plugin directory's submission limits."""
+    errors: list[str] = []
+    for field, limit in (("displayName", 30), ("shortDescription", 30), ("longDescription", 4000)):
+        value = interface.get(field, "")
+        if not value or len(value) > limit:
+            errors.append(f"interface.{field} must be 1-{limit} characters")
+    for field in ("logo", "composerIcon", "logoDark"):
+        value = interface.get(field)
+        if value is None:
+            if field == "logo":
+                errors.append("interface.logo is required for directory submission")
+            continue
+        path = Path(value)
+        if not value.startswith("./") or path.parts[0] != "assets" or not (ROOT / path).is_file():
+            errors.append(f"interface.{field} must point to an existing file under ./assets/")
     return errors
 
 

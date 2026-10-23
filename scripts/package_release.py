@@ -14,7 +14,7 @@ import zipfile
 ROOT = Path(__file__).resolve().parents[1]
 PLUGIN_NAME = "jensenmo-happy-coding-everyday"
 INCLUDED_FILES = ("LICENSE", "README.md", "README.zh-CN.md", "CHANGELOG.md")
-INCLUDED_DIRS = (".codex-plugin", "skills")
+INCLUDED_DIRS = (".claude-plugin", ".codex-plugin", "assets", "skills")
 FIXED_TIMESTAMP = (2026, 1, 1, 0, 0, 0)
 
 

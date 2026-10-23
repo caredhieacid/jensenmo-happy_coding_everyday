@@ -6,11 +6,12 @@
 
 <p><strong>優れたエンジニアの習慣を、あなたの AI コーディングアシスタントに。</strong></p>
 
-<p>小さな変更はすばやく、大きな変更はていねいに。Codex に一度入れるだけで、すべてのコーディング作業がもっと確かになります。設定は不要です。</p>
+<p>小さな変更はすばやく、大きな変更はていねいに。Codex か Claude Code に一度入れるだけで、すべてのコーディング作業がもっと確かになります。設定は不要です。</p>
 
 [![Release](https://img.shields.io/github/v/release/caredhieacid/jensenmo-happy_coding_everyday?color=2f7d5b)](https://github.com/caredhieacid/jensenmo-happy_coding_everyday/releases)
 [![CI](https://github.com/caredhieacid/jensenmo-happy_coding_everyday/actions/workflows/validate.yml/badge.svg)](https://github.com/caredhieacid/jensenmo-happy_coding_everyday/actions/workflows/validate.yml)
 [![Status: Alpha](https://img.shields.io/badge/status-alpha-f59e0b)](#プロジェクトの状況)
+[![Claude Code Plugin](https://img.shields.io/badge/Claude%20Code-plugin-d97757)](.claude-plugin/plugin.json)
 [![License: MIT](https://img.shields.io/badge/license-MIT-1f2328.svg)](LICENSE)
 
 [English](README.md) · [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [Español](README.es.md)
@@ -26,19 +27,26 @@
 - **作業をふくらませない。** 誤字の修正は 1 行の差分です。計画書も、余分なエージェントも、頼んでいない機能も足しません。
 - **あなたにしか決められないことだけ聞く。** 外れた推測で作り直させる代わりに、わかりやすい選択肢とおすすめ付きの短い質問をします。
 - **最初から安全。** API キーをコードに入れず、あなたの了承なしにプッシュやデプロイをせず、プロジェクトのルールを常に優先します。
-- **ほとんど場所を取らない。** 毎回読み込む部分は 60 行未満なので、コンテキストをあなたのコードのために残せます。
+- **ほとんど場所を取らない。** 毎回読み込む部分は 60 行未満です。Claude Code 自身の見積もりでは、1 セッションあたり約 90 トークン、実際に動くときだけ約 1.7k です。
 - **ちゃんとしたソフトウェアと同じようにテスト済み。** 主な動作それぞれにテストシナリオがあり、新しい Codex セッションで実行して、別のレビュアーが採点しています。
 
 ## はじめかた
 
-ターミナルで 2 つのコマンドを実行します。
+**Codex：** ターミナルで 2 つのコマンドを実行します。
 
 ```bash
 codex plugin marketplace add caredhieacid/jensenmo-happy_coding_everyday
 codex plugin add jensenmo-happy-coding-everyday@jensenmo-happy-coding
 ```
 
-1 つ目で、この GitHub リポジトリを Codex のプラグインの入手先として追加します。HappyCoding はまだ公式のプラグイン一覧には載っていないので、登録や審査は必要ありません。2 つ目でプラグインをインストールします。1 つ目だけ実行して、Codex の **Plugins** から **JensenMo HappyCoding** の **HappyCoding Everyday** をインストールすることもできます。
+**Claude Code：** ターミナルで 2 つのコマンドを実行します。
+
+```bash
+claude plugin marketplace add caredhieacid/jensenmo-happy_coding_everyday
+claude plugin install jensenmo-happy-coding-everyday@jensenmo-happy-coding
+```
+
+どちらも、1 つ目でこの GitHub リポジトリをプラグインの入手先として追加し、2 つ目でプラグインをインストールします。HappyCoding はまだ公式のプラグイン一覧には載っていないので、登録や審査は必要ありません。Claude Code のセッション内では `/plugin marketplace add` と `/plugin install` でも同じことができます。Codex では、1 つ目のコマンドのあとに **Plugins** 画面からインストールすることもできます。
 
 あとは新しいタスクで、いつもどおり依頼するだけです。設定はいりません。
 
@@ -60,7 +68,9 @@ ln -s "$(pwd)/skills/jensenmo-happy-coding-everyday" \
 
 そのパスに何かがすでにある場合は、置き換える前に中身を確認してください。
 
-**Claude Code：** 同じフォルダを `~/.claude/skills/` にリンクすれば、そちらでも読み込まれます。動作テストは今のところ Codex でしか行っていません。
+**Claude Code：** プラグインを入れる代わりに、同じフォルダを `~/.claude/skills/` にリンクすることもできます。両方使うと skill が 2 回読み込まれるので、どちらか一方にしてください。
+
+動作テストは今のところ Codex で行っています。Claude Code では、`claude plugin validate` での確認と実際のインストールを試しています。
 
 ## 解決すること
 

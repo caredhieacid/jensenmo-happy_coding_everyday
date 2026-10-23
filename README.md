@@ -6,12 +6,13 @@
 
 <p><strong>The habits of a great engineer, built into your AI coding assistant.</strong></p>
 
-<p>Small changes stay quick. Big changes get done carefully. Install it once in Codex and every coding task gets better, with nothing to configure.</p>
+<p>Small changes stay quick. Big changes get done carefully. Install it once in Codex or Claude Code and every coding task gets better, with nothing to configure.</p>
 
 [![Release](https://img.shields.io/github/v/release/caredhieacid/jensenmo-happy_coding_everyday?color=2f7d5b)](https://github.com/caredhieacid/jensenmo-happy_coding_everyday/releases)
 [![CI](https://github.com/caredhieacid/jensenmo-happy_coding_everyday/actions/workflows/validate.yml/badge.svg)](https://github.com/caredhieacid/jensenmo-happy_coding_everyday/actions/workflows/validate.yml)
 [![Status: Alpha](https://img.shields.io/badge/status-alpha-f59e0b)](#project-status)
 [![Codex Plugin](https://img.shields.io/badge/Codex-plugin-10a37f)](.codex-plugin/plugin.json)
+[![Claude Code Plugin](https://img.shields.io/badge/Claude%20Code-plugin-d97757)](.claude-plugin/plugin.json)
 [![License: MIT](https://img.shields.io/badge/license-MIT-1f2328.svg)](LICENSE)
 
 [English](README.md) · [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [Español](README.es.md)
@@ -27,22 +28,29 @@
 - **Never bloats your work.** A typo fix is a one-line diff. No plans, extra agents, or features nobody asked for.
 - **Asks only what only you can decide.** One short question with clear options and a recommendation, instead of a wrong guess you have to undo.
 - **Safe by default.** API keys stay out of your code, nothing gets pushed or deployed without you, and your project's rules always come first.
-- **Tiny footprint.** The part loaded on every task is under 60 lines, so your context stays free for your code.
+- **Tiny footprint.** The part loaded on every task is under 60 lines. Claude Code's own estimate: about 90 tokens per session, and about 1.7k only when it runs.
 - **Tested like real software.** Each key behavior has its own test scenario, run in fresh Codex sessions and scored by a separate reviewer.
 
 ## Quick start
 
-Two commands in your terminal:
+**Codex:** two commands in your terminal.
 
 ```bash
 codex plugin marketplace add caredhieacid/jensenmo-happy_coding_everyday
 codex plugin add jensenmo-happy-coding-everyday@jensenmo-happy-coding
 ```
 
-The first adds this GitHub repository as a plugin source in Codex. HappyCoding isn't in an official
-plugin directory yet, so no account or approval is involved. The second installs the plugin. You can
-also run only the first command, then open **Plugins** in Codex, choose **JensenMo HappyCoding**, and
-install **HappyCoding Everyday** there.
+**Claude Code:** two commands in your terminal.
+
+```bash
+claude plugin marketplace add caredhieacid/jensenmo-happy_coding_everyday
+claude plugin install jensenmo-happy-coding-everyday@jensenmo-happy-coding
+```
+
+In each pair, the first command adds this GitHub repository as a plugin source, and the second
+installs the plugin. HappyCoding isn't in an official plugin directory yet, so no account or
+approval is involved. Inside a Claude Code session, `/plugin marketplace add` and `/plugin install`
+do the same; in Codex, you can also install from the **Plugins** screen after the first command.
 
 That's it. Start a new task and ask for things as you normally would:
 
@@ -58,7 +66,8 @@ Review this API contract without changing anything. Point to where each field is
 Add tenant isolation across the database, permissions, UI, and rollout. Keep a way to roll back.
 ```
 
-To call it by name, type `$jensenmo-happy-coding-everyday`.
+To call it by name, type `$jensenmo-happy-coding-everyday` in Codex or
+`/jensenmo-happy-coding-everyday:jensenmo-happy-coding-everyday` in Claude Code.
 
 <details>
 <summary><strong>Other ways to install</strong></summary>
@@ -77,8 +86,11 @@ Codex supports linked skill folders. If something already exists at that path, c
 replacing it. Older installs under `~/.codex/skills` may still work, but `$HOME/.agents/skills` is
 the current location.
 
-**Claude Code:** link the same folder into `~/.claude/skills/` and the skill loads there too. So
-far, the behavior tests have only been run on Codex.
+**Claude Code:** you can also link the same folder into `~/.claude/skills/` instead of installing
+the plugin. Use one or the other, not both, or the skill loads twice.
+
+The behavior tests so far run on Codex. On Claude Code, the plugin has been checked with
+`claude plugin validate` and a test install.
 
 Keep just one skill that takes over all coding work: turn off other skills that do the same job,
 and keep skills that only cover one area. See [Getting started](docs/getting-started.md).
@@ -292,6 +304,7 @@ changed after publishing. See [how the tests work](docs/evaluation-methodology.m
 
 ```text
 .
+├── .claude-plugin/                 # Claude Code plugin and marketplace
 ├── .codex-plugin/                  # Codex plugin manifest
 ├── .agents/plugins/                # Plugin marketplace entry
 ├── .github/                        # CI, release automation, issue templates
