@@ -8,14 +8,16 @@ visible immediately.
 
 ## Install from the plugin marketplace
 
-Add the GitHub repository as a marketplace source:
+HappyCoding is not listed in an official plugin directory yet. Instead, this GitHub repository is
+its own plugin source: add it, then install the plugin.
 
 ```bash
 codex plugin marketplace add caredhieacid/jensenmo-happy_coding_everyday
+codex plugin add jensenmo-happy-coding-everyday@jensenmo-happy-coding
 ```
 
-Then open **Plugins** in Codex, select **JensenMo HappyCoding**, and install
-**HappyCoding Everyday**. Start a new task after installation so the new skill metadata is present
+You can also run only the first command, then open **Plugins** in Codex, select
+**JensenMo HappyCoding**, and install **HappyCoding Everyday**. Start a new task after installation so the new skill metadata is present
 from the beginning of the context.
 
 The plugin bundles instructions only. It does not add an MCP server, connector, hook, background

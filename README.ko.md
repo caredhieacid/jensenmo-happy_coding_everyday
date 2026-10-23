@@ -31,11 +31,16 @@
 
 ## 시작하기
 
+터미널에서 명령 두 개를 실행합니다.
+
 ```bash
 codex plugin marketplace add caredhieacid/jensenmo-happy_coding_everyday
+codex plugin add jensenmo-happy-coding-everyday@jensenmo-happy-coding
 ```
 
-Codex에서 **Plugins**를 열고 **JensenMo HappyCoding**의 **HappyCoding Everyday**를 설치합니다. 그다음에는 평소처럼 요청하면 되고, 따로 설정할 것은 없습니다.
+첫 번째 명령은 이 GitHub 저장소를 Codex의 플러그인 출처로 추가합니다. HappyCoding은 아직 공식 플러그인 목록에 올라가 있지 않아서 가입이나 심사가 필요 없습니다. 두 번째 명령은 플러그인을 설치합니다. 첫 번째 명령만 실행한 뒤 Codex의 **Plugins**에서 **JensenMo HappyCoding**의 **HappyCoding Everyday**를 설치해도 됩니다.
+
+그다음 새 작업에서 평소처럼 요청하면 되고, 따로 설정할 것은 없습니다.
 
 ```text
 로그인 버그를 고쳐 줘. 다른 변경은 그대로 두고, 무엇을 확인했는지 알려 줘.
