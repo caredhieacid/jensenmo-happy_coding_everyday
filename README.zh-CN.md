@@ -1,145 +1,63 @@
 <div align="center">
 
-# ⚡ HappyCoding Everyday
+<img src="docs/assets/hero.jpg" alt="一条线路分成三条粗细不同的线，最后在一个对勾处汇合" width="100%">
 
-### 一个会按风险自动调整严谨度的 Codex 编码流程。
+<h1>HappyCoding Everyday</h1>
 
-你只需要描述一次目标。HappyCoding 会在外科手术式小改、有限协作和证据门禁交付之间，自动选择最轻且安全的路径。
+<p><strong>把优秀工程师的好习惯，装进你的 AI 编程助手。</strong></p>
 
-**🌐 Language / 语言 / 言語 / 언어 / Idioma**
+<p>小改动不折腾，大改动不马虎。在 Codex 里装一次，之后每个编码任务都会变得更靠谱，不需要任何配置。</p>
+
+[![Release](https://img.shields.io/github/v/release/caredhieacid/jensenmo-happy_coding_everyday?color=2f7d5b)](https://github.com/caredhieacid/jensenmo-happy_coding_everyday/releases)
+[![CI](https://github.com/caredhieacid/jensenmo-happy_coding_everyday/actions/workflows/validate.yml/badge.svg)](https://github.com/caredhieacid/jensenmo-happy_coding_everyday/actions/workflows/validate.yml)
+[![Status: Alpha](https://img.shields.io/badge/status-alpha-f59e0b)](#项目状态)
+[![Codex Plugin](https://img.shields.io/badge/Codex-plugin-10a37f)](.codex-plugin/plugin.json)
+[![License: MIT](https://img.shields.io/badge/license-MIT-1f2328.svg)](LICENSE)
 
 [English](README.md) · [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [Español](README.es.md)
 
-[![Status: Alpha](https://img.shields.io/badge/status-alpha-f59e0b)](#项目状态)
-[![CI](https://github.com/caredhieacid/jensenmo-happy_coding_everyday/actions/workflows/validate.yml/badge.svg)](https://github.com/caredhieacid/jensenmo-happy_coding_everyday/actions/workflows/validate.yml)
-[![Codex Skill](https://img.shields.io/badge/Codex-agent%20skill-111827)](skills/jensenmo-happy-coding-everyday/SKILL.md)
-[![Codex Plugin](https://img.shields.io/badge/Codex-plugin-10a37f)](.codex-plugin/plugin.json)
-[![License: MIT](https://img.shields.io/badge/license-MIT-22c55e.svg)](LICENSE)
-
-[30 秒了解](#30-秒了解-happycoding) · [快速开始](#快速开始) · [安全默认](#开箱即用的安全默认) · [工作原理](#工作原理) · [设计哲学](docs/design-philosophy.md) · [参与贡献](CONTRIBUTING.md)
+[为什么选它](#为什么选它) · [快速开始](#快速开始) · [实际效果](#实际效果) · [测试结果](#测试结果) · [工作方式](#工作方式) · [文档](docs/README.md)
 
 </div>
 
-> 英文 [README.md](README.md) 是规范源；本翻译帮助中文开发者浏览，若内容不同步，以英文版为准。
+## 为什么选它
 
-## 30 秒了解 HappyCoding
-
-| 你提供 | HappyCoding 负责 | 你得到 |
-| --- | --- | --- |
-| 目标、约束和绝对不能改的内容 | 流程选择、有界执行、必要升级，以及匹配风险的验证 | 请求结果、新鲜证据、未验证项和剩余风险 |
-
-**它的承诺：**小改保持轻量；风险升高才增加门禁；不让用户自己充当工作流引擎。
-
-## 这是什么？
-
-HappyCoding Everyday 是 Codex 的单一自动 coding 流程入口。它会把自然语言请求压缩成一个小合同，选择最低充分执行通道，完成工作，并用最终修改后的新鲜证据收口。你不需要自己选模式、提醒测试，或管理一队 agent。
-
-它同时优化两件事：
-
-- 日常任务尽量轻；
-- 失败代价上升时，门禁同步增强。
+- **装上就能用。** 不用选模式，不用学特殊提示词，也不用配置。平时怎么提需求，现在还怎么提。
+- **不只是"改完了"，而是改对了。** 它会找到真正的原因，把该改的地方都改到，再跑能证明修好了的检查。
+- **从不把事情搞复杂。** 改一个错别字就是一行改动，不写计划、不开一堆 agent，也不加没人要的功能。
+- **只问你才能决定的事。** 给你一个简短问题、几个清楚的选项和一个推荐，而不是猜错了让你返工。
+- **默认就安全。** API 密钥不进代码，没有你同意不推送、不部署，项目自己的规范永远优先。
+- **几乎不占上下文。** 每次都加载的部分不到 60 行，上下文留给你的代码。
+- **像正经软件一样经过测试。** 每个关键行为都有自己的测试场景，在全新的 Codex 会话里运行，由另一个评审打分。
 
 ## 快速开始
 
-### 作为 Codex plugin 安装
+安装 Codex 插件：
 
 ```bash
 codex plugin marketplace add caredhieacid/jensenmo-happy_coding_everyday
 ```
 
-在 Codex 中打开 **Plugins**，选择 **JensenMo HappyCoding**，安装 **HappyCoding Everyday**。新建任务后直接说需求：
+在 Codex 里打开 **Plugins**，选择 **JensenMo HappyCoding**，安装 **HappyCoding Everyday**。这样就好了，之后正常提需求就行：
 
 ```text
-修复登录回归，保留我未提交的其他改动，完成后给我新鲜验证证据。
-```
-
-同一个入口也能处理不同等级的工作：
-
-```text
-审计这个 API 合同。保持只读，并引用准确的生产者和消费者路径。
+修一下登录的 bug，别动我其他的改动，告诉我你做了哪些检查。
 ```
 
 ```text
-跨存储、鉴权、前端和发布交付多租户隔离，同时保留回滚路径。
+帮我审查一下这个 API 的字段定义，不要改代码，指出每个字段在哪里生成、在哪里使用。
 ```
-
-需要时也可以显式调用：
 
 ```text
-$jensenmo-happy-coding-everyday 先审计这个 API 合同，不要修改代码。
+在数据库、权限、页面和上线流程里加上多租户隔离，要能回滚。
 ```
 
-直接安装 skill、更新、卸载和兼容性说明见 [快速入门](docs/getting-started.md)。
+想手动调用时，输入 `$jensenmo-happy-coding-everyday`。
 
-## 开箱即用的安全默认
+<details>
+<summary><strong>其他安装方式</strong></summary>
 
-安装后无需任何配置。用自己的话、自己的语言描述任务，流程由 HappyCoding 判断。基础工程保护不用你提就会生效：
-
-- 密钥不进代码、日志和提交；
-- 项目里与本次无关的改动会被保留；
-- 你没要求就不提交、不推送、不部署；
-- 如果你要求一个有风险的捷径，它会用一句话说明风险，并给出能达到同样效果的安全做法；
-- 不画蛇添足：不加没要求的功能、界面装饰或文档；只有你能拍板的事，会用一个简短问题加推荐选项来确认；
-- 按改动类型的简短核对表，补上专业开发者会检查的点（边界情况、兼容性、数据、金额与时间、界面状态），但不增加流程；
-- 结果用你的语言、用大白话汇报；需要你动手时，给出确切的下一步。
-
-这些默认规范覆盖 Git、仓库结构、密钥、安全、数据、接口、依赖、UI、LLM 功能和测试，只作用于任务涉及的部分；仓库自己写明的约定优先。
-
-## 为什么做这个项目？
-
-优秀的 coding 工作流往往擅长规划、TDD、review、编排或交付。如果多个工作流同时作为“总入口”，很容易产生重复计划、重复评审、上下文压力，以及比任务本身更贵的流程。
-
-HappyCoding 只保留一个 dispatcher，并在需要时组合 Git、后端、安全、可观测性、浏览器和产品专属规范。这些领域规则依然重要，但不再争抢整个 coding 生命周期。
-
-## 工作原理
-
-```mermaid
-flowchart LR
-    A["Coding 请求"] --> B["目标 / 范围 / 验收 / 不要做"]
-    B --> C{"风险、耦合度与验收路径"}
-    C -->|"局部且有界"| D["Everyday<br/>单 agent + 聚焦证明"]
-    C -->|"独立任务或大读面"| E["Collaboration<br/>读并行 + 写受控"]
-    C -->|"持久协调或高风险"| F["Delivery<br/>阶段门禁 + 独立评审"]
-    D --> G["新鲜证据"]
-    E --> G
-    F --> G
-```
-
-| 通道 | 何时使用 | 默认行为 | 示例 |
-| --- | --- | --- | --- |
-| **Everyday** | 单一有界目标、低耦合、一个验收路径 | 检查、最小改动、聚焦验证 | 修复解析器回归并提交普通 PR |
-| **Collaboration** | 工作可独立拆分，或读面会挤压主上下文 | 有限并行研究，共享写入保持单线 | 同时调查互不相关的登录 401 和 CSV 列序问题 |
-| **Delivery** | 安全、迁移、生产、持久协调或分阶段真路径验收让失败变贵 | 持久合同、阶段门禁、独立 review、回滚思维 | 跨存储、鉴权、前端和发布交付多租户隔离 |
-
-升级是可逆的。调查证明问题局部后，可以降回 Everyday。仅仅出现 PR、多个文件或前后端，不会自动触发 Delivery。
-
-本地端到端检查同样不会自动触发 Delivery。
-
-## 核心原则
-
-1. **意图只说一次**：由入口判断流程，不让用户选模式。
-2. **最低充分严谨度**：默认 Everyday，只有证据出现才升级。
-3. **证据胜过仪式**：验证必须证明行为，而不是只证明命令执行过。
-4. **读并行、写受控**：保护主上下文，同时避免合并混乱。
-5. **新鲜验证**：最终改动后重新运行相关证明。
-6. **可逆升级**：任务不再需要时，撤掉额外流程。
-7. **仓库规则优先**：项目本地约定和更严格安全边界依然生效。
-8. **只读就是只读**：审计、解释和诊断不等于授权修改。
-9. **观察是免费的**：网页搜索、查文档、浏览器和 computer use 在任何 lane 都是常规动作；流程重量约束的是写入与风险，不是观察。
-10. **默认安全，本地规则优先**：Git、密钥、数据和接口的基础保护只在任务涉及时生效；仓库约定可以覆盖它们。
-
-更多内容见 [设计哲学](docs/design-philosophy.md) 和 [架构决策](docs/architecture.md)。
-
-## 它刻意不做什么
-
-- 不创建新的 agent runtime 或框架；
-- 不强制多 agent；
-- 不要求每个小改都写计划文档、跑完整 TDD 或全量测试；
-- 不替代领域工程标准；
-- 不把自主执行解释为部署、删除、迁移或强推授权；
-- 不用 agent 数量、文档数量或工具调用次数衡量成功。
-
-## 直接安装 skill
+**直接链接 skill 文件夹**（适合想自己修改、改完马上生效的情况）：
 
 ```bash
 git clone https://github.com/caredhieacid/jensenmo-happy_coding_everyday.git
@@ -149,41 +67,235 @@ ln -s "$(pwd)/skills/jensenmo-happy-coding-everyday" \
   "$HOME/.agents/skills/jensenmo-happy-coding-everyday"
 ```
 
-Codex 支持软链接 skill。若目标已存在，先检查再替换。旧的 `~/.codex/skills` 可能仍兼容，但 `$HOME/.agents/skills` 是当前官方文档中的用户级路径。
+Codex 支持用链接方式安装 skill。如果目标路径已经存在，替换前先看看里面是什么。旧的 `~/.codex/skills` 位置可能还能用，但现在推荐用 `$HOME/.agents/skills`。
 
-## 验证与发布
+**Claude Code：** 把同一个文件夹链接到 `~/.claude/skills/`，skill 也能加载。目前的行为测试只在 Codex 上做过。
 
-- **结构检查**：验证 skill 元数据、plugin 包、本地链接、翻译和场景 schema；
-- **行为评估**：在全新 agent 上下文运行真实提示词，并逐条检查可观察不变量；
-- **真实任务证据**：只有实际环境中的验证，才能证明某次代码变更正确。
+只保留一个接管所有编码工作的 skill：关掉其他做同样事情的 skill，只负责某个领域的 skill 可以保留。详见 [快速上手](docs/getting-started.md)。
+
+</details>
+
+## 解决什么问题
+
+AI 编程助手能力很强，但完全放手让它干，常见两类毛病。
+
+| 做得不够 | 做得过头 |
+| --- | --- |
+| 看到一行可疑代码就改，没找到真正的原因 | 改个错别字也要先写计划、开好几个 agent |
+| 同样的逻辑写在两处，只改了一处 | 改一行代码也要跑全部测试、再评审一轮 |
+| 什么都没运行，就说"改好了" | 加一堆没人要的校验、配置项和 README |
+| 三个需求，悄悄漏做一个 | 做出来的页面满是渐变、emoji 和营销文案，一看就是模板 |
+| 你让它把 API 密钥写进代码，它就照做 | 开工前先让你选用哪种工作模式 |
+
+重型工作流工具能解决左边的问题，代价是每个任务都得走一遍右边那一套。HappyCoding 两边都解决：它根据任务大小和风险决定要做多少事，活干得仔细，又不添额外负担。
+
+## 你会得到什么
+
+| 功能 | 具体表现 |
+| --- | --- |
+| **流程随任务调整** | 小任务直接做；只有涉及安全、数据或线上环境的改动，才会多加检查。你不用选模式。 |
+| **改完真的验证** | 先复现问题，最后一次修改后再跑相关检查，没验证到的地方会直接告诉你。 |
+| **不会只改一半** | 会把受影响的其他地方都找出来（调用方、重复代码、配置、文档），一起改掉，或者说明为什么不改。 |
+| **只在必要时提问** | 如果猜错了需要你返工，它会先问一个简短问题，给 2 到 4 个选项并推荐一个；能从代码里查到的就不问。 |
+| **不画蛇添足** | 不加你没要求的功能、选项、装饰和文档。 |
+| **常见情况不遗漏** | 汇报前，按改动类型对照一张短清单：边界值、兼容性、数据、金额和日期、页面的加载和报错状态。 |
+| **默认安全** | API 密钥不写进代码和提交记录；你没要求就不提交、不推送、不部署；项目自己的规范优先。 |
+| **风格和项目一致** | 新页面复用现有的组件和样式，不套通用模板。 |
+| **汇报清楚** | 先说结果，用你的语言讲：改了什么、做了哪些检查、还有什么没做、下一步怎么做。 |
+
+## 实际效果
+
+下面是测试中 AI 的真实回复，没有做任何修改。测试机器设置了用中文回复，所以英文提问得到的也是中文回答。
+
+**只有你能决定的事，它会先问。** 提问："Change the date format on invoices."（把发票上的日期格式改一下）
+
+> 希望改成哪种日期格式？目前开票日期和到期日期均显示为 `2026-10-22`。
+>
+> - `22/10/2026`（日/月/年）
+> - `10/22/2026`（月/日/年）
+> - `22 Oct 2026`（推荐，避免日月混淆）
+>
+> 确认后我会统一修改两处并运行测试。
+
+在得到回答之前，它没有改任何文件。
+
+**按项目原有的结构来写。** 提问："Add an endpoint that returns how many open tasks a project has."（加一个接口，返回项目里未完成任务的数量）
+
+> 已新增 `GET /projects/{id}/tasks/open-count`，返回 `{"open_count": 2}`。
+>
+> - 仅统计指定项目的 `open` 任务；无未完成任务返回 0。
+> - 非整数 ID 返回 400，项目不存在返回 404。
+> - 保持现有三层结构，并更新接口文档。
+>
+> 已运行 `python3 -m unittest discover -s tests`，8 项测试全部通过；`git diff --check` 通过。改动仅在本地，未提交。
+
+**一行能改好的，就只改一行。** 提问："A production button label has one typo. Change only that string…"（线上按钮的文字有个错别字，只改这一处……）
+
+> 已将 `CheckoutButton.jsx:5` 的 `Sumbit order` 改为 `Submit order`，仅修改这一处字符串。
+>
+> 已核对 diff，`git diff --check` 通过；未运行全量测试，未提交或部署。
+
+<details>
+<summary><strong>用大白话解释结果</strong></summary>
+
+提问："我刚开始学编程。这个记账小程序算出来的总花费不对，好像少了很多钱。你能帮我修好吗？我不太懂 git，别把我的东西弄坏。"
+
+> 修好了。原来程序漏算了第一笔 **1200 元房租**，现在总花费正确显示为 **1383.00 元**。
+>
+> 只修改了 `budget.py` 中的一行，账本数据没动，也没有切换分支或提交代码。已验证完整账本、单笔记录和空账本，结果都正确。
+>
+> 你照原来的方式运行即可：
+>
+> ```bash
+> python3 budget.py expenses.csv
+> ```
+
+</details>
+
+## 测试结果
+
+很多提示词和工作流合集从来没测过，HappyCoding 测过。每个关键行为都有一个测试场景：一个真实的提问、一个小型示例项目、一份必须做到的清单，以及一份绝对不能做的清单。每次测试都会新开一个 Codex 会话，再由另一个评审对照这两份清单逐条打分。
+
+| 项目 | 数量 |
+| --- | --- |
+| 测试场景 | **24** 个 |
+| 示例项目（前端、分层后端、金额计算、API 密钥、提交规范等） | **12** 个 |
+| 0.3.0 版本期间新开的 Codex 会话 | **59** 次 |
+| 由独立评审逐条打分的会话 | **48** 次 |
+
+**每一轮打分都做到了：**
+
+- 不被表面上可疑的代码带偏，找到真正的原因；
+- 一行能改好的问题，只改一行；
+- 按项目写明的分支和提交规范来；
+- 用户贴出的 API 密钥，不写进会被提交的文件；
+- 后端代码放在项目文档规定的分层里；
+- 新页面只用现有的样式。
+
+完整的测试记录见 [docs/pressure-tests.md](docs/pressure-tests.md)。
+
+**用它自己开发自己。** HappyCoding 的开发就是用 HappyCoding 完成的。目前已合并 9 个 PR，每个 PR 都会跑 CI；每个版本的安装包都能验证来源，发布后不能再修改。
+
+如果 HappyCoding 帮你省了时间，欢迎点个 star。这是让更多开发者发现它的最简单的方式。
+
+## 工作方式
+
+```mermaid
+flowchart LR
+    A["你的需求"] --> C{"任务多大？风险多高？"}
+    C -->|"小而明确"| D["Everyday<br/>一个助手直接改<br/>并跑相关检查"]
+    C -->|"能拆开，或要读很多代码"| E["Collaboration<br/>多个助手同时调查<br/>只有一个负责改文件"]
+    C -->|"涉及安全、数据或线上"| F["Delivery<br/>分步推进、独立评审<br/>准备好回滚"]
+    D --> G["汇报结果和检查情况"]
+    E --> G
+    F --> G
+```
+
+| 方式 | 适用情况 | 怎么做 | 例子 |
+| --- | --- | --- | --- |
+| **Everyday** | 一个明确的任务，一个人就能负责到底 | 先看代码，做最小的改动，跑能证明结果的检查 | 修一个解析 bug，提一个普通 PR |
+| **Collaboration** | 工作能拆成互不相关的几部分，或者要读的代码太多 | 多个助手同时调查，共享文件只由一个助手修改 | 同时排查互不相关的登录 401 和 CSV 列顺序错误 |
+| **Delivery** | 涉及安全、数据库迁移、线上环境，或跨团队上线 | 先写下计划，每一步都检查，请人独立评审，准备回滚方案 | 在数据库、权限、页面和上线流程里加上多租户隔离 |
+
+风险处理完，就回到 Everyday。提 PR、改很多文件、在本地跑一次端到端测试，这些本身都不会让任务变成 Delivery。
+
+**占用上下文少。** 每个任务只加载 `SKILL.md`（不到 60 行），其他文件用到时才读：
+
+| 文件 | 什么时候读 |
+| --- | --- |
+| [`SKILL.md`](skills/jensenmo-happy-coding-everyday/SKILL.md) | 每个编码任务 |
+| [`engineering-baseline.md`](skills/jensenmo-happy-coding-everyday/references/engineering-baseline.md) | 改动涉及 Git、API 密钥、安全、数据、接口、后端模块、依赖、环境配置、页面、大模型调用或测试时 |
+| [`change-checklist.md`](skills/jensenmo-happy-coding-everyday/references/change-checklist.md) | 改了逻辑、数据、接口或页面，或者修了 bug，汇报之前 |
+| [`lanes.md`](skills/jensenmo-happy-coding-everyday/references/lanes.md) | 拿不准该用哪种方式时 |
+| [`contracts-and-evidence.md`](skills/jensenmo-happy-coding-everyday/references/contracts-and-evidence.md) | 要把工作交给其他助手时 |
+
+## 设计原则
+
+1. **需求只说一次。** 流程它来判断，你不用选模式。
+2. **从轻开始。** 有具体理由才加流程。
+3. **检查要能证明结果。** 光说"命令跑过了"不算。
+4. **大家都能看，只有一个人改。** 共享文件只有一个修改者。
+5. **最后一次修改后再验证。** 之前跑通过的不算数。
+6. **只问只有你能决定的事。** 其余的自己决定，并说明前提。
+7. **只做要求的事。**
+8. **项目自己的规范优先。**
+9. **只读就是只读。** 审查和排查不会顺手改代码。
+10. **查资料随时可以。** 搜索、看文档、开浏览器都不用额外流程；流程只管改动和风险。
+
+更多内容见 [设计理念](docs/design-philosophy.md) 和 [架构说明](docs/architecture.md)。
+
+## 和同类项目的区别
+
+HappyCoding 是从零写的。它参考了下面这些项目，但没有照抄它们的内容，使用时也不需要装它们。
+
+| 项目 | 擅长 | HappyCoding 的做法 |
+| --- | --- | --- |
+| [Superpowers](https://github.com/obra/superpowers) | 系统化调试、改完重新验证、行为测试 | 一样严格，但按任务大小来，不让每个任务都走完整套流程 |
+| [GitHub Spec Kit](https://github.com/github/spec-kit) | 围绕需求写规格文档和计划 | 只在长期的大任务里写计划，日常修改不写 |
+| [Anthropic Skills](https://github.com/anthropics/skills) | 结构清楚、自成一体的 skill | 每次都加载的部分尽量短，给人看的文档放在外面 |
+| [OpenAI Plugins](https://github.com/openai/plugins) | Codex 插件打包和插件市场 | 一个 skill，打包成可以安装的插件 |
+| [Awesome Copilot](https://github.com/github/awesome-copilot) | 分类清晰，方便社区参与 | 测试场景能被脚本读取，有 issue 模板，文档好找 |
+
+## 它不做什么
+
+- 不是新的 AI 框架或运行环境。
+- 不强制用多个 agent、写计划文档、走 TDD 或跑全部测试。
+- 不取代你团队的工程规范，而是遵守它们。
+- 能自动执行，不代表它会擅自部署、删数据、做数据库迁移或强制推送。
+- 不用 agent 数量、文档数量或工具调用次数来衡量做得好不好。
+
+## 测试与发布
+
+- **自动检查：** skill 格式、插件打包、文档链接、翻译、测试场景的格式。
+- **行为测试：** 在新会话里用真实提问测试，对照清单打分。
+- **实际使用：** 只有在你的项目里真正跑通，才能证明某次修改有效。
 
 ```bash
 python3 -m unittest discover -s tests -p 'test_*.py'
 python3 scripts/validate_repository.py
+python3 scripts/run_scenarios.py [scenario-id ...]
 ```
 
-每个 PR 都会生成确定性的 plugin 预览包。与 plugin 版本一致的 `v*` tag 会自动创建 GitHub Release，并附带 SHA-256 校验文件。
+每个 PR 都会打出一个插件预览包。推送与 `.codex-plugin/plugin.json` 版本号一致的 `v*` 标签后，会自动创建 GitHub Release，附带插件包和 SHA-256 校验文件。发布在 `main` 分支上完成，安装包能验证来源，发布后不能再修改。测试方法见 [行为测试说明](docs/evaluation-methodology.md)。
 
-## 设计参考
+## 仓库结构
 
-我们参考了 [OpenAI Plugins](https://github.com/openai/plugins) 当前的 Codex plugin 分发结构、[Anthropic Skills](https://github.com/anthropics/skills) 的自包含 skill 结构、[Superpowers](https://github.com/obra/superpowers) 的行为验证、[GitHub Spec Kit](https://github.com/github/spec-kit) 的意图中心文档，以及 [Awesome Copilot](https://github.com/github/awesome-copilot) 的公共仓库导航。
-
-HappyCoding 不复制这些项目的工作流文本，也不把它们作为运行依赖。详细取舍见 [设计哲学](docs/design-philosophy.md)。
+```text
+.
+├── .codex-plugin/                  # Codex 插件配置
+├── .agents/plugins/                # 插件市场条目
+├── .github/                        # CI、自动发布、issue 模板
+├── docs/                           # 设计说明、测试记录、图片
+├── scripts/                        # 检查、打包、测试脚本
+├── skills/
+│   └── jensenmo-happy-coding-everyday/
+│       ├── SKILL.md                # 每个任务都会加载的部分
+│       ├── agents/openai.yaml      # skill 的 Codex 配置
+│       └── references/             # 用到时才读
+└── tests/                          # 检查、测试场景、示例项目
+```
 
 ## 文档
 
-- [文档首页](docs/README.md)
-- [快速入门](docs/getting-started.md)
-- [架构](docs/architecture.md)
-- [设计哲学](docs/design-philosophy.md)
-- [行为评估方法](docs/evaluation-methodology.md)
+- [文档目录](docs/README.md)
+- [快速上手](docs/getting-started.md)
+- [架构说明](docs/architecture.md)
+- [设计理念](docs/design-philosophy.md)
+- [行为测试说明](docs/evaluation-methodology.md)
+- [测试记录](docs/pressure-tests.md)
 - [路线图](docs/roadmap.md)
+- [翻译指南](docs/i18n/translation-guide.md)
 
 ## 项目状态
 
-当前为 **Alpha**：核心路由、plugin 包、结构检查和初始压力场景已经存在；升级阈值仍需通过真实 coding 任务持续校准。Alpha 不代表生产部署可以自动放行。
+目前是 **Alpha** 版本，已经可以正常使用：核心功能、插件包、自动检查和一整套打过分的测试场景都已就绪。之后的版本会根据实际使用继续打磨它的判断。和使用任何工具一样，部署到生产环境前请先检查它做的改动。更新记录见 [CHANGELOG.md](CHANGELOG.md)，后续计划见 [路线图](docs/roadmap.md)。
 
-欢迎阅读 [参与贡献](CONTRIBUTING.md)、[安全策略](SECURITY.md)、[支持说明](SUPPORT.md) 和 [行为准则](CODE_OF_CONDUCT.md)。
+## 参与贡献
+
+- 想提一个真实的测试场景或改进建议：见 [参与贡献](CONTRIBUTING.md)。
+- 报告安全问题：见 [安全](SECURITY.md)。
+- 使用上遇到问题：见 [获取帮助](SUPPORT.md)。
+- 参与时请遵守 [行为准则](CODE_OF_CONDUCT.md)。
 
 ## 许可证
 
