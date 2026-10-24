@@ -8,7 +8,11 @@
   "plugins": [
     {
       "name": "jensenmo-happy-coding-everyday",
-      "source": "./",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/caredhieacid/jensenmo-happy_coding_everyday.git",
+        "ref": "v0.3.1"
+      },
       "description": "The right amount of process for every coding task, with real checks and clear reports.",
       "category": "development",
       "tags": [

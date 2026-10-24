@@ -96,8 +96,23 @@ def validate_claude_plugin(codex_plugin: dict) -> list[str]:
     entries = marketplace.get("plugins")
     if not isinstance(entries, list) or len(entries) != 1:
         return errors + ["Claude Code marketplace must expose exactly one plugin"]
-    if entries[0].get("name") != claude_plugin.get("name") or entries[0].get("source") != "./":
-        errors.append("Claude Code marketplace entry must name the plugin and use source ./")
+    entry = entries[0]
+    source = entry.get("source", {})
+    expected_ref = f"v{codex_plugin.get('version')}"
+    if entry.get("name") != claude_plugin.get("name"):
+        errors.append("Claude Code marketplace entry must name the plugin")
+    # Pin installs to the released tag, as the Codex marketplace does, so users never get
+    # unreleased work from the default branch. Use an HTTPS git URL: a "github" source clones
+    # over SSH and fails for users without GitHub SSH keys.
+    if (
+        not isinstance(source, dict)
+        or source.get("source") != "url"
+        or source.get("url") != "https://github.com/caredhieacid/jensenmo-happy_coding_everyday.git"
+        or source.get("ref") != expected_ref
+    ):
+        errors.append(
+            f"Claude Code marketplace source must be this repository's HTTPS URL pinned to {expected_ref}"
+        )
     return errors
 
 

@@ -52,6 +52,9 @@ installs the plugin. HappyCoding isn't in an official plugin directory yet, so n
 approval is involved. Inside a Claude Code session, `/plugin marketplace add` and `/plugin install`
 do the same; in Codex, you can also install from the **Plugins** screen after the first command.
 
+You need git and a recent version of Codex or Claude Code. If `plugin` isn't a recognized command,
+update the tool first. Both tools install the latest release, never unreleased work.
+
 That's it. Start a new task and ask for things as you normally would:
 
 ```text

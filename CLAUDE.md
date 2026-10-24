@@ -13,6 +13,9 @@ The canonical source for the `jensenmo-happy-coding-everyday` Codex skill ("Happ
 python3 -m unittest discover -s tests -p 'test_*.py'
 python3 scripts/validate_repository.py
 
+# Reject AI attribution lines in a commit range (CI runs this on every PR)
+python3 scripts/check_commit_messages.py main..HEAD
+
 # Single test module / case
 python3 -m unittest tests.test_scenarios
 python3 -m unittest tests.test_scenarios.ScenarioDataTests.test_scenarios_are_well_formed_and_unique

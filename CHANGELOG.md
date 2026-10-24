@@ -3,6 +3,22 @@
 All notable changes to HappyCoding Everyday are recorded here. The project uses semantic versions
 for plugin releases.
 
+## Unreleased
+
+### Changed
+
+- Claude Code installs the released tag over HTTPS, as Codex already does, instead of whatever is on
+  the default branch. A `github` source would clone over SSH and fail for users without a GitHub SSH
+  key, so the marketplace entry uses an HTTPS git URL; repository validation enforces both;
+- README (all locales) and getting-started note that installs need git and a recent Codex or Claude
+  Code, and getting-started gains install troubleshooting.
+
+### Added
+
+- `scripts/check_commit_messages.py` and a CI job that reject AI attribution lines (such as
+  `Co-authored-by: Cursor` or `Generated with Claude Code`) in pull request commits, titles, and
+  descriptions, so tools stop appearing as contributors.
+
 ## 0.3.1 — 2026-10-23
 
 ### Added
