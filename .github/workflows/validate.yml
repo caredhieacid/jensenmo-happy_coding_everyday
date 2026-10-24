@@ -55,6 +55,29 @@ jobs:
             skills/jensenmo-happy-coding-everyday
           python .upstream/openai-codex/codex-rs/skills/src/assets/samples/plugin-creator/scripts/validate_plugin.py .
 
+  commit-messages:
+    name: Commit messages
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: "3.13"
+      - name: Reject AI attribution lines
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: |
+          python scripts/check_commit_messages.py "$BASE_SHA..$HEAD_SHA" \
+            --text-env PR_TITLE --text-env PR_BODY
+
   package:
     name: Package preview
     needs: quality

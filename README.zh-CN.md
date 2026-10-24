@@ -49,6 +49,8 @@ claude plugin install jensenmo-happy-coding-everyday@jensenmo-happy-coding
 
 每组的第一条命令把这个 GitHub 仓库添加为插件源，第二条安装插件。HappyCoding 目前还没有进入官方插件目录，所以不需要注册或审核。在 Claude Code 会话里，用 `/plugin marketplace add` 和 `/plugin install` 也一样；在 Codex 里，运行第一条命令后也可以到 **Plugins** 界面安装。
 
+需要电脑上装有 git，并使用较新版本的 Codex 或 Claude Code；如果提示找不到 `plugin` 命令，先升级一下工具。两边装到的都是最新的正式版本，不会装到还没发布的改动。
+
 这样就好了。新开一个任务，正常提需求就行：
 
 ```text

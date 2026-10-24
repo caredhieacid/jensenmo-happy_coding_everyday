@@ -42,6 +42,9 @@ Inside a session, `/plugin marketplace add caredhieacid/jensenmo-happy_coding_ev
 Use either the plugin or a linked skill folder in `~/.claude/skills/`, not both, or the skill loads
 twice.
 
+Claude Code fetches the release tagged in `.claude-plugin/marketplace.json` over HTTPS, so users get
+the published version and don't need a GitHub SSH key.
+
 ## Install the skill directly
 
 ```bash
@@ -152,3 +155,10 @@ If the skill does not appear:
 3. start a new task so discovery runs with fresh metadata;
 4. check for another skill with the same `name`;
 5. invoke `$jensenmo-happy-coding-everyday` explicitly to separate discovery from implicit routing.
+
+If an install command fails:
+
+1. if `plugin` is not a recognized command, update Codex or Claude Code;
+2. if cloning fails, check that git is installed and can reach `https://github.com`;
+3. if the skill appears twice in Claude Code, remove either the plugin or the linked folder in
+   `~/.claude/skills/`.

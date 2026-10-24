@@ -48,6 +48,8 @@ claude plugin install jensenmo-happy-coding-everyday@jensenmo-happy-coding
 
 두 경우 모두 첫 번째 명령은 이 GitHub 저장소를 플러그인 출처로 추가하고, 두 번째 명령은 플러그인을 설치합니다. HappyCoding은 아직 공식 플러그인 목록에 올라가 있지 않아서 가입이나 심사가 필요 없습니다. Claude Code 세션 안에서는 `/plugin marketplace add`와 `/plugin install`로도 할 수 있고, Codex에서는 첫 번째 명령 뒤에 **Plugins** 화면에서 설치해도 됩니다.
 
+git과 최신 버전의 Codex 또는 Claude Code가 필요합니다. `plugin` 명령을 찾을 수 없다고 나오면 먼저 도구를 업데이트하세요. 두 도구 모두 최신 정식 릴리스를 설치하며, 아직 릴리스되지 않은 변경은 받지 않습니다.
+
 그다음 새 작업에서 평소처럼 요청하면 되고, 따로 설정할 것은 없습니다.
 
 ```text
