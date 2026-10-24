@@ -74,6 +74,8 @@ ln -s "$(pwd)/skills/jensenmo-happy-coding-everyday" \
 
 동작 테스트는 지금까지 Codex에서 했습니다. Claude Code에서는 `claude plugin validate` 검사와 실제 설치를 확인했습니다.
 
+**Agent Skills를 지원하는 다른 도구:** 이 skill은 공개된 Agent Skills 형식을 쓰기 때문에 GitHub Copilot, Cursor, Gemini CLI, OpenCode 등 많은 도구가 읽을 수 있습니다. 이런 도구에서 쓰려면 `skills/jensenmo-happy-coding-everyday` 폴더를 각 도구의 skills 폴더에 복사하거나 링크하세요. 위치는 각 도구의 문서를 확인하세요. 지금까지 실제로 테스트한 것은 Codex와 Claude Code뿐입니다.
+
 ## 해결하는 문제
 
 AI 코딩 도우미는 뛰어나지만, 완전히 맡겨 두면 흔히 두 가지 방식으로 실수합니다.

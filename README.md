@@ -95,6 +95,11 @@ the plugin. Use one or the other, not both, or the skill loads twice.
 The behavior tests so far run on Codex. On Claude Code, the plugin has been checked with
 `claude plugin validate` and a test install.
 
+**Other tools that support Agent Skills:** the skill uses the open Agent Skills format, which many
+tools now read, such as GitHub Copilot, Cursor, Gemini CLI, and OpenCode. To use HappyCoding there,
+copy or link the `skills/jensenmo-happy-coding-everyday` folder into that tool's skills folder (see
+its docs for the location). So far, only Codex and Claude Code have been tested.
+
 Keep just one skill that takes over all coding work: turn off other skills that do the same job,
 and keep skills that only cover one area. See [Getting started](docs/getting-started.md).
 

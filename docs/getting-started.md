@@ -112,8 +112,9 @@ codex plugin marketplace remove jensenmo-happy-coding
   are used only when the selected lane and host capabilities justify them.
 - Claude Code: the plugin passes `claude plugin validate` and installs and loads from this
   repository. Behavior evaluations so far run on Codex.
-- Other coding agents are not claimed as supported until their trigger, instruction, and evaluation
-  paths are tested independently.
+- Other tools that read the open Agent Skills format (for example GitHub Copilot, Cursor, Gemini CLI,
+  and OpenCode) can load the skill when you copy or link `skills/jensenmo-happy-coding-everyday`
+  into their skills folder. They are not tested yet, and how fully each tool supports skills varies.
 
 ## Keep one automatic coding entrance
 

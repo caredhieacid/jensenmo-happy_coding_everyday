@@ -12,6 +12,8 @@ for plugin releases.
   key, so the marketplace entry uses an HTTPS git URL; repository validation enforces both;
 - README (all locales) and getting-started note that installs need git and a recent Codex or Claude
   Code, and getting-started gains install troubleshooting.
+- README (all locales) and getting-started explain that other tools that read the open Agent
+  Skills format can load the skill folder, and that only Codex and Claude Code are tested.
 
 ### Added
 

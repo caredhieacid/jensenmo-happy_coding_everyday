@@ -86,6 +86,8 @@ Codex 支持用链接方式安装 skill。如果目标路径已经存在，替�
 
 目前的行为测试在 Codex 上进行；在 Claude Code 上，插件已经用 `claude plugin validate` 校验过，并实际安装测试过。
 
+**其他支持 Agent Skills 的工具：** 这个 skill 用的是开放的 Agent Skills 格式，现在很多工具都能读取，比如 GitHub Copilot、Cursor、Gemini CLI、OpenCode。想在这些工具里用，把 `skills/jensenmo-happy-coding-everyday` 文件夹复制或链接到它们的 skills 目录就行，具体位置看各工具的文档。目前实际测过的只有 Codex 和 Claude Code。
+
 只保留一个接管所有编码工作的 skill：关掉其他做同样事情的 skill，只负责某个领域的 skill 可以保留。详见 [快速上手](docs/getting-started.md)。
 
 </details>
