@@ -74,6 +74,8 @@ ln -s "$(pwd)/skills/jensenmo-happy-coding-everyday" \
 
 動作テストは今のところ Codex で行っています。Claude Code では、`claude plugin validate` での確認と実際のインストールを試しています。
 
+**Agent Skills に対応したほかのツール：** この skill は公開されている Agent Skills 形式を使っていて、GitHub Copilot、Cursor、Gemini CLI、OpenCode など多くのツールが読み込めます。これらで使うには、`skills/jensenmo-happy-coding-everyday` フォルダを各ツールの skills フォルダにコピーするかリンクしてください。場所は各ツールのドキュメントで確認してください。今のところ実際に試したのは Codex と Claude Code だけです。
+
 ## 解決すること
 
 AI コーディングアシスタントは優秀ですが、任せきりにすると、よく次の 2 種類の失敗をします。

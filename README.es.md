@@ -74,6 +74,8 @@ Si ya hay algo en esa ruta, revísalo antes de reemplazarlo.
 
 Por ahora, las pruebas de comportamiento se hacen en Codex. En Claude Code, el plugin se ha comprobado con `claude plugin validate` y con una instalación de prueba.
 
+**Otras herramientas compatibles con Agent Skills:** el skill usa el formato abierto Agent Skills, que ya leen muchas herramientas, como GitHub Copilot, Cursor, Gemini CLI u OpenCode. Para usarlo en ellas, copia o enlaza la carpeta `skills/jensenmo-happy-coding-everyday` en su carpeta de skills (consulta su documentación para saber dónde). Por ahora solo se ha probado en Codex y Claude Code.
+
 ## El problema
 
 Los asistentes de programación con IA son muy capaces, pero si los dejas solos suelen fallar de una de estas dos formas.
