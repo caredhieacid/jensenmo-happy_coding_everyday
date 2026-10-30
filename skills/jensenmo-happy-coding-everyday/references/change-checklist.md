@@ -14,7 +14,7 @@ Cover a case with an existing mechanism or a test before adding code. If a row p
 | Money, time, or text | Decimal arithmetic and the rounding rule; time zones, date boundaries, and daylight-saving changes; encoding, Unicode, and long strings |
 | Concurrency, I/O, or network | Timeouts, retries, cancellation, partial failure, ordering, and resource cleanup |
 | A loop or query on a hot path | Unbounded growth, one query per item, and repeated work that could be done once |
-| UI | Loading, empty, and error states; long text and narrow screens; keyboard and labels; the product's existing look |
+| UI | Loading, empty, and error states; long text and narrow screens; keyboard and labels; the product's existing look and words, with one name for each thing |
 | A dependency or build setting | Need, maintenance, license, size, and the lockfile |
 | A removal or rename | Every reference, including config, docs, scripts, and tests; a deprecation path when outside callers exist |
 

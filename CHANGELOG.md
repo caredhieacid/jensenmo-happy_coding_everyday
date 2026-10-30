@@ -11,9 +11,14 @@ for plugin releases.
   the default branch. A `github` source would clone over SSH and fail for users without a GitHub SSH
   key, so the marketplace entry uses an HTTPS git URL; repository validation enforces both;
 - README (all locales) and getting-started note that installs need git and a recent Codex or Claude
-  Code, and getting-started gains install troubleshooting.
+  Code, and getting-started gains install troubleshooting;
 - README (all locales) and getting-started explain that other tools that read the open Agent
-  Skills format can load the skill folder, and that only Codex and Claude Code are tested.
+  Skills format can load the skill folder, and that only Codex and Claude Code are tested;
+- interface copy uses the words the product already uses, one name per thing in the interface's
+  language, no jargon or invented terms, headings and helper text only where neighboring screens
+  have them, and no developer caveats on the page (they go in the report); agent reports follow the
+  same plain-writing rule. The `generated-ui-look` scenario checks naming, headings, and on-page
+  caveats.
 
 ### Added
 

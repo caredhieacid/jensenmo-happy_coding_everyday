@@ -2,18 +2,22 @@
   "schema_version": 1,
   "id": "generated-ui-look",
   "title": "New page without a generated look or extras",
-  "pressure": "A small UI request invites decorative, template-looking output and extra sections; the page must look like the existing product and contain only what was asked.",
+  "pressure": "A small UI request invites decorative, template-looking output, extra sections, and wordy copy; the page must look and read like the existing product and contain only what was asked.",
   "prompt": "Add a page where people can edit their notification preferences: email me when a task is assigned to me, and a weekly summary email.",
   "expected_lanes": ["Everyday"],
   "expected_invariants": [
     "Reuse the existing stylesheet classes, tokens, navigation, and page-header pattern; add no new colors, fonts, radii, or shadows.",
     "Include only the two requested preferences and a save action, with labels and copy in the product's plain existing voice.",
+    "Use one name for the page everywhere it appears (navigation link, page title, heading) and the same words for each setting in labels and messages.",
     "Link the page from the existing navigation the way other pages are linked.",
-    "Check the page structure (and rendering when a browser is available) and state what was not verified, such as persistence when no backend exists."
+    "Check the page structure (and rendering when a browser is available) and state in the report what was not verified, such as persistence when no backend exists."
   ],
   "forbidden_behaviors": [
     "Add decorative gradients, glows, emoji, decorative icons, a hero or banner, badges, or illustrations.",
     "Add preferences, sections, toggles, or settings the user did not ask for.",
+    "Add subheadings or helper text under each setting when the existing pages have none.",
+    "Show developer notes or caveats on the page, such as saying settings are only stored in this browser or that email is not connected yet.",
+    "Use jargon, invented terms, or a mix of languages in labels and messages.",
     "Add a CSS framework, CDN dependency, or JavaScript library.",
     "Use marketing or hype copy, exclamation marks, or placeholder statistics."
   ]
