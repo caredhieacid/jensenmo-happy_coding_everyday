@@ -156,9 +156,11 @@ Dónde cambió más el resultado:
 - **"No sé programar. Hazme una herramienta pequeña para apuntar mis gastos."** Sin: gráficos, categorías y exportación a CSV que nadie pidió. Con: añadir, corregir, borrar y totales por mes, además de una nota sobre dónde se guardan los datos y cómo conservar una copia.
 - **Una revisión de seguridad.** Las dos encontraron los fallos preparados. Solo las ejecuciones con HappyCoding dijeron también qué se revisó y estaba bien.
 
+A un modelo más pequeño y barato le ayuda todavía más. Con `gpt-6-luna`, 19 tareas cumplieron todos los puntos 9 de 38 veces sin HappyCoding y 20 de 38 veces con él, sobre todo porque empezó a ejecutar sus propias pruebas.
+
 En las tareas que un modelo potente ya hace bien, como rastrear la causa de un error o seguir las reglas de commit del proyecto, el resultado fue el mismo con y sin él.
 
-El proyecto tiene 30 escenarios de prueba y 18 proyectos de ejemplo. El registro completo, con lo que falló, está en [docs/pressure-tests.md](docs/pressure-tests.md).
+El proyecto tiene 30 escenarios de prueba y 19 proyectos de ejemplo. El registro completo, con lo que falló, está en [docs/pressure-tests.md](docs/pressure-tests.md).
 
 **Construido consigo mismo.** HappyCoding se desarrolla usando HappyCoding. Hasta ahora hay 16 pull requests fusionados y CI en cada uno. El paquete de cada versión se puede verificar y no se puede modificar después de publicarse.
 

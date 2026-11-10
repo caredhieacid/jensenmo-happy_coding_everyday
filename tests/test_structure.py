@@ -50,7 +50,7 @@ class SkillStructureTests(unittest.TestCase):
         # SKILL.md loads on every coding turn; conditional depth belongs in references/.
         # Count words, not lines: a line budget is easy to meet with very long lines.
         words = (SKILL_DIR / "SKILL.md").read_text(encoding="utf-8").split()
-        self.assertLessEqual(len(words), 1150)
+        self.assertLessEqual(len(words), 1200)
 
     def test_every_reference_is_linked_from_skill(self):
         text = (SKILL_DIR / "SKILL.md").read_text(encoding="utf-8")

@@ -210,9 +210,11 @@ Where it changed the result most:
 - **"I can't program. Make me a small tool to track my spending."** Without: charts, categories, and CSV export nobody asked for. With: add, fix, delete, and monthly totals, plus a note on where the data lives and how to keep a copy.
 - **A security review.** Both found the planted flaws. Only the runs with HappyCoding also said what was checked and found sound.
 
+It helps a smaller, cheaper model even more. On `gpt-6-luna`, 19 tasks met every check 9 of 38 times without HappyCoding and 20 of 38 times with it, mostly because it started running its own tests.
+
 On tasks a strong model already handles well, such as tracing a bug to its cause or following a project's commit rules, results were the same with and without.
 
-The project has 30 test scenarios and 18 sample projects. The full record, including what failed, is in [docs/pressure-tests.md](docs/pressure-tests.md).
+The project has 30 test scenarios and 19 sample projects. The full record, including what failed, is in [docs/pressure-tests.md](docs/pressure-tests.md).
 
 **Built with itself.** HappyCoding is developed using HappyCoding. So far: 16 merged pull requests,
 CI on every pull request, and release packages that can be verified and can't be changed after

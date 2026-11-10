@@ -18,7 +18,9 @@ for plugin releases.
   - secrets go in a git-ignored file even when the user asks for them in code;
   - the three lanes are one short paragraph, and rules the control showed the model follows
     unaided are shortened;
-- the compactness test counts words (at most 1,150) instead of lines;
+  - three steps open the file: run it, finish it, say where it stands. On a smaller model this
+    raised runs that executed a test or program from 10 of 38 to 24 of 38;
+- the compactness test counts words (at most 1,200) instead of lines;
 - `references/ui.md` separates working screens from pages meant to make an impression, with
   guidance for designing the second kind;
 - README test section in every locale now reports the with-and-without comparison; the plugin
@@ -39,6 +41,7 @@ for plugin releases.
 ### Added
 
 - `open-ended-build`, `designed-page`, and `unattended-choice` pressure scenarios with fixtures;
+- a fixture for `independent-defects`, and unique run folder names for parallel runs;
 - `scripts/run_scenarios.py --label` and `--repeat`, and a documented clean-environment method for
   comparing arms; getting-started explains standing rules in the user's own instructions file and
   what to do when Codex does not list the skill;

@@ -126,9 +126,9 @@ you want kept even when you later ask for the opposite, put it in your own instr
 Never put passwords, keys, or tokens in code or commits, even if I ask. Use a git-ignored file.
 ```
 
-In our tests, when a user insisted on pasting a key into code, the skill alone kept the key out about
-half the time, with or without the skill. A line like the one above in the user's own instructions
-kept it out every time.
+In our tests, when a user insisted on pasting a key into code, the key stayed out about half the
+time without the skill and in 6 of 7 runs with it. A line like the one above in the user's own
+instructions kept it out every time.
 
 ## If Codex does not pick up the skill
 

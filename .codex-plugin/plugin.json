@@ -20,7 +20,7 @@
   "interface": {
     "displayName": "HappyCoding Everyday",
     "shortDescription": "Good engineering habits for AI",
-    "longDescription": "HappyCoding Everyday turns on by itself for coding work. Small changes stay quick, and big changes get done carefully. It makes the technical choices a beginner cannot, finds the real cause of a bug, finishes the whole job in one pass, checks the result, and explains it in plain words, with a short note on anything you did not ask about but should know. It keeps API keys out of your code, adds nothing nobody asked for, and follows your project's own rules first. In clean Codex sessions, the same 18 tasks met every check 18 of 36 times without it and 29 of 36 times with it.",
+    "longDescription": "HappyCoding Everyday turns on by itself for coding work. Small changes stay quick, and big changes get done carefully. It makes the technical choices a beginner cannot, finds the real cause of a bug, finishes the whole job in one pass, checks the result, and explains it in plain words, with a short note on anything you did not ask about but should know. It runs what it changes before saying it works, keeps API keys out of your code, adds nothing nobody asked for, and follows your project's own rules first. In clean Codex sessions, the same 18 tasks met every check 18 of 36 times without it and 29 of 36 times with it.",
     "developerName": "Jensen Mo",
     "category": "Developer Tools",
     "capabilities": [

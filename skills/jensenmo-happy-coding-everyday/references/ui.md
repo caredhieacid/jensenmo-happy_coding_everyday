@@ -4,7 +4,7 @@ For any change that adds or alters a screen, a component, or interface text. The
 
 ## Stack
 
-Use the stack the project already has. When there is none yet, pick the simplest one that fits the request and what the user says they use, and name it in one line of your reply; a single page often needs only HTML, CSS, and a little script. Do not add a framework, build tool, CSS framework, component library, or CDN dependency unless the request needs it or the user asks.
+Use the stack the project already has. When there is none yet, pick the simplest one that fits the request and what the user says they use, and name it in one line of your reply unless the user does not program; a single page often needs only HTML, CSS, and a little script. Do not add a framework, build tool, CSS framework, component library, or CDN dependency unless the request needs it or the user asks.
 
 ## Two kinds of page
 
@@ -13,7 +13,7 @@ Use the stack the project already has. When there is none yet, pick the simplest
 
 ## When the product already has a look
 
-- Reuse its components, tokens, spacing, type scale, layout, and navigation, and match the density and alignment of neighboring screens. Do not add arbitrary colors, fonts, radii, shadows, or a second component library.
+- Reuse its components, tokens, spacing, type scale, layout, and navigation, and match the density and alignment of neighboring screens. Do not add arbitrary colors, fonts, radii, shadows, or a second component library. When you need something the product lacks, such as an error color, reuse its nearest existing token instead of adding one.
 
 ## When there is nothing to copy
 
@@ -47,11 +47,11 @@ Use your full design ability; these points keep it honest.
 
 - One title per page. Add a heading only when it names a group that people need to find among other groups. No heading over a single item, no subtitle that restates the title, no small label above a title, and no filler headings such as "Overview" or "Details". When the navigation item, page title, and panel title would say the same thing, keep one.
 - Write interface text in the words the product already uses: short, specific, and calm, with no hype, exclamation marks, filler, jargon, or invented terms. Give each thing one name, in the interface's language, everywhere it appears: navigation, page title, labels, buttons, and messages.
-- Say each thing once: no helper text that restates its label, no message shown in two places, and no counts or summaries nobody asked for. Add helper text only where people would otherwise make a mistake. Keep notes for developers off the page: caveats about unfinished parts, disclaimers, and "please note" text belong in your report. Use real labels and data shapes; when real content is missing, use neutral placeholders and mention them in the report.
+- Say each thing once: no helper text that restates its label, no message shown in two places, and no counts or summaries nobody asked for. Add helper text only where people would otherwise make a mistake. Keep notes for developers off the page: caveats about unfinished parts, where data is stored ("saved in this browser"), disclaimers, and "please note" text belong in your report, including inside success and error messages. Use real labels and data shapes; when real content is missing, use neutral placeholders and mention them in the report.
 
 ## Scope and states
 
-- Build only the screens, controls, and states the task needs; ask before adding settings, sections, or variants (such as a dark theme) that nobody requested.
+- Build only the screens, controls, and states the task needs: no extra buttons such as Cancel or Reset. Ask before adding settings, sections, or variants (such as a dark theme) that nobody requested.
 - Handle the loading, empty, and error states the change introduces, in plain text, without decorative empty-state art.
 - Keep controls accessible: labels tied to inputs, keyboard access, and native elements before custom widgets.
 - Do not hand-edit generated API clients; change the contract and regenerate them. Keep type checking meaningful: do not silence errors with `any`, casts, or suppression comments.

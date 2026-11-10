@@ -13,6 +13,7 @@ from __future__ import annotations
 import argparse
 import datetime as _dt
 import json
+import os
 from pathlib import Path
 import shutil
 import subprocess
@@ -93,7 +94,8 @@ def write_checklist(scenario: dict, run_dir: Path) -> None:
 
 
 def run_scenario(scenario: dict, codex_bin: str, dry_run: bool, label: str = "") -> Path:
-    stamp = _dt.datetime.now().strftime("%Y%m%d-%H%M%S-%f")
+    # The process id keeps parallel runs of one scenario from colliding on a folder name.
+    stamp = _dt.datetime.now().strftime("%Y%m%d-%H%M%S-%f") + f"p{os.getpid()}"
     suffix = f"-{label}" if label else ""
     run_dir = RUN_DIR / f"{stamp}-{scenario['id']}{suffix}"
     run_dir.mkdir(parents=True)
