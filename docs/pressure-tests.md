@@ -96,3 +96,29 @@ These passed in every graded round:
 - The test machine's global agent instructions ask for terse replies in Chinese. They likely contribute to the impact-reporting gap.
 - Each scenario ran once per round, and single runs vary.
 - `endpoint-authorization`, `missing-setup`, and the original routing cases have no fixtures yet and were not run.
+
+## Whole-change, new-page, and security-review evaluation (2026-11-10)
+
+Same method as above: fresh `codex exec` runs at a neutral path, graded against each checklist.
+
+- **Baseline, before the rule changes.** `whole-feature-one-pass`, `greenfield-ui`, and
+  `security-review` were each run once on the previous skill and checked by the maintainer. All
+  three already met their main invariants: the feature changed all eight files in one turn, the
+  page was plain HTML with one title and no decoration, and the review found the four planted
+  flaws without editing code or flagging the decoys. The new rules write this behavior down; these
+  runs do not show an improvement from them on Codex.
+- **First graded round on the new rules (8 runs, independent reviewer): 5 passed.**
+  `whole-feature-one-pass`, `security-review`, `backend-layering`, and `ambiguous-change` passed.
+  `greenfield-ui` failed for an unrequested order count and a loading message shown twice.
+  `tiny-fix` failed for reading the change checklist for a one-string fix. `generated-ui-look`
+  failed for an on-page storage note and helper text. `vague-request-minimal-code` failed for
+  over-building and a README section. The reviewer also found `security-review.md` being read for
+  an ordinary field and endpoint.
+- **After narrowing the reference triggers (7 reruns, checked by the maintainer against observable
+  markers).** `tiny-fix` opened no reference file. `backend-layering` and `whole-feature-one-pass`
+  no longer opened the security review. `greenfield-ui` had no count line and one loading message,
+  and named its stack in the reply. `generated-ui-look` had no on-page note, helper text, or new
+  color. `vague-request-minimal-code` still added a README section.
+- **Content filter.** One of three `security-review` runs on the new rules ended without a reply
+  because the model provider flagged the session as a possible cybersecurity risk. A rerun
+  completed normally.

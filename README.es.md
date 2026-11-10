@@ -101,7 +101,10 @@ Las herramientas de flujo de trabajo pesadas resuelven la columna izquierda, per
 | **Nada de extras** | No añade funciones, opciones, adornos ni documentación que no pediste. |
 | **No se olvida de los casos habituales** | Antes de informar, repasa una lista corta según el tipo de cambio: casos límite, compatibilidad, datos, dinero y fechas, y los estados de carga y error de la interfaz. |
 | **Seguro desde el principio** | Las claves de API no van al código ni a los commits. No hace commit, push ni despliegue si no lo pides. Las reglas de tu proyecto van primero. |
-| **Interfaz acorde a tu aplicación** | Las pantallas nuevas reutilizan tus componentes y estilos, sin aspecto de plantilla genérica. |
+| **Interfaz limpia y sencilla** | Las pantallas nuevas reutilizan tus componentes y estilos. Si aún no hay diseño, crea una página ordenada con la tecnología más simple que sirva, sin adornos ni títulos repetidos. |
+| **El trabajo completo de una vez** | Identifica todas las partes que necesita un cambio (backend, página, documentación, pruebas) y las entrega juntas, sin que tengas que pedir cada una. |
+| **Revisión de seguridad** | Localiza los fallos reales hasta la línea exacta, explica cómo podrían aprovecharse y cómo corregirlos, y no señala código que está bien. |
+| **Sin tecnología impuesta** | Usa la tecnología y la forma de trabajar que ya tiene tu proyecto, y no aplica prácticas de servicios grandes a un script pequeño. |
 | **Informes claros** | Primero el resultado, en tu idioma: qué cambió, qué se comprobó, qué falta y qué hacer después. |
 
 ## Ejemplos
@@ -142,8 +145,8 @@ Muchas colecciones de prompts y flujos de trabajo nunca se prueban. HappyCoding 
 
 | Elemento | Cantidad |
 | --- | --- |
-| Escenarios de prueba | **24** |
-| Proyectos de ejemplo (frontend, backend por capas, cálculos con dinero, claves de API, reglas de commit y más) | **12** |
+| Escenarios de prueba | **27** |
+| Proyectos de ejemplo (frontend, backend por capas, cálculos con dinero, claves de API, reglas de commit y más) | **15** |
 | Sesiones nuevas de Codex durante la versión 0.3.0 | **59** |
 | Sesiones puntuadas punto por punto por otro revisor | **48** |
 

@@ -117,7 +117,10 @@ AI 编程助手能力很强，但完全放手让它干，常见两类毛病。
 | **不画蛇添足** | 不加你没要求的功能、选项、装饰和文档。 |
 | **常见情况不遗漏** | 汇报前，按改动类型对照一张短清单：边界值、兼容性、数据、金额和日期、页面的加载和报错状态。 |
 | **默认安全** | API 密钥不写进代码和提交记录；你没要求就不提交、不推送、不部署；项目自己的规范优先。 |
-| **风格和项目一致** | 新页面复用现有的组件和样式，不套通用模板。 |
+| **页面干净不花哨** | 新页面复用现有的组件和样式。项目还没有设计时，用合适的最简单技术栈做一个整齐的页面，不加装饰，也没有重复的标题。 |
+| **一次做完整** | 先想清楚一个改动涉及的所有部分（后端、页面、文档、测试），一起做完，不用你一步一步催。 |
+| **可以做安全审查** | 把真正的漏洞定位到具体哪一行，说明会被怎样利用、怎么修；没问题的代码不乱报。 |
+| **不绑定技术栈** | 项目用什么技术栈和写法就跟着用，不把大型服务的那套做法硬套到小脚本上。 |
 | **汇报清楚** | 先说结果，用你的语言讲：改了什么、做了哪些检查、还有什么没做、下一步怎么做。 |
 
 ## 实际效果
@@ -175,8 +178,8 @@ AI 编程助手能力很强，但完全放手让它干，常见两类毛病。
 
 | 项目 | 数量 |
 | --- | --- |
-| 测试场景 | **24** 个 |
-| 示例项目（前端、分层后端、金额计算、API 密钥、提交规范等） | **12** 个 |
+| 测试场景 | **27** 个 |
+| 示例项目（前端、分层后端、金额计算、API 密钥、提交规范等） | **15** 个 |
 | 0.3.0 版本期间新开的 Codex 会话 | **59** 次 |
 | 由独立评审逐条打分的会话 | **48** 次 |
 
@@ -221,7 +224,9 @@ flowchart LR
 | 文件 | 什么时候读 |
 | --- | --- |
 | [`SKILL.md`](skills/jensenmo-happy-coding-everyday/SKILL.md) | 每个编码任务 |
-| [`engineering-baseline.md`](skills/jensenmo-happy-coding-everyday/references/engineering-baseline.md) | 改动涉及 Git、API 密钥、安全、数据、接口、后端模块、依赖、环境配置、页面、大模型调用或测试时 |
+| [`engineering-baseline.md`](skills/jensenmo-happy-coding-everyday/references/engineering-baseline.md) | 改动涉及 Git、API 密钥、数据、接口、后端模块、依赖、环境配置、大模型调用或测试时 |
+| [`ui.md`](skills/jensenmo-happy-coding-everyday/references/ui.md) | 改动新增或修改页面、组件或界面文字时 |
+| [`security-review.md`](skills/jensenmo-happy-coding-everyday/references/security-review.md) | 你要求做安全审查，或改动涉及登录、权限、密钥、支付时 |
 | [`change-checklist.md`](skills/jensenmo-happy-coding-everyday/references/change-checklist.md) | 改了逻辑、数据、接口或页面，或者修了 bug，汇报之前 |
 | [`lanes.md`](skills/jensenmo-happy-coding-everyday/references/lanes.md) | 拿不准该用哪种方式时 |
 | [`contracts-and-evidence.md`](skills/jensenmo-happy-coding-everyday/references/contracts-and-evidence.md) | 要把工作交给其他助手时 |

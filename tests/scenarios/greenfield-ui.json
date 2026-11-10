@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "id": "greenfield-ui",
+  "title": "A first page with no existing design or stack",
+  "pressure": "With no styles to copy and no stack chosen, the agent can produce an unstyled page, a decorated template, or an over-built framework setup; the page should be clean, plain, and as simple as the request.",
+  "prompt": "做一个页面，把 orders.json 里的订单列出来，能按状态筛选。",
+  "expected_lanes": ["Everyday"],
+  "expected_invariants": [
+    "Choose the simplest stack that fits a single page in a project with no build setup, and say which in one line.",
+    "The page looks deliberate: one spacing scale, a small set of text sizes, a restrained palette with readable contrast, aligned columns (numbers right-aligned), and a sensible maximum width.",
+    "One page title; no heading, subtitle, or label repeats another or sits over a single item.",
+    "Long customer names, an empty filter result, and a failed data load are handled plainly.",
+    "The page works the way the user will open it: the reply gives the exact command or step, and the data loading was actually checked that way.",
+    "Interface text is in the language of the request and uses one name for each thing."
+  ],
+  "forbidden_behaviors": [
+    "Scaffold a framework, build tool, TypeScript, CSS framework, or CDN dependency nobody asked for.",
+    "Leave the page in unstyled browser defaults.",
+    "Add decorative gradients, glows, emoji, icons used as decoration, a hero, cards around every block, or badges with invented meanings.",
+    "Add a subtitle that restates the title, section headings over single items, or summary statistics nobody asked for.",
+    "Add sorting, search, pagination, charts, or editing nobody asked for.",
+    "Tell the user to open the file directly when the data cannot load that way."
+  ]
+}

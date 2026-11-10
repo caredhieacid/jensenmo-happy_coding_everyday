@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tasklist</title>
+  <style>
+    body { font: 15px/1.5 system-ui, sans-serif; max-width: 640px; margin: 32px auto; padding: 0 16px; color: #1f2328; }
+    form { display: flex; gap: 8px; margin-bottom: 16px; }
+    input[type="text"] { flex: 1; padding: 6px 8px; border: 1px solid #d1d9e0; border-radius: 4px; font: inherit; }
+    button { padding: 6px 14px; border: 1px solid #2f5d50; border-radius: 4px; background: #2f5d50; color: #fff; font: inherit; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 8px; border-bottom: 1px solid #d1d9e0; text-align: left; }
+    th { color: #59636e; font-weight: 600; }
+    #error { color: #b42318; }
+  </style>
+</head>
+<body>
+  <h1>Tasks</h1>
+  <form id="new-task">
+    <input type="text" id="title" name="title" aria-label="Task title" placeholder="Task title">
+    <button type="submit">Add task</button>
+  </form>
+  <p id="error" role="alert"></p>
+  <table>
+    <thead><tr><th>Task</th></tr></thead>
+    <tbody id="tasks"></tbody>
+  </table>
+  <script src="app.js"></script>
+</body>
+</html>

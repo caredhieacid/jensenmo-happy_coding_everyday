@@ -22,6 +22,20 @@ for plugin releases.
 
 ### Added
 
+- whole-change rule in `SKILL.md`: work out every part a request needs (layers, contract, existing
+  data, configuration, tests, docs) before the first edit and deliver them in one pass, with open
+  questions asked once up front;
+- `references/ui.md`: the frontend rules moved out of the engineering baseline and extended for
+  projects with no design yet (layout, spacing, type, color, controls, narrow screens), a rule
+  against repeated or filler headings and repeated messages, and stack choice: use what the project
+  has, otherwise the simplest stack that fits, with no framework nobody asked for;
+- `references/security-review.md`: how to run a security review (entry points, tracing input,
+  what to check by area, clearing false alarms) and how to report findings;
+- the engineering baseline now says to size its defaults to the project and never to introduce a
+  language, framework, or tool to satisfy it; a frontend-and-backend change updates both sides of
+  the contract in one pass;
+- `whole-feature-one-pass`, `greenfield-ui`, and `security-review` pressure scenarios with fixtures;
+- repository validation no longer checks links inside git-ignored `.scenario-runs/` evidence;
 - `scripts/check_commit_messages.py` and a CI job that reject AI attribution lines (such as
   `Co-authored-by: Cursor` or `Generated with Claude Code`) in pull request commits, titles, and
   descriptions, so tools stop appearing as contributors.
