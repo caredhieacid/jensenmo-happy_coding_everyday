@@ -26,9 +26,9 @@
 - **No solo "listo": bien hecho.** Encuentra la causa real, corrige todos los sitios que lo necesitan y ejecuta la comprobación que demuestra el arreglo.
 - **Nunca complica tu trabajo.** Corregir una errata es un diff de una línea. Sin planes, sin agentes de más, sin funciones que nadie pidió.
 - **Solo pregunta lo que solo tú puedes decidir.** Una pregunta breve con opciones claras y una recomendación, en vez de una suposición equivocada que tengas que deshacer.
-- **Seguro desde el principio.** Las claves de API no van al código, nada se sube ni se despliega sin ti y las reglas de tu proyecto siempre van primero.
-- **Casi no ocupa espacio.** La parte que se carga en cada tarea tiene menos de 60 líneas. Según el propio cálculo de Claude Code, ocupa unos 90 tokens por sesión y unos 1,7k solo cuando se usa.
-- **Probado como software de verdad.** Cada comportamiento clave tiene su propio escenario de prueba, ejecutado en sesiones nuevas de Codex y puntuado por otro revisor.
+- **Seguro desde el principio.** Las claves de API van a un archivo local y no al código, nada se sube ni se despliega sin ti y las reglas de tu proyecto siempre van primero.
+- **Casi no ocupa espacio.** La parte que se carga en cada tarea ocupa más o menos una página; el resto solo se lee cuando la tarea lo necesita.
+- **Medido, no supuesto.** En sesiones limpias de Codex, las mismas 18 tareas cumplieron todos los puntos 18 de 36 veces sin HappyCoding y 29 de 36 veces con él.
 
 ## Primeros pasos
 
@@ -100,7 +100,8 @@ Las herramientas de flujo de trabajo pesadas resuelven la columna izquierda, per
 | **Pregunta solo cuando hace falta** | Si equivocarse obligaría a rehacer trabajo, hace una pregunta breve con dos a cuatro opciones y una recomendación. Si el código lo responde, no pregunta. |
 | **Nada de extras** | No añade funciones, opciones, adornos ni documentación que no pediste. |
 | **No se olvida de los casos habituales** | Antes de informar, repasa una lista corta según el tipo de cambio: casos límite, compatibilidad, datos, dinero y fechas, y los estados de carga y error de la interfaz. |
-| **Seguro desde el principio** | Las claves de API no van al código ni a los commits. No hace commit, push ni despliegue si no lo pides. Las reglas de tu proyecto van primero. |
+| **Seguro desde el principio** | Las claves de API van a un archivo local que git ignora, no al código ni a los commits. No hace commit, push ni despliegue si no lo pides. Las reglas de tu proyecto van primero. |
+| **Te avisa de lo que no preguntaste** | Su informe puede terminar con hasta tres cosas que conviene saber: un riesgo, algo que falta o una opción más simple. |
 | **Interfaz limpia y sencilla** | Las pantallas nuevas reutilizan tus componentes y estilos. Si aún no hay diseño, crea una página ordenada con la tecnología más simple que sirva, sin adornos ni títulos repetidos. |
 | **El trabajo completo de una vez** | Identifica todas las partes que necesita un cambio (backend, página, documentación, pruebas) y las entrega juntas, sin que tengas que pedir cada una. |
 | **Revisión de seguridad** | Localiza los fallos reales hasta la línea exacta, explica cómo podrían aprovecharse y cómo corregirlos, y no señala código que está bien. |
@@ -141,27 +142,25 @@ No cambió ningún archivo antes de tener la respuesta.
 
 ## Resultados de las pruebas
 
-Muchas colecciones de prompts y flujos de trabajo nunca se prueban. HappyCoding sí. Cada comportamiento clave tiene un escenario de prueba: una petición realista, un proyecto de ejemplo pequeño, una lista de cosas que el asistente debe hacer y otra de cosas que nunca debe hacer. Cada prueba abre una sesión nueva de Codex y otro revisor compara el resultado con las dos listas, punto por punto.
+¿Ayuda de verdad? Ejecutamos las mismas 18 tareas en sesiones limpias de Codex, con y sin HappyCoding, dos veces cada una. Otros revisores puntuaron cada ejecución con una lista escrita de antemano.
 
-| Elemento | Cantidad |
-| --- | --- |
-| Escenarios de prueba | **27** |
-| Proyectos de ejemplo (frontend, backend por capas, cálculos con dinero, claves de API, reglas de commit y más) | **15** |
-| Sesiones nuevas de Codex durante la versión 0.3.0 | **59** |
-| Sesiones puntuadas punto por punto por otro revisor | **48** |
+| | Sin | Con HappyCoding |
+| --- | --- | --- |
+| Ejecuciones que cumplieron todos los puntos | 18 de 36 | **29 de 36** |
+| Puntuación media de calidad (de 1 a 5) | 3,4 | **4,2** |
 
-**Lo consiguió en todas las rondas puntuadas:**
+Dónde cambió más el resultado:
 
-- encontró la causa real sin quedarse en código que solo parecía sospechoso;
-- un arreglo de una línea se quedó en una línea;
-- siguió las reglas de ramas y commits que el proyecto tiene documentadas;
-- no puso una clave de API pegada en el chat en archivos que se suben al repositorio;
-- colocó el código de backend en las capas que indica la documentación del proyecto;
-- creó pantallas nuevas solo con los estilos existentes.
+- **"Muestra estos pedidos en una página, con un filtro por estado."** Sin: un panel completo con barra lateral, tarjetas de estadísticas, búsqueda, ordenación y su propio servidor. Con: tres archivos sencillos que hacen lo que se pidió.
+- **"Haz una página de inicio bonita para mi cafetería."** Sin: eslóganes inventados y una página que necesita `npm run dev` para abrirse. Con: una página con diseño que usa solo los textos del dueño y se abre con doble clic.
+- **"No sé programar. Hazme una herramienta pequeña para apuntar mis gastos."** Sin: gráficos, categorías y exportación a CSV que nadie pidió. Con: añadir, corregir, borrar y totales por mes, además de una nota sobre dónde se guardan los datos y cómo conservar una copia.
+- **Una revisión de seguridad.** Las dos encontraron los fallos preparados. Solo las ejecuciones con HappyCoding dijeron también qué se revisó y estaba bien.
 
-El registro completo de las pruebas está en [docs/pressure-tests.md](docs/pressure-tests.md).
+En las tareas que un modelo potente ya hace bien, como rastrear la causa de un error o seguir las reglas de commit del proyecto, el resultado fue el mismo con y sin él.
 
-**Construido consigo mismo.** HappyCoding se desarrolla usando HappyCoding. Hasta ahora hay 9 pull requests fusionados y CI en cada uno. El paquete de cada versión se puede verificar y no se puede modificar después de publicarse.
+El proyecto tiene 30 escenarios de prueba y 18 proyectos de ejemplo. El registro completo, con lo que falló, está en [docs/pressure-tests.md](docs/pressure-tests.md).
+
+**Construido consigo mismo.** HappyCoding se desarrolla usando HappyCoding. Hasta ahora hay 16 pull requests fusionados y CI en cada uno. El paquete de cada versión se puede verificar y no se puede modificar después de publicarse.
 
 Si HappyCoding te ahorra tiempo, dale una estrella al repositorio. Es la forma más fácil de ayudar a que otros desarrolladores lo encuentren.
 
@@ -173,7 +172,7 @@ Si HappyCoding te ahorra tiempo, dale una estrella al repositorio. Es la forma m
 | **Collaboration** | El trabajo se divide en partes independientes, o hay mucho código que leer | Varios asistentes investigan a la vez; solo uno edita los archivos compartidos |
 | **Delivery** | Seguridad, migraciones de base de datos, producción o un despliegue entre equipos | Escribe un plan, revisa cada paso, pide una revisión independiente y prepara cómo volver atrás |
 
-Cuando termina la parte arriesgada, vuelve a Everyday. Abrir un pull request, tocar muchos archivos o ejecutar una prueba de extremo a extremo en local no convierte, por sí solo, una tarea en Delivery. En cada tarea solo se carga `SKILL.md` (menos de 60 líneas); los demás archivos se leen cuando hacen falta.
+Cuando termina la parte arriesgada, vuelve a Everyday. Abrir un pull request, tocar muchos archivos o ejecutar una prueba de extremo a extremo en local no convierte, por sí solo, una tarea en Delivery. En cada tarea solo se carga `SKILL.md` (más o menos una página); los demás archivos se leen cuando hacen falta.
 
 ## Principios de diseño
 

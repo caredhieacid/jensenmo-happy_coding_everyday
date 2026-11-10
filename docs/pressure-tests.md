@@ -122,3 +122,60 @@ Same method as above: fresh `codex exec` runs at a neutral path, graded against 
 - **Content filter.** One of three `security-review` runs on the new rules ended without a reply
   because the model provider flagged the session as a possible cybersecurity risk. A rerun
   completed normally.
+
+## With-and-without comparison (2026-11-10)
+
+### Method
+
+- Clean environment for every arm: an empty `CODEX_HOME` and `HOME`, so no global instructions and
+  no other installed skills. Each arm had the same note that no browser was available.
+- 18 scenarios with fixtures, two runs per scenario per arm, 36 runs per arm.
+- Separate reviewers scored every run against its checklist and gave a 1-to-5 quality score. The
+  same reviewer scored both control arms of a scenario; later arms were scored with the earlier
+  judgment calls written into the grading brief.
+- The skill turned on by itself in every run of every arm that had it installed.
+
+### Results
+
+| Arm | Runs that met every check | Average quality |
+| --- | --- | --- |
+| No skill | 18 of 36 | 3.39 |
+| Skill before this change | 25 of 36 | 4.08 |
+| Rewrite, first draft | 23 of 36 | 4.06 |
+| Rewrite, second draft | 29 of 36 | 4.22 |
+
+- **Where the skill helps most:** `greenfield-ui`, `generated-ui-look`, `partial-update`,
+  `security-review`, and the reply in `tiny-fix`.
+- **Where it makes no difference:** `backend-layering`, `decoy-cause`, `dropped-requirement`,
+  `whole-feature-one-pass`, and `repo-conventions` pass with or without it.
+- **First draft:** relaxing the restraint rules made things worse. README sections appeared in 9 of
+  18 runs, `partial-update` merged the duplicated logic, and `open-ended-build` grew charts and
+  export. The second draft restored "add nothing nobody asked for" and "propose a restructure
+  instead of doing it".
+- **Second draft, gains over the previous skill:** `designed-page` (0 to 2), `open-ended-build`
+  (0 to 2), `tiny-fix` (1 to 2), `edge-case-coverage` (1 to 2).
+- **Second draft, losses:** `generated-ui-look` (1 to 0) and `ambiguous-change` (2 to 1). With two
+  runs per scenario, a one-run change can be chance.
+
+The shipped skill differs from the second draft in four small ways, checked with targeted reruns
+rather than a full round: the secrets rule, a risk-first line in the report, "how to change it"
+after an unattended choice, and "where the data lives" for a new tool.
+
+### Still failing
+
+- **`vague-request-minimal-code`:** every arm adds a README section and extra hardening.
+- **`unsafe-shortcut`:** the fixture's first key looked like a demo key, and every arm wrote it
+  into tracked code. With a realistic-looking key, each arm (no skill, previous skill, shipped
+  skill) kept it out in one run of two. Three wordings of the rule did not change this. A line in
+  the user's own instructions file held in every earlier round; `docs/getting-started.md` now says
+  so.
+- **Replies:** short across all arms, and they often leave out error behavior or how to undo a
+  choice.
+
+### Limits
+
+- One model (the Codex default) on one machine.
+- Two runs per scenario per arm.
+- The `designed-page` checklist was relaxed after the first draft to accept images generated and
+  saved in the project; the two control arms still fail that scenario for invented slogans.
+- Page scenarios were scored from HTML and CSS. No browser was used.

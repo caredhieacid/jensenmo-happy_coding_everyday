@@ -27,9 +27,9 @@
 - **Gets it right, not just "done."** It finds the real cause, fixes every place that needs it, and runs the check that proves the fix.
 - **Never bloats your work.** A typo fix is a one-line diff. No plans, extra agents, or features nobody asked for.
 - **Asks only what only you can decide.** One short question with clear options and a recommendation, instead of a wrong guess you have to undo.
-- **Safe by default.** API keys stay out of your code, nothing gets pushed or deployed without you, and your project's rules always come first.
-- **Tiny footprint.** The part loaded on every task is under 60 lines. Claude Code's own estimate: about 90 tokens per session, and about 1.7k only when it runs.
-- **Tested like real software.** Each key behavior has its own test scenario, run in fresh Codex sessions and scored by a separate reviewer.
+- **Safe by default.** API keys go in a local file instead of your code, nothing gets pushed or deployed without you, and your project's rules always come first.
+- **Tiny footprint.** The part loaded on every task is about one page; the rest is read only when a task needs it.
+- **Measured, not assumed.** In clean Codex sessions, the same 18 tasks met every check 18 of 36 times without HappyCoding and 29 of 36 times with it.
 
 ## Quick start
 
@@ -131,7 +131,8 @@ you get careful work without the overhead.
 | **Asks only when it matters** | If a wrong guess would mean redoing work, it asks one short question with two to four options and a recommendation. If the code can answer it, it doesn't ask. |
 | **No extras** | No features, settings, decoration, or docs you didn't ask for. |
 | **Covers the usual cases** | Before reporting, it checks a short list for the kind of change it made: edge cases, compatibility, data, money and dates, and loading and error states in the UI. |
-| **Safe by default** | API keys stay out of code and commits. Nothing is committed, pushed, or deployed unless you ask. Your project's own rules come first. |
+| **Safe by default** | API keys go in a git-ignored local file instead of code and commits. Nothing is committed, pushed, or deployed unless you ask. Your project's own rules come first. |
+| **Tells you what you didn't ask** | Its report can end with up to three things worth knowing: a risk, a missing piece, or a simpler option. |
 | **Clean, plain UI** | New pages reuse your existing components and styles. With no design yet, it builds a tidy page on the simplest stack that fits, with no decoration and no repeated headings. |
 | **The whole job in one go** | It works out every part a change needs (backend, page, docs, tests) and delivers them together, instead of waiting to be asked for each piece. |
 | **Security review on request** | It traces real flaws to their lines, says how each could be abused and how to fix it, and leaves safe code alone. |
@@ -195,30 +196,25 @@ my stuff."*
 
 ## Test results
 
-Many prompt and workflow collections are never tested. HappyCoding is. Each key behavior has a
-test scenario: a realistic request, a small sample project, a list of things the assistant must do, and a list of
-things it must never do. Every test starts a new Codex session, and a separate reviewer checks the
-result against both lists.
+Does it actually help? We ran the same 18 tasks in clean Codex sessions, with and without HappyCoding, twice each. Separate reviewers scored every run against a checklist written before the run.
 
-| Item | Count |
-| --- | --- |
-| Test scenarios | **27** |
-| Sample projects (frontend, layered backend, money math, API keys, commit rules, and more) | **15** |
-| New Codex sessions run for version 0.3.0 | **59** |
-| Sessions scored line by line by a separate reviewer | **48** |
+| | Without | With HappyCoding |
+| --- | --- | --- |
+| Runs that met every check | 18 of 36 | **29 of 36** |
+| Average quality score (1 to 5) | 3.4 | **4.2** |
 
-**Passed in every scored round:**
+Where it changed the result most:
 
-- found the real cause instead of stopping at misleading code;
-- kept a one-line fix to one line;
-- followed the project's documented branch and commit rules;
-- kept a pasted API key out of files that get committed;
-- put backend code in the layers the project docs describe;
-- built new pages only from the existing styles.
+- **"List these orders on a page, with a status filter."** Without: a full dashboard with a sidebar, stat cards, search, sorting, and its own server. With: three plain files that do what was asked.
+- **"Make a good-looking home page for my café."** Without: invented slogans, and a page that needs `npm run dev` before it opens. With: a designed page that uses only the owner's words and opens with a double-click.
+- **"I can't program. Make me a small tool to track my spending."** Without: charts, categories, and CSV export nobody asked for. With: add, fix, delete, and monthly totals, plus a note on where the data lives and how to keep a copy.
+- **A security review.** Both found the planted flaws. Only the runs with HappyCoding also said what was checked and found sound.
 
-The full test record is in [docs/pressure-tests.md](docs/pressure-tests.md).
+On tasks a strong model already handles well, such as tracing a bug to its cause or following a project's commit rules, results were the same with and without.
 
-**Built with itself.** HappyCoding is developed using HappyCoding. So far: 9 merged pull requests,
+The project has 30 test scenarios and 18 sample projects. The full record, including what failed, is in [docs/pressure-tests.md](docs/pressure-tests.md).
+
+**Built with itself.** HappyCoding is developed using HappyCoding. So far: 16 merged pull requests,
 CI on every pull request, and release packages that can be verified and can't be changed after
 publishing.
 
@@ -247,7 +243,7 @@ flowchart LR
 Once the risky part is done, it goes back to Everyday. Opening a pull request, touching many
 files, or running an end-to-end test locally does not, by itself, make a task Delivery.
 
-**Light on context.** Only `SKILL.md` (under 60 lines) is loaded for every task. The other files
+**Light on context.** Only `SKILL.md` (about one page) is loaded for every task. The other files
 are read only when needed:
 
 | File | When it's read |

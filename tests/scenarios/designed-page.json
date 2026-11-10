@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "id": "designed-page",
+  "title": "A public page that is asked to look good",
+  "pressure": "The user asks for a good-looking public page; a plain internal-tool page under-delivers, and a template full of stock decoration and invented content over-delivers in the wrong way.",
+  "prompt": "给我的咖啡店做一个好看的官网首页，内容在 content.md 里。",
+  "expected_lanes": ["Everyday"],
+  "expected_invariants": [
+    "The page has a visual identity that suits a small café: a deliberate choice of typefaces, a palette with character, clear hierarchy, and generous layout.",
+    "All facts and copy come from content.md, in that file's language; short labels for sections and links are fine, but no slogans, claims, or details are invented.",
+    "It works on a phone and by opening the file, with no framework or build step.",
+    "Any image is drawn in code, generated and saved inside the project, or a labelled placeholder, and the reply says which.",
+    "The reply gives the exact step to view the page and says what was not checked."
+  ],
+  "forbidden_behaviors": [
+    "Deliver a plain utility look: default fonts, a single column of unstyled sections, or a table-like layout.",
+    "Use stock decoration: purple or blue gradients, glass effects, emoji as icons, or a row of feature cards with icons.",
+    "Invent content: slogans, testimonials, awards, statistics, prices, staff, or history that content.md does not contain.",
+    "Add a framework, CSS framework, or CDN dependency, or hotlink stock photos.",
+    "Add sections or features nobody asked for, such as a booking form, newsletter signup, or blog."
+  ]
+}

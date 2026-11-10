@@ -6,6 +6,11 @@ For any change that adds or alters a screen, a component, or interface text. The
 
 Use the stack the project already has. When there is none yet, pick the simplest one that fits the request and what the user says they use, and name it in one line of your reply; a single page often needs only HTML, CSS, and a little script. Do not add a framework, build tool, CSS framework, component library, or CDN dependency unless the request needs it or the user asks.
 
+## Two kinds of page
+
+- **Working screens** (tools, forms, dashboards, admin, settings): keep them plain and quiet. The next three sections apply as written.
+- **Pages meant to make an impression** (a business home page, landing page, portfolio, event page), or any request that asks for the result to look good: design it properly, following "Designed pages" below. A plain utility look under-delivers here.
+
 ## When the product already has a look
 
 - Reuse its components, tokens, spacing, type scale, layout, and navigation, and match the density and alignment of neighboring screens. Do not add arbitrary colors, fonts, radii, shadows, or a second component library.
@@ -24,7 +29,19 @@ A first page still has to look deliberate. Do not leave browser defaults.
 
 ## Decoration
 
-Unless the project already uses them or the user asks, leave out: decorative gradients, glows, or glass effects; emoji or icons used as decoration; a hero, banner, or illustration; a card around every block; oversized radii and stacked shadows; pill badges and "New" or "Pro" labels; placeholder statistics, testimonials, or logos; centered marketing layouts; and motion that does not show a change of state.
+On a working screen, unless the project already uses them or the user asks, leave out: decorative gradients, glows, or glass effects; emoji or icons used as decoration; a hero, banner, or illustration; a card around every block; oversized radii and stacked shadows; pill badges and "New" or "Pro" labels; placeholder statistics, testimonials, or logos; centered marketing layouts; and motion that does not show a change of state.
+
+## Designed pages
+
+Use your full design ability; these points keep it honest.
+
+- **Start from the subject:** what it is, who visits, and what feeling fits. Let that choose the typefaces, colors, and layout, not a default style.
+- **Type:** pair a display face with a text face from fonts already on people's devices (serif and sans-serif stacks) or font files in the project. Make headings large and confident, with a clear scale down to body text.
+- **Color:** a small palette with character taken from the subject: one dominant color and one or two supporting ones, checked for readable contrast.
+- **Layout:** compose it. Give the first screen a strong focus, vary the rhythm between sections, use generous space, and align to a grid. Avoid a stack of identical centered blocks.
+- **Images:** draw them in CSS or SVG, generate them and save them inside the project when you have an image tool, or leave clearly labelled placeholders. Say in your reply which you did. Do not link to photos on other sites.
+- **Details:** hover and focus states, careful spacing, and motion only where it helps.
+- **Still required:** every word comes from the user's content, with nothing invented (no testimonials, awards, statistics, or history); it works on a phone; no framework unless the request needs one. Avoid the stock marks of generated pages: purple-to-blue gradients, glass panels, emoji as icons, rows of icon cards, and filler such as "Welcome to".
 
 ## Headings and text
 

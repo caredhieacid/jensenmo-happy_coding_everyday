@@ -92,10 +92,14 @@ def write_checklist(scenario: dict, run_dir: Path) -> None:
     (run_dir / "checklist.md").write_text("\n".join(lines), encoding="utf-8")
 
 
-def run_scenario(scenario: dict, codex_bin: str, dry_run: bool) -> Path:
-    stamp = _dt.datetime.now().strftime("%Y%m%d-%H%M%S")
-    run_dir = RUN_DIR / f"{stamp}-{scenario['id']}"
+def run_scenario(scenario: dict, codex_bin: str, dry_run: bool, label: str = "") -> Path:
+    stamp = _dt.datetime.now().strftime("%Y%m%d-%H%M%S-%f")
+    suffix = f"-{label}" if label else ""
+    run_dir = RUN_DIR / f"{stamp}-{scenario['id']}{suffix}"
     run_dir.mkdir(parents=True)
+    (run_dir / "meta.json").write_text(
+        json.dumps({"scenario": scenario["id"], "label": label}) + "\n", encoding="utf-8"
+    )
     (run_dir / "prompt.txt").write_text(scenario["prompt"] + "\n", encoding="utf-8")
     write_checklist(scenario, run_dir)
 
@@ -146,13 +150,18 @@ def main() -> int:
     parser.add_argument(
         "--dry-run", action="store_true", help="prepare evidence folders without invoking codex"
     )
+    parser.add_argument(
+        "--label", default="", help="name for this arm of a comparison, such as no-skill or candidate"
+    )
+    parser.add_argument("--repeat", type=int, default=1, help="run each scenario this many times")
     args = parser.parse_args()
 
     if not args.dry_run and shutil.which(args.codex_bin) is None:
         raise SystemExit(f"codex executable not found: {args.codex_bin}")
 
     for scenario in load_scenarios(args.ids):
-        run_scenario(scenario, args.codex_bin, args.dry_run)
+        for _ in range(args.repeat):
+            run_scenario(scenario, args.codex_bin, args.dry_run, args.label)
     print("Runs are evaluation inputs; a scenario passes only after human grading.")
     return 0
 
