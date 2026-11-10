@@ -2,6 +2,8 @@
 
 Sensible defaults for a repository that says nothing stricter. Apply only the sections the task touches, to the code the task changes; do not retrofit untouched code or turn a small fix into a standards migration. Repository instructions, project decision records, and narrower standard skills for the same domain take precedence. When they conflict with each other or with this baseline, name the conflict instead of silently choosing.
 
+Size these defaults to the project. Follow the stack, tools, and patterns it already uses, and never introduce a language, framework, or tool to satisfy this file. A script, prototype, or small tool needs only what its size calls for: it does not need structured logging, tracing, versioned migrations, or decision records unless it already has them.
+
 ## Git
 
 - Commit or push only when asked. Follow the project's documented branch and message rules. Without any: on a repository whose default branch receives changes through pull requests, cut a short-lived branch from a freshly fetched base; a solo local project can commit where the user works.
@@ -31,6 +33,7 @@ Sensible defaults for a repository that says nothing stricter. Apply only the se
 - Never pass untrusted input to `eval`, a shell, a query, or a file path without validation or parameterization; encode output for its context (HTML, SQL, shell, URL).
 - Do not disable TLS verification, CSRF protection, authentication, or security headers to make something work; fix the configuration instead.
 - Give tokens, roles, and containers the least privilege the task needs.
+- For a full pass over a change or a codebase, follow the [security review](security-review.md).
 
 ## Data and migrations
 
@@ -44,6 +47,7 @@ Sensible defaults for a repository that says nothing stricter. Apply only the se
 
 - Validate untrusted input once at the boundary; use parameterized queries and commands.
 - Keep public API, CLI, file-format, and event contracts backward compatible; make changes additive and announce removals before making them. If a break is necessary, say so and update known consumers.
+- When a change crosses the boundary between frontend and backend, change the contract once and update the server, the client, types, and docs in the same pass, following the existing response and error shape.
 - Give every external call a timeout. Retry only retryable errors, with a cap and backoff, and only for idempotent operations.
 - Handle an error or propagate it; do not log it and rethrow it as well. Messages a person sees say what to do next.
 - Cache only with a TTL and an invalidation tied to the write path; do not cache authorization decisions, money, or reservable stock.
@@ -62,17 +66,6 @@ Sensible defaults for a repository that says nothing stricter. Apply only the se
 
 - Use the project's documented setup and run commands. Install dependencies into the project's own environment (virtualenv, local packages, version manager) with its package manager and lockfile; ask before global or `sudo` installs.
 - When setup is missing or broken, report the exact failing command and the fix. Do not change toolchain or package versions, or switch package managers, just to make a check pass.
-
-## Frontend and UI
-
-- Make new UI look like the product, not a template: reuse its components, tokens, spacing, type scale, layout, and navigation, and match the density and alignment of neighboring screens. Do not add arbitrary colors, fonts, radii, shadows, or a second component library.
-- Unless the project already uses them or the user asks, avoid the marks of generated UI: decorative gradients, glows, or glass effects; emoji or icons used as decoration; a hero, banner, or illustration nobody requested; a card around every block; oversized radii and stacked shadows; pill badges and "New" or "Pro" labels; placeholder statistics, testimonials, or logos; centered marketing layouts; and motion that does not communicate state.
-- Write interface copy in the words the product already uses: short, specific, and calm, with no hype, exclamation marks, filler, jargon, or invented terms. Give each thing one name, in the interface's language, everywhere it appears: navigation, page title, labels, buttons, and messages.
-- Add headings, subheadings, and helper text only where neighboring screens have them; a short form usually needs none. Keep notes for developers off the page: caveats about unfinished parts, disclaimers, and "please note" text belong in your report, not the UI. Use real labels and data shapes; when real content is missing, use neutral placeholders and mention them in the report.
-- Build only the screens, controls, and states the task needs; ask before adding settings, sections, or variants (such as a dark theme) that nobody requested. Handle the loading, empty, and error states the change actually introduces, without decorative empty-state art.
-- Keep controls accessible: labels tied to inputs, visible keyboard focus, and native elements before custom widgets.
-- Do not hand-edit generated API clients; change the contract and regenerate them. Keep type checking meaningful: do not silence errors with `any`, casts, or suppression comments.
-- Check UI changes in the running interface when a browser is available, including affected states. Widen the check when shared or global styles change.
 
 ## LLM and agent features
 

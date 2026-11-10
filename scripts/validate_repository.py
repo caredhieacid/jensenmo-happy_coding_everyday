@@ -26,7 +26,9 @@ def load_json(path: Path) -> dict:
 
 
 def iter_markdown_files() -> Iterable[Path]:
-    yield from sorted(path for path in ROOT.rglob("*.md") if ".git" not in path.parts)
+    # .scenario-runs holds git-ignored evidence from agent runs, not repository docs.
+    skipped = {".git", ".scenario-runs"}
+    yield from sorted(path for path in ROOT.rglob("*.md") if not skipped & set(path.parts))
 
 
 def validate_local_links() -> list[str]:

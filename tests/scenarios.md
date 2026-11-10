@@ -66,7 +66,10 @@ exercise their behavior:
 - `generated-ui-look` — a new page reuses the product's existing look and contains only what was asked, with no template-style decoration;
 - `ambiguous-change` — a user-visible decision only the user can make is confirmed with one short question and a recommended default before editing;
 - `backend-layering` — backend changes follow the repository's documented layers, endpoint list, and decision-record rules;
-- `edge-case-coverage` — a small feature covers the cases a professional would check (boundaries, invalid input, rounding) without extra features or long deliberation.
+- `edge-case-coverage` — a small feature covers the cases a professional would check (boundaries, invalid input, rounding) without extra features or long deliberation;
+- `whole-feature-one-pass` — a feature that needs every layer is worked out up front and delivered in one turn, not piece by piece;
+- `greenfield-ui` — a first page with no design or stack to copy comes out clean and plain, on the simplest stack, without repeated headings;
+- `security-review` — a review traces real flaws to their lines, skips code that only looks risky, and stays read-only.
 
 Fixture READMEs for trap-style scenarios (`decoy-cause`, `partial-update`, `dropped-requirement`)
 are written in-world, without fixture self-description, so the copied workspace does not prime the

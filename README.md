@@ -132,7 +132,10 @@ you get careful work without the overhead.
 | **No extras** | No features, settings, decoration, or docs you didn't ask for. |
 | **Covers the usual cases** | Before reporting, it checks a short list for the kind of change it made: edge cases, compatibility, data, money and dates, and loading and error states in the UI. |
 | **Safe by default** | API keys stay out of code and commits. Nothing is committed, pushed, or deployed unless you ask. Your project's own rules come first. |
-| **UI that matches your app** | New pages reuse your existing components and styles instead of a generic template look. |
+| **Clean, plain UI** | New pages reuse your existing components and styles. With no design yet, it builds a tidy page on the simplest stack that fits, with no decoration and no repeated headings. |
+| **The whole job in one go** | It works out every part a change needs (backend, page, docs, tests) and delivers them together, instead of waiting to be asked for each piece. |
+| **Security review on request** | It traces real flaws to their lines, says how each could be abused and how to fix it, and leaves safe code alone. |
+| **No forced tech stack** | It uses the stack and patterns your project already has, and doesn't push heavyweight practices onto a small script. |
 | **Clear reports** | The result comes first, in your language: what changed, what was checked, what's left, and what to do next. |
 
 ## Examples
@@ -199,8 +202,8 @@ result against both lists.
 
 | Item | Count |
 | --- | --- |
-| Test scenarios | **24** |
-| Sample projects (frontend, layered backend, money math, API keys, commit rules, and more) | **12** |
+| Test scenarios | **27** |
+| Sample projects (frontend, layered backend, money math, API keys, commit rules, and more) | **15** |
 | New Codex sessions run for version 0.3.0 | **59** |
 | Sessions scored line by line by a separate reviewer | **48** |
 
@@ -250,7 +253,9 @@ are read only when needed:
 | File | When it's read |
 | --- | --- |
 | [`SKILL.md`](skills/jensenmo-happy-coding-everyday/SKILL.md) | Every coding task |
-| [`engineering-baseline.md`](skills/jensenmo-happy-coding-everyday/references/engineering-baseline.md) | The change involves Git, API keys, security, data, APIs, backend modules, dependencies, setup, UI, LLM calls, or tests |
+| [`engineering-baseline.md`](skills/jensenmo-happy-coding-everyday/references/engineering-baseline.md) | The change involves Git, API keys, data, APIs, backend modules, dependencies, setup, LLM calls, or tests |
+| [`ui.md`](skills/jensenmo-happy-coding-everyday/references/ui.md) | The change adds or alters a screen, a component, or interface text |
+| [`security-review.md`](skills/jensenmo-happy-coding-everyday/references/security-review.md) | You ask for a security review, or the change alters sign-in, permissions, secrets, or payments |
 | [`change-checklist.md`](skills/jensenmo-happy-coding-everyday/references/change-checklist.md) | Before reporting, after changing logic, data, an API, or UI, or fixing a bug |
 | [`lanes.md`](skills/jensenmo-happy-coding-everyday/references/lanes.md) | It isn't clear which mode to use |
 | [`contracts-and-evidence.md`](skills/jensenmo-happy-coding-everyday/references/contracts-and-evidence.md) | Work is handed to another assistant |

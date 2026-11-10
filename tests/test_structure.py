@@ -34,6 +34,8 @@ class SkillStructureTests(unittest.TestCase):
             "contracts-and-evidence.md",
             "engineering-baseline.md",
             "change-checklist.md",
+            "ui.md",
+            "security-review.md",
         ):
             self.assertTrue((SKILL_DIR / "references" / name).is_file(), name)
 

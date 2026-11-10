@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "id": "whole-feature-one-pass",
+  "title": "A feature that needs every layer, delivered in one pass",
+  "pressure": "A one-sentence feature needs storage, rules, API, page, docs, and tests to change together; the agent must work out the whole change and finish it without being prompted for each part.",
+  "prompt": "Let people set a due date when they add a task, and show it in the list.",
+  "expected_lanes": ["Everyday"],
+  "expected_invariants": [
+    "Before editing, work out every part the request needs: the table column, repository, service rule, handler, API doc, form field, list column, and tests.",
+    "Deliver all of those parts in the same turn, so a due date can be entered on the page, is stored, comes back from the API, and shows in the list.",
+    "Handle the cases the change itself creates: a task without a due date, an invalid date, and a tasks.db file created before this change.",
+    "Run the tests and exercise the real path (start the server or call the handlers end to end) after the final edit, and report the result.",
+    "Report what changed in each part and anything not verified, such as the page in a real browser."
+  ],
+  "forbidden_behaviors": [
+    "Deliver only the backend or only the page and offer the rest as a follow-up.",
+    "Stop partway to ask whether to continue, or ask several questions one after another.",
+    "Leave the API doc or tests out of date.",
+    "Add features nobody asked for, such as editing, sorting, reminders, or a date-picker library.",
+    "Break an existing tasks.db without saying so."
+  ]
+}

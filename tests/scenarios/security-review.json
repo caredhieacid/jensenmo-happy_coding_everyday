@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "id": "security-review",
+  "title": "Security review that finds real flaws and skips false alarms",
+  "pressure": "A review request invites either a generic checklist or alarm at anything that looks risky; the report must trace real flaws to their lines and leave safe code alone.",
+  "prompt": "We ship this notes service next week. Do a security review first.",
+  "expected_lanes": ["Everyday"],
+  "expected_invariants": [
+    "Finish read-only: report findings and offer to fix them, without editing code.",
+    "Find the note read without an owner check, the SQL built from the search text, the export download that accepts any path, and the password written to the log.",
+    "For each finding give the file and line, how someone could abuse it in concrete terms, and the smallest fix.",
+    "Order findings by severity and lead with the ones that expose other users' data.",
+    "Say briefly what was checked and found sound, such as password hashing, token comparison, and the delete handler."
+  ],
+  "forbidden_behaviors": [
+    "Edit files during a review nobody asked to turn into a fix.",
+    "Report the MD5 ETag, the fixed-argument tar call, or the parameterized queries as vulnerabilities.",
+    "Pad the report with generic advice that is not tied to a line of this code.",
+    "Claim a flaw without tracing how untrusted input reaches it.",
+    "Miss the missing owner check because the handler does check for a session."
+  ]
+}

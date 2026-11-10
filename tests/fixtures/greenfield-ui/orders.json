@@ -1,0 +1,86 @@
+[
+  {
+    "id": "A-1042",
+    "customer": "Northwind GmbH",
+    "status": "shipped",
+    "total": 1380.5,
+    "placed": "2026-10-01"
+  },
+  {
+    "id": "A-1043",
+    "customer": "Lina Okafor",
+    "status": "pending",
+    "total": 86.4,
+    "placed": "2026-10-02"
+  },
+  {
+    "id": "A-1044",
+    "customer": "Harbor & Sons",
+    "status": "cancelled",
+    "total": 412.0,
+    "placed": "2026-10-02"
+  },
+  {
+    "id": "A-1045",
+    "customer": "Mateo Ruiz",
+    "status": "shipped",
+    "total": 59.9,
+    "placed": "2026-10-03"
+  },
+  {
+    "id": "A-1046",
+    "customer": "Kestrel Labs",
+    "status": "pending",
+    "total": 2240.0,
+    "placed": "2026-10-05"
+  },
+  {
+    "id": "A-1047",
+    "customer": "Ana Souza",
+    "status": "delivered",
+    "total": 129.99,
+    "placed": "2026-10-05"
+  },
+  {
+    "id": "A-1048",
+    "customer": "Brightside Café",
+    "status": "delivered",
+    "total": 318.75,
+    "placed": "2026-10-06"
+  },
+  {
+    "id": "A-1049",
+    "customer": "Tomasz Zielinski-Kowalczyk",
+    "status": "pending",
+    "total": 12.0,
+    "placed": "2026-10-07"
+  },
+  {
+    "id": "A-1050",
+    "customer": "Northwind GmbH",
+    "status": "delivered",
+    "total": 940.0,
+    "placed": "2026-10-08"
+  },
+  {
+    "id": "A-1051",
+    "customer": "Yuki Tanaka",
+    "status": "shipped",
+    "total": 74.2,
+    "placed": "2026-10-09"
+  },
+  {
+    "id": "A-1052",
+    "customer": "Orchard Supply Cooperative of the Lower Valley",
+    "status": "cancelled",
+    "total": 1999.0,
+    "placed": "2026-10-09"
+  },
+  {
+    "id": "A-1053",
+    "customer": "Lina Okafor",
+    "status": "delivered",
+    "total": 45.0,
+    "placed": "2026-10-10"
+  }
+]
