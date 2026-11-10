@@ -74,3 +74,24 @@ before changing routing instructions. After the change:
 
 Passing the scenario means the fresh run met the invariants. A JSON file, a persuasive plan, or an
 earlier run is not a pass.
+
+## Comparing with and without the skill
+
+A comparison needs an environment where nothing else steers the agent:
+
+- point `CODEX_HOME` at an empty folder that holds only a link to the login file and a config with
+  the model, so no global instructions load;
+- point `HOME` at an empty folder too, so skills installed for the user are not listed;
+- for the "with" arm, link the skill folder into `$CODEX_HOME/skills/`; for the "without" arm, leave
+  it out.
+
+Then run each arm with a label and at least two repeats, and have a separate reviewer score every
+run against its checklist:
+
+```bash
+HOME=/path/empty CODEX_HOME=/path/arm python3 scripts/run_scenarios.py --label with-skill --repeat 2
+```
+
+Give every arm the same environment note when one is needed. On macOS, agents that try to launch a
+headless browser inside the sandbox crash it and trigger system crash dialogs; an `AGENTS.md` in
+each arm's `CODEX_HOME` that says no browser is available avoids this.
