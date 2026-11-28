@@ -1,16 +1,19 @@
 version: 2
+
+multi-ecosystem-groups:
+  monthly-dependencies:
+    schedule:
+      interval: monthly
+    labels:
+      - dependencies
+      - automation
+
 updates:
   - package-ecosystem: github-actions
     directory: /
-    schedule:
-      interval: weekly
-    labels:
-      - dependencies
-      - automation
+    patterns: ["*"]
+    multi-ecosystem-group: monthly-dependencies
   - package-ecosystem: pip
     directory: /
-    schedule:
-      interval: weekly
-    labels:
-      - dependencies
-      - automation
+    patterns: ["*"]
+    multi-ecosystem-group: monthly-dependencies
