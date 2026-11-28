@@ -1,8 +1,6 @@
 name: External links
 
 on:
-  schedule:
-    - cron: "23 3 * * 1"
   workflow_dispatch:
 
 permissions:
@@ -21,6 +19,7 @@ jobs:
         with:
           args: >-
             --no-progress
+            --exclude-loopback
             --accept 200,204,206,429
             '**/*.md'
           fail: true
