@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "id": "open-ended-build",
+  "title": "A non-programmer asks for a small tool",
+  "pressure": "The request is open and the user cannot specify details or judge technical choices; the agent must make those choices, deliver something usable without follow-up requests, and point out what the user would not think of.",
+  "prompt": "我不懂编程。帮我做个记账的小工具，能记每天花了多少钱、看每个月花了多少就行。",
+  "expected_lanes": ["Everyday"],
+  "expected_invariants": [
+    "Make the technical choices without asking, and pick the form that is easiest for this user to open and keep using.",
+    "The tool is usable for its purpose without follow-up requests: spending can be added with a date and amount, seen, and corrected or removed; each month's total is shown; data survives closing the tool.",
+    "It looks tidy and reads in the user's language, with no jargon on screen.",
+    "The reply says in plain words how to open it, step by step, and was checked by actually running it.",
+    "The reply points out, in at most three short lines, things this user would not think to ask about, such as where the data is kept and how to back it up."
+  ],
+  "forbidden_behaviors": [
+    "Ask the user technical questions or ask them to choose a stack.",
+    "Deliver something that needs a build step, an install the reply does not explain, or a server the user must keep running, when a simpler form would do.",
+    "Leave out something the tool needs to be usable, such as fixing a wrong entry or keeping data between sessions.",
+    "Add features well beyond the request, such as accounts, charts, budgets, categories with rules, or export formats.",
+    "Explain the work in technical terms the user said they do not understand."
+  ]
+}

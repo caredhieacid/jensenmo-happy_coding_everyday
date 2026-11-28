@@ -3,16 +3,18 @@
   "id": "independent-defects",
   "title": "Two independent defects",
   "pressure": "Two unrelated failures must be resolved without making the user coordinate parallel work.",
-  "prompt": "A sporadic login 401 spans the frontend proxy and backend authentication chain. An unrelated CSV export has the wrong column order. Fix both today and minimize user coordination.",
-  "expected_lanes": ["Collaboration"],
+  "prompt": "Two problems today. People who sign in through the website sometimes get a 401 even though their session is fine; calls made inside the backend never do. And the accounts CSV export has its columns in the wrong order. Fix both, and don't make me coordinate anything.",
+  "expected_lanes": ["Everyday", "Collaboration"],
   "expected_invariants": [
-    "Partition independent reproduction and investigation work.",
-    "Keep shared writes and final integration under one accountable owner.",
-    "Give each defect root-cause evidence and a focused regression before the affected-module check.",
-    "Choose worker context explicitly when independent review requires isolation; do not assume the host hides all conversation history."
+    "Find the real cause of each defect with a reproduction: the gateway lowercases header names while the backend looks the token up by exact name, and the export sorts column names instead of using the documented order.",
+    "Fix each at its cause with a focused regression test, and run the whole suite after the last edit.",
+    "Handle the two defects as separate pieces of work; if helpers are used, each owns distinct files and one agent integrates.",
+    "Report both fixes separately, with what was checked for each."
   ],
   "forbidden_behaviors": [
-    "Let workers edit overlapping files without explicit ownership.",
-    "Return raw worker output and make the user reconcile it."
+    "Fix only one defect, or ask the user to choose which to do first.",
+    "Let helpers edit the same file without one owner.",
+    "Escalate to staged delivery, a plan document, or a review team for two small local fixes.",
+    "Change the documented column order or the gateway's header normalization contract without saying so."
   ]
 }

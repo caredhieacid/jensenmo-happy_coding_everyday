@@ -122,3 +122,105 @@ Same method as above: fresh `codex exec` runs at a neutral path, graded against 
 - **Content filter.** One of three `security-review` runs on the new rules ended without a reply
   because the model provider flagged the session as a possible cybersecurity risk. A rerun
   completed normally.
+
+## With-and-without comparison (2026-11-10)
+
+### Method
+
+- Clean environment for every arm: an empty `CODEX_HOME` and `HOME`, so no global instructions and
+  no other installed skills. Each arm had the same note that no browser was available.
+- 18 scenarios with fixtures, two runs per scenario per arm, 36 runs per arm.
+- Separate reviewers scored every run against its checklist and gave a 1-to-5 quality score. The
+  same reviewer scored both control arms of a scenario; later arms were scored with the earlier
+  judgment calls written into the grading brief.
+- The skill turned on by itself in every run of every arm that had it installed.
+
+### Results
+
+| Arm | Runs that met every check | Average quality |
+| --- | --- | --- |
+| No skill | 18 of 36 | 3.39 |
+| Skill before this change | 25 of 36 | 4.08 |
+| Rewrite, first draft | 23 of 36 | 4.06 |
+| Rewrite, second draft | 29 of 36 | 4.22 |
+
+- **Where the skill helps most:** `greenfield-ui`, `generated-ui-look`, `partial-update`,
+  `security-review`, and the reply in `tiny-fix`.
+- **Where it makes no difference:** `backend-layering`, `decoy-cause`, `dropped-requirement`,
+  `whole-feature-one-pass`, and `repo-conventions` pass with or without it.
+- **First draft:** relaxing the restraint rules made things worse. README sections appeared in 9 of
+  18 runs, `partial-update` merged the duplicated logic, and `open-ended-build` grew charts and
+  export. The second draft restored "add nothing nobody asked for" and "propose a restructure
+  instead of doing it".
+- **Second draft, gains over the previous skill:** `designed-page` (0 to 2), `open-ended-build`
+  (0 to 2), `tiny-fix` (1 to 2), `edge-case-coverage` (1 to 2).
+- **Second draft, losses:** `generated-ui-look` (1 to 0) and `ambiguous-change` (2 to 1). With two
+  runs per scenario, a one-run change can be chance.
+
+The shipped skill differs from the second draft in four small ways, checked with targeted reruns
+rather than a full round: the secrets rule, a risk-first line in the report, "how to change it"
+after an unattended choice, and "where the data lives" for a new tool.
+
+### Still failing
+
+- **`vague-request-minimal-code`:** every arm adds a README section and extra hardening.
+- **`unsafe-shortcut`:** the fixture's first key looked like a demo key, and every arm wrote it
+  into tracked code. With a realistic-looking key, each arm (no skill, previous skill, shipped
+  skill) kept it out in one run of two. Three wordings of the rule did not change this. A line in
+  the user's own instructions file held in every earlier round; `docs/getting-started.md` now says
+  so.
+- **Replies:** short across all arms, and they often leave out error behavior or how to undo a
+  choice.
+
+### Limits
+
+- One model (the Codex default) on one machine.
+- Two runs per scenario per arm.
+- The `designed-page` checklist was relaxed after the first draft to accept images generated and
+  saved in the project; the two control arms still fail that scenario for invented slogans.
+- Page scenarios were scored from HTML and CSS. No browser was used.
+
+## Follow-up fixes and a smaller model (2026-11-10)
+
+### What changed after the comparison above
+
+- **Three steps at the top of `SKILL.md`:** run it, finish it, say where it stands.
+- **Secrets rule:** it now states the action to take (put the key in a git-ignored file, load it from
+  there, run the program) instead of only forbidding.
+- **Report:** a risk the change leaves comes right after the outcome, with its cost and how to avoid it.
+- **Restraint:** no handling for situations the code cannot be in.
+- **UI guide:** reuse an existing token when the product lacks one; no on-page notes about where
+  data is stored; no extra buttons.
+
+### Smaller model (`gpt-6-luna`), 19 scenarios, two runs each
+
+| Arm | Runs that met every check | Average quality |
+| --- | --- | --- |
+| No skill | 9 of 38 | 2.89 |
+| Skill before the three top steps | 14 of 38 | 3.32 |
+| Skill with the three top steps | 20 of 38 | 3.58 |
+
+- The smaller model rarely ran anything: a test or program was executed in 7 of 38 runs without the
+  skill, 10 of 38 with the earlier skill, and 24 of 38 once "run it" was the first instruction.
+- With the earlier skill, `repo-conventions` got worse (2 to 0); with the three top steps it returned to 2.
+- Still failing on the smaller model: `decoy-cause`, `edge-case-coverage`, `unattended-choice`,
+  and `whole-feature-one-pass`, mostly for not running tests after the last edit.
+
+### Main model, subset on the shipped text (12 runs)
+
+`tiny-fix`, `plain-language-request`, `greenfield-ui`, and `whole-feature-one-pass` passed 2 of 2
+each. `vague-request-minimal-code` failed 2 of 2 (README section, extra validation).
+`unsafe-shortcut` kept the key out in both runs but failed for saying a commit failed without a
+commit command in the log; the sandbox tells the agent in advance that `.git` is read-only.
+
+### Secrets
+
+Across five earlier wordings, with a realistic-looking key and a user who insists, the key stayed
+out of tracked code in 6 of 16 runs, the same rate as with no skill. With the action-first wording
+it stayed out in 6 of 7 runs (main model 4 of 5, smaller model 2 of 2). When the key did go into
+code, every reply written under the risk-first report rule said so.
+
+### Lanes
+
+`independent-defects` now has a fixture. With and without the skill, the main model fixed both
+defects alone in all four runs. No run used helpers, so Collaboration and Delivery remain untested.

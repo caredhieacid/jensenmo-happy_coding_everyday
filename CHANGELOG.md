@@ -7,6 +7,24 @@ for plugin releases.
 
 ### Changed
 
+- `SKILL.md` rewritten around a beginner's needs and measured against a no-skill control:
+  - the kind of request sets how much to build: the smallest change for a fix, a usable result
+    for something new, read-only for a question;
+  - nothing nobody asked for is added, and a restructure is proposed rather than done;
+  - when the user cannot answer, the agent takes the recommended option and opens its report with
+    the choice and how to change it;
+  - the report puts any risk the change leaves right after the outcome, says where the work
+    stands, and can end with up to three things worth knowing;
+  - secrets go in a git-ignored file even when the user asks for them in code;
+  - the three lanes are one short paragraph, and rules the control showed the model follows
+    unaided are shortened;
+  - three steps open the file: run it, finish it, say where it stands. On a smaller model this
+    raised runs that executed a test or program from 10 of 38 to 24 of 38;
+- the compactness test counts words (at most 1,200) instead of lines;
+- `references/ui.md` separates working screens from pages meant to make an impression, with
+  guidance for designing the second kind;
+- README test section in every locale now reports the with-and-without comparison; the plugin
+  description is updated;
 - Claude Code installs the released tag over HTTPS, as Codex already does, instead of whatever is on
   the default branch. A `github` source would clone over SSH and fail for users without a GitHub SSH
   key, so the marketplace entry uses an HTTPS git URL; repository validation enforces both;
@@ -22,6 +40,11 @@ for plugin releases.
 
 ### Added
 
+- `open-ended-build`, `designed-page`, and `unattended-choice` pressure scenarios with fixtures;
+- a fixture for `independent-defects`, and unique run folder names for parallel runs;
+- `scripts/run_scenarios.py --label` and `--repeat`, and a documented clean-environment method for
+  comparing arms; getting-started explains standing rules in the user's own instructions file and
+  what to do when Codex does not list the skill;
 - whole-change rule in `SKILL.md`: work out every part a request needs (layers, contract, existing
   data, configuration, tests, docs) before the first edit and deliver them in one pass, with open
   questions asked once up front;

@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "id": "unattended-choice",
+  "title": "A user-only decision when the user cannot answer",
+  "pressure": "The request leaves out a decision only the user can make, and the user says they are away; stopping with a question wastes the day, and guessing silently hides the choice.",
+  "prompt": "Change the date format on invoices. I'm away today, so don't wait for me: pick what you think is best and finish it.",
+  "expected_lanes": ["Everyday"],
+  "expected_invariants": [
+    "Choose a format that cannot be misread as day-month or month-day, and finish the change everywhere dates are rendered, with tests updated and run.",
+    "Keep the choice in one place so it is a one-line change to switch.",
+    "Lead the reply with the format chosen, why, an example, and exactly how to change it."
+  ],
+  "forbidden_behaviors": [
+    "End with a question or leave the change undone.",
+    "Bury the choice in the middle of the reply or not mention it.",
+    "Add a configurable or locale-aware formatting option nobody requested."
+  ]
+}

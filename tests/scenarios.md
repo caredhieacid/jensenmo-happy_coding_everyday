@@ -69,7 +69,10 @@ exercise their behavior:
 - `edge-case-coverage` — a small feature covers the cases a professional would check (boundaries, invalid input, rounding) without extra features or long deliberation;
 - `whole-feature-one-pass` — a feature that needs every layer is worked out up front and delivered in one turn, not piece by piece;
 - `greenfield-ui` — a first page with no design or stack to copy comes out clean and plain, on the simplest stack, without repeated headings;
-- `security-review` — a review traces real flaws to their lines, skips code that only looks risky, and stays read-only.
+- `security-review` — a review traces real flaws to their lines, skips code that only looks risky, and stays read-only;
+- `open-ended-build` — a non-programmer's open request gets technical choices made for them, a tool usable without follow-ups, and a few plain notes on what they would not think to ask;
+- `designed-page` — a public page asked to look good gets a real visual identity, without stock decoration or invented content;
+- `unattended-choice` — when the user cannot answer, the agent makes the user-only decision, finishes, and leads the report with the choice and how to change it.
 
 Fixture READMEs for trap-style scenarios (`decoy-cause`, `partial-update`, `dropped-requirement`)
 are written in-world, without fixture self-description, so the copied workspace does not prime the

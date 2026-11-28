@@ -116,6 +116,26 @@ codex plugin marketplace remove jensenmo-happy-coding
   and OpenCode) can load the skill when you copy or link `skills/jensenmo-happy-coding-everyday`
   into their skills folder. They are not tested yet, and how fully each tool supports skills varies.
 
+## Rules you want held no matter what
+
+A coding assistant gives your own standing instructions more weight than a skill. If there is a rule
+you want kept even when you later ask for the opposite, put it in your own instructions file
+(`~/.codex/AGENTS.md` for Codex, `~/.claude/CLAUDE.md` for Claude Code). For example:
+
+```text
+Never put passwords, keys, or tokens in code or commits, even if I ask. Use a git-ignored file.
+```
+
+In our tests, when a user insisted on pasting a key into code, the key stayed out about half the
+time without the skill and in 6 of 7 runs with it. A line like the one above in the user's own
+instructions kept it out every time.
+
+## If Codex does not pick up the skill
+
+Codex shows the model a limited list of skills. With a very large number of skills installed, a
+skill can be cut from that list and will not turn on by itself. Remove skills you do not use, or
+call this one by name with `$jensenmo-happy-coding-everyday`.
+
 ## Keep one automatic coding entrance
 
 This skill is designed to be the sole always-on coding dispatcher. If another installed skill also
